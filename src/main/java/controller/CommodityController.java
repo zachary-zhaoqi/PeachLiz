@@ -35,7 +35,7 @@ public class CommodityController {
         int idcommodity = 1;
         String category = "category";
         String model ="model";
-        String picture="picture";
+        String picture="/assets/commoditypic/1.jpg";
         String color="color";
         String topfabric="topfabric";
         String underfabric="underfabric";
@@ -49,7 +49,7 @@ public class CommodityController {
             commodity.setIdcommodity(i+idcommodity);
             commodity.setCategory(category+i);
             commodity.setModel(model+i);
-            commodity.setModel(picture+i);
+            commodity.setPicture(picture);
             commodity.setColor(color+i);
             commodity.setTopfabric(topfabric+i);
             commodity.setUnderfabric(underfabric+i);
