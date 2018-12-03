@@ -3,6 +3,7 @@ package controller;
 import dao.CommodityDAO;
 import dao.impl.CommodityDAOImpl;
 import model.Commodity;
+import model.PageModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +23,9 @@ public class CommodityController {
      * */
     @RequestMapping("/queryCommodity")
     public ModelAndView queryCommodity(String commodityAttribute,String commodityAttributeDetails){
-        //todo：上传图片的问题
+
+        ModelAndView modelAndView=new ModelAndView();
+
         try {
             //处理字符串乱码问题
             commodityAttribute= new String(commodityAttribute.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
@@ -30,6 +33,7 @@ public class CommodityController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
         List<Commodity> commodityList = getCommodities();
         ModelAndView modelAndView=new ModelAndView("commodity/manage","commodityList",commodityList);
         return modelAndView;
@@ -69,6 +73,46 @@ public class CommodityController {
         return commodityList;
     }
 
+=======
+
+        CommodityDAO commodityDAO=new CommodityDAOImpl();
+
+        PageModel<Commodity> pageModel=null;
+
+        try {
+            pageModel=new PageModel<Commodity>(1,commodityDAO.getTotalRecord(),8);
+            pageModel.setList(commodityDAO.getCommityPageList(pageModel.getIndex(),pageModel.getPageSize()));
+            modelAndView.setViewName("commodity/manage");
+            modelAndView.addObject("PageModel",pageModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/updatePageList")
+    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize){
+        CommodityDAO commodityDAO = new CommodityDAOImpl();
+        PageModel<Commodity> pageModel=null;
+        ModelAndView modelAndView=new ModelAndView();
+        try {
+            pageModel=new PageModel<Commodity>(pageNumber,totalRecord,pageSize);
+            pageModel.setList(commodityDAO.getCommityPageList(pageModel.getIndex(),pageModel.getPageSize()));
+            modelAndView.setViewName("commodity/manage");
+            modelAndView.addObject("PageModel",pageModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
+
+        return new ModelAndView();
+    }
+    
+>>>>>>> ae91ac1de2f998ff3f8657b6ea6f1024208eeb35
     @RequestMapping("/addCommodity")
     public ModelAndView addCommodity(Commodity commodity){
         //todo：上传图片的问题
@@ -84,8 +128,13 @@ public class CommodityController {
     public ModelAndView editCommodity(Commodity commodity){
         //todo：上传图片的问题
         try {
+<<<<<<< HEAD
             CommodityDAO commodityDAO = new CommodityDAOImpl();
             commodityDAO.editCommodity(commodity);
+=======
+            //处理字符串乱码问题
+            commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+>>>>>>> ae91ac1de2f998ff3f8657b6ea6f1024208eeb35
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

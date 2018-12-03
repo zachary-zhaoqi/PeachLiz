@@ -6,6 +6,7 @@ import model.Commodity;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.List;
 
 public class CommodityDAOImpl implements CommodityDAO {
@@ -14,6 +15,10 @@ public class CommodityDAOImpl implements CommodityDAO {
 
     public CommodityDAOImpl() {
         this.jdbcOperator = new JdbcOperator();
+    }
+
+    public CommodityDAOImpl(JdbcOperator jdbcOperator) {
+        this.jdbcOperator = jdbcOperator;
     }
 
     @Override
@@ -29,14 +34,17 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public int getTotalRecord() {
-        String sql="select count(*) totalRecord from book";
-        return 0;
+    public int getTotalRecord() throws SQLException {
+        String sql="select count(*) from commodity";
+        int totalRecord=jdbcOperator.queryForIntOnly(sql);
+        return totalRecord;
     }
 
     @Override
-    public List<Commodity> getBookList(int index, int pageSize) {
-        return null;
+    public List<Commodity> getCommityPageList(int index, int pageSize) throws Exception {
+        String sql="select * from commodity limit ?,?";
+        List list=jdbcOperator.queryForJavaBeanList(sql,Commodity.class,index,pageSize);
+        return list;
     }
 
     @Override

@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="model.Commodity" %><%--
+<%@ page import="model.Commodity" %>
+<%@ page import="model.PageModel" %><%--
   Created by IntelliJ IDEA.
   User: starr
   Date: 2018/12/3
@@ -61,11 +62,13 @@
     <thead>
     <tr>
         <th>品类</th>
+        <th>箱号</th>
         <th>型号</th>
         <th>照片</th>
         <th>颜色</th>
-        <th>面-面料型号</th>
-        <th>底-面料型号</th>
+        <th>顶面面料型号</th>
+        <th>底面面料型号</th>
+        <th>附件面料型号</th>
         <th>出厂价</th>
         <th>零售价</th>
         <th>备注</th>
@@ -76,34 +79,61 @@
 
 
     <%
-        List<Commodity> commodityList= (List<Commodity>) request.getAttribute("commodityList");
-        if (commodityList!=null){
-            for (Commodity commodity :commodityList) {
-                out.println(
-                    "   <tr>\n" +
-                    "        <td>"+commodity.getCategory()+"</td>\n" +
-                    "        <td>"+commodity.getModel()+"</td>\n" +
-                    "        <td><img src=\""+request.getContextPath()+commodity.getPicture()+"\" width=\"150px\"></td>\n" +
-                    "        <td>"+commodity.getColor()+"</td>\n" +
-                    "        <td>"+commodity.getTopfabric()+"</td>\n" +
-                    "        <td>"+commodity.getUnderfabric()+"</td>\n" +
-                    "        <td>"+commodity.getFactoryprice()+"</td>\n" +
-                    "        <td>"+commodity.getRetailprice()+"</td>\n" +
-                    "        <td>"+commodity.getRemark()+"</td>\n" +
-                    "        <td>"+commodity.getStatus()+"</td>\n" +
-                    "        <td>\n" +
-                    "            <button type=\"button\" class=\"btn btn-success\" id=\"editCommodity\">编辑</button>\n" +
-                    "            <button type=\"button\" class=\"btn btn-success\" id=\"removeCommodity\">下架</button>\n" +
-                    "            <span hidden>"+commodity.getIdcommodity()+"</span>\n" +
-                    "        </td>\n" +
-                    "    </tr>"
-                );
+        PageModel<Commodity> pageModel= (PageModel<Commodity>) request.getAttribute("PageModel");
+        if (pageModel!=null){
+            List<Commodity> commodityList= pageModel.getList();
+            if (commodityList!=null){
+                for (Commodity commodity :commodityList) {
+                    out.println(
+                        "   <tr>\n" +
+                        "        <td>"+commodity.getCategory()+"</td>\n" +
+                        "        <td>"+commodity.getContainer()+"</td>\n" +
+                        "        <td>"+commodity.getModel()+"</td>\n" +
+                        "        <td><img src=\""+request.getContextPath()+commodity.getPicture()+"\" width=\"150px\"></td>\n" +
+                        "        <td>"+commodity.getColor()+"</td>\n" +
+                        "        <td>"+commodity.getTopfabric()+"</td>\n" +
+                        "        <td>"+commodity.getUnderfabric()+"</td>\n" +
+                        "        <td>"+commodity.getAccessoriesfabric()+"</td>\n" +
+                        "        <td>"+commodity.getFactoryprice()+"</td>\n" +
+                        "        <td>"+commodity.getRetailprice()+"</td>\n" +
+                        "        <td>"+commodity.getRemark()+"</td>\n" +
+                        "        <td>"+commodity.getStatus()+"</td>\n" +
+                        "        <td>\n" +
+                        "            <button type=\"button\" class=\"btn btn-success\" id=\"editCommodity\">编辑</button>\n" +
+                        "            <button type=\"button\" class=\"btn btn-success\" id=\"removeCommodity\">冻结</button>\n" +
+                        "            <span hidden>"+commodity.getIdcommodity()+"</span>\n" +
+                        "        </td>\n" +
+                        "    </tr>"
+                    );
+                }
             }
         }
     %>
-
 </table>
 
+
+
+<%
+    //这块主要做分页的导航，更新页面
+    if (pageModel!=null){
+        String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord();
+        out.println(
+                "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
+                "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()+1)+pageParmeStr+">上一页</a>"
+        );
+        for (int i = 0; i < pageModel.getTotalPage(); i++) {
+            if ((i+1)!=pageModel.getPageNumber()){
+                out.println("<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(i+1)+pageParmeStr+"\">"+Integer.toString(i+1)+"</a>");
+            }else {
+                out.println("<span>"+Integer.toString(i+1)+"</span>");
+            }
+        }
+        out.println(
+                "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">下一页</a>" +
+                "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+pageModel.getTotalPage()+pageParmeStr+"\">尾页</a>"
+        );
+    }
+%>
 
 <script>
     $(function () {

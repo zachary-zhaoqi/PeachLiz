@@ -2,7 +2,11 @@ package dao;
 
 import model.Commodity;
 
+<<<<<<< HEAD
 import java.io.UnsupportedEncodingException;
+=======
+import java.sql.SQLException;
+>>>>>>> ae91ac1de2f998ff3f8657b6ea6f1024208eeb35
 import java.util.List;
 
 public interface CommodityDAO {
@@ -15,12 +19,12 @@ public interface CommodityDAO {
     /**
      * 获取数据库总记录数
      */
-    int getTotalRecord();
+    int getTotalRecord() throws SQLException;
 
     /**
      * 得到请求页的数据列表
      */
-    List<Commodity> getBookList(int index, int pageSize);
+    List<Commodity> getCommityPageList(int index, int pageSize) throws Exception;
 
     void addCommodity(Commodity commodity);
 
