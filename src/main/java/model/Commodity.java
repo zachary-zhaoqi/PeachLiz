@@ -16,6 +16,8 @@ public class Commodity {
     private String topfabric;
     /**底-面料型号*/
     private String underfabric;
+    /**附件面料型号*/
+    private String Accessoriesfabric;
     /**出厂价*/
     private double factoryprice ;
     /**零售价*/
@@ -111,5 +113,13 @@ public class Commodity {
 
     public void setIdcommodity(int idcommodity) {
         this.idcommodity = idcommodity;
+    }
+
+    public String getAccessoriesfabric() {
+        return Accessoriesfabric;
+    }
+
+    public void setAccessoriesfabric(String accessoriesfabric) {
+        Accessoriesfabric = accessoriesfabric;
     }
 }
