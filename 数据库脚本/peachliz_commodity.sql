@@ -35,7 +35,7 @@ CREATE TABLE `commodity` (
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `status` varchar(45) DEFAULT NULL COMMENT '产品状态',
   PRIMARY KEY (`idcommodity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='产品';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='产品';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +44,7 @@ CREATE TABLE `commodity` (
 
 LOCK TABLES `commodity` WRITE;
 /*!40000 ALTER TABLE `commodity` DISABLE KEYS */;
+INSERT INTO `commodity` VALUES (1,'抱枕','BZ001','/commoditypic/BZ001.jpg','红色','T1','T2',100,900,'','正常');
 /*!40000 ALTER TABLE `commodity` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 14:52:38
+-- Dump completed on 2018-12-03 15:38:25
