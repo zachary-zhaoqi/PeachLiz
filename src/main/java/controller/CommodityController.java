@@ -12,7 +12,6 @@ import java.util.List;
 
 @Controller
 public class CommodityController {
-
     /**
      * @param commodityAttribute 属性名
      * @param commodityAttributeDetails 属性值
@@ -29,7 +28,6 @@ public class CommodityController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
         List<Commodity> commodityList = new ArrayList<>();
         Commodity commodity = new Commodity();
         int idcommodity = 1;
@@ -63,18 +61,16 @@ public class CommodityController {
         ModelAndView modelAndView=new ModelAndView("commodity/manage","commodityList",commodityList);
         return modelAndView;
     }
-
+    
     @RequestMapping("/addCommodity")
     public ModelAndView addCommodity(Commodity commodity){
         //todo：上传图片的问题
-
+        //todo:添加数据
         return new ModelAndView();
     }
 
     @RequestMapping("/editCommodity")
-    public ModelAndView editCommodity(String category,String model,String picture,String color,
-                                     String topfabric,String underfabric,String factoryprice,
-                                     String retailprice,String remark,String status){
+    public ModelAndView editCommodity(Commodity commodity){
         //todo：上传图片的问题
         try {
             //处理字符串乱码问题
