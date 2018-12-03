@@ -3,7 +3,7 @@ package model;
 
 public class Commodity {
     /**产品ID*/
-    private int idproduct;
+    private int idcommodity;
     /**品类*/
     private String category;
     /**型号*/
@@ -12,8 +12,6 @@ public class Commodity {
     private String picture;
     /**颜色*/
     private String color;
-    /**规格*/
-    private String specification;
     /**面-面料型号*/
     private String topfabric;
     /**底-面料型号*/
@@ -27,12 +25,12 @@ public class Commodity {
     /**产品状态*/
     private String status;
 
-    public int getIdproduct() {
-        return idproduct;
+    public int getIdcommodity() {
+        return idcommodity;
     }
 
-    public void setIdproduct(int idproduct) {
-        this.idproduct = idproduct;
+    public void setIdcommodity(int idcommodity) {
+        this.idcommodity = idcommodity;
     }
 
     public String getCategory() {
@@ -75,10 +73,6 @@ public class Commodity {
         return retailprice;
     }
 
-    public String getSpecification() {
-        return specification;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -101,10 +95,6 @@ public class Commodity {
 
     public void setFactoryprice(String factoryprice) {
         this.factoryprice = factoryprice;
-    }
-
-    public void setSpecification(String specification) {
-        this.specification = specification;
     }
 
     public void setRetailprice(String retailprice) {
