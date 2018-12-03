@@ -61,7 +61,7 @@ public class CommodityController {
             commodityList.add(commodity);
         }
         ModelAndView modelAndView=new ModelAndView("commodity/manage","commodityList",commodityList);
-        return new ModelAndView();
+        return modelAndView;
     }
 
     @RequestMapping("/addCommodity")
