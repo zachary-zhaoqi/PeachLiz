@@ -28,4 +28,76 @@ public class Order {
     OrderDate orderDate;
     OrderMoney orderMoney;
     private OrderCommodityGroupEntry[] orderentries;
+
+    public int getIdorder() {
+        return idorder;
+    }
+
+    public void setIdorder(int idorder) {
+        this.idorder = idorder;
+    }
+
+    public String getProjectname() {
+        return projectname;
+    }
+
+    public void setProjectname(String projectname) {
+        this.projectname = projectname;
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getOrderstatus() {
+        return orderstatus;
+    }
+
+    public void setOrderstatus(String orderstatus) {
+        this.orderstatus = orderstatus;
+    }
+
+    public String getExpressnumber() {
+        return expressnumber;
+    }
+
+    public void setExpressnumber(String expressnumber) {
+        this.expressnumber = expressnumber;
+    }
+
+    public String getIdshippingaddress() {
+        return idshippingaddress;
+    }
+
+    public void setIdshippingaddress(String idshippingaddress) {
+        this.idshippingaddress = idshippingaddress;
+    }
+
+    public int getIdorderdate() {
+        return idorderdate;
+    }
+
+    public void setIdorderdate(int idorderdate) {
+        this.idorderdate = idorderdate;
+    }
+
+    public int getIdordermoney() {
+        return idordermoney;
+    }
+
+    public void setIdordermoney(int idordermoney) {
+        this.idordermoney = idordermoney;
+    }
 }
