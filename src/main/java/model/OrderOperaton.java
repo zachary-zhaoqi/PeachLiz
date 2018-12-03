@@ -8,9 +8,9 @@ public class OrderOperaton {
     /**操作员id*/
     private int idoperator;
     /**操作时间*/
-    private int operationdate;
+    private String operationdate;
     /**改变订单状态*/
-    private int change;
+    private String change;
 
     public int getIdoperator() {
         return idoperator;
@@ -20,7 +20,7 @@ public class OrderOperaton {
         return idorder;
     }
 
-    public int getChange() {
+    public String getChange() {
         return change;
     }
 
@@ -28,7 +28,7 @@ public class OrderOperaton {
         return idoperation;
     }
 
-    public int getOperationdate() {
+    public String getOperationdate() {
         return operationdate;
     }
 
@@ -40,7 +40,7 @@ public class OrderOperaton {
         this.idorder = idorder;
     }
 
-    public void setChange(int change) {
+    public void setChange(String change) {
         this.change = change;
     }
 
@@ -48,7 +48,7 @@ public class OrderOperaton {
         this.idoperation = idoperation;
     }
 
-    public void setOperationdate(int operationdate) {
+    public void setOperationdate(String operationdate) {
         this.operationdate = operationdate;
     }
 }
