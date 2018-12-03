@@ -17,7 +17,7 @@ public class Order {
     /**快递单号*/
     private String expressnumber;
     /**收货地址id*/
-    private String idshippingaddress;
+    private int idshippingaddress;
     /**订单时间id*/
     private int idorderdate;
     /**订单金额id*/
@@ -77,11 +77,11 @@ public class Order {
         this.expressnumber = expressnumber;
     }
 
-    public String getIdshippingaddress() {
+    public int getIdshippingaddress() {
         return idshippingaddress;
     }
 
-    public void setIdshippingaddress(String idshippingaddress) {
+    public void setIdshippingaddress(int idshippingaddress) {
         this.idshippingaddress = idshippingaddress;
     }
 
