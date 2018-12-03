@@ -84,6 +84,7 @@
         <td>
             <button type="button" class="btn btn-success" id="editCommodity">编辑</button>
             <button type="button" class="btn btn-success" id="removeCommodity">下架</button>
+            <span hidden>1234</span>
         </td>
     </tr>
 </table>
@@ -98,7 +99,8 @@
             window.location.href="${pageContext.request.contextPath}/jsp/commodity/edit.jsp";
         });
         $('#removeCommodity').click(function(){
-            window.location.href="${pageContext.request.contextPath}/removeCommodity?";
+            var idcommodity=$('#removeCommodity').siblings("span").text();
+            window.location.href="${pageContext.request.contextPath}/removeCommodity?idcommodity="+idcommodity;
         });
     });
 
