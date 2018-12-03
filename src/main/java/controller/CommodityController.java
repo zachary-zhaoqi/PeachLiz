@@ -28,7 +28,9 @@ public class CommodityController {
             e.printStackTrace();
         }
 
-        return new ModelAndView();
+        
+
+        return new ModelAndView("commodity/manage");
     }
 
     @RequestMapping("/addCommodity")
