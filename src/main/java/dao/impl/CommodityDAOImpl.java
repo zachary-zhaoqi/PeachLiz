@@ -22,7 +22,7 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public void removeCommodity(int commodity) {
+    public void removeCommodity(int commodity) throws SQLException {
         String sql = "UPDATE commodity SET" +
                 "status = '冻结'" +
                 "where idcommodity = ?;";
@@ -36,19 +36,17 @@ public class CommodityDAOImpl implements CommodityDAO {
     @Override
     public int getTotalRecord() throws SQLException {
         String sql="select count(*) from commodity";
-        int totalRecord=jdbcOperator.queryForIntOnly(sql);
-        return totalRecord;
+        return jdbcOperator.queryForIntOnly(sql);
     }
 
     @Override
     public List<Commodity> getCommityPageList(int index, int pageSize) throws Exception {
         String sql="select * from commodity limit ?,?";
-        List list=jdbcOperator.queryForJavaBeanList(sql,Commodity.class,index,pageSize);
-        return list;
+        return jdbcOperator.queryForJavaBeanList(sql,Commodity.class,index,pageSize);
     }
 
     @Override
-    public void addCommodity(Commodity commodity) {
+    public void addCommodity(Commodity commodity) throws SQLException {
 
         if (commodity.getRemark() == null)
         {
@@ -71,33 +69,6 @@ public class CommodityDAOImpl implements CommodityDAO {
             commodity.setColor("");
         }
 
-//        /**产品ID*/
-//        private int idcommodity;
-//        /**箱号*/
-//        private String container;
-//        /**品类*/
-//        private String category;
-//        /**型号*/
-//        private String model;
-//        /**图片*/
-//        private String picture;
-//        /**颜色*/
-//        private String color;
-//        /**面-面料型号*/
-//        private String topfabric;
-//        /**底-面料型号*/
-//        private String underfabric;
-//        /**附件面料型号*/
-//        private String Accessoriesfabric;
-//        /**出厂价*/
-//        private double factoryprice ;
-//        /**零售价*/
-//        private double retailprice;
-//        /**备注*/
-//        private String remark;
-//        /**产品状态*/
-//        private String status;
-
         String sql = "insert into `commodity` (" +
                 "container,category,category,model,picture,color,topfabric,underfabric,Accessoriesfabric,factoryprice,retailprice,remark,status)" +
                 "values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
@@ -117,12 +88,10 @@ public class CommodityDAOImpl implements CommodityDAO {
                 commodity.getRemark(),
                 commodity.getStatus()
         );
-
-
     }
 
     @Override
-    public void editCommodity(Commodity commodity) throws UnsupportedEncodingException {
+    public void editCommodity(Commodity commodity) throws UnsupportedEncodingException, SQLException {
 //        UPDATE pillow SET stock = stock-? WHERE idpillow = ?
         String sql = "UPDATE commodity SET" +
                 "container=?,category=?,category=?,model=?,picture=?,color=?,topfabric=?," +

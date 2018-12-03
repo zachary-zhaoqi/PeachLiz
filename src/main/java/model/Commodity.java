@@ -29,14 +29,6 @@ public class Commodity {
     /**产品状态*/
     private String status;
 
-    public String getContainer() {
-        return container;
-    }
-
-    public void setContainer(String container) {
-        this.container = container;
-    }
-
     public String getCategory() {
         return category;
     }

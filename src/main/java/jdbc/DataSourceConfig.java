@@ -84,7 +84,7 @@ public class DataSourceConfig {
             ((ComboPooledDataSource) dataSource).setJdbcUrl("jdbc:"+sid+"://"+ip+":"+port+"/"+dataSourceName+"?characterEncoding=utf-8&serverTimezone=GMT&useSSL=false");
             ((ComboPooledDataSource) dataSource).setUser(user);
             ((ComboPooledDataSource) dataSource).setPassword(password);
-            ((ComboPooledDataSource) dataSource).setLoginTimeout(3000);
+            dataSource.setLoginTimeout(3000);
             ((ComboPooledDataSource) dataSource).setMaxPoolSize(25);
         } catch (PropertyVetoException e) {
             e.printStackTrace();

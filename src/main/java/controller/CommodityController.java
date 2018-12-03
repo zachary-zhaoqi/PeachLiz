@@ -10,8 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
 @Controller
 public class CommodityController {
@@ -33,51 +32,11 @@ public class CommodityController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-<<<<<<< HEAD
-        List<Commodity> commodityList = getCommodities();
-        ModelAndView modelAndView=new ModelAndView("commodity/manage","commodityList",commodityList);
-        return modelAndView;
-    }
 
-    private List<Commodity> getCommodities() {
-        List<Commodity> commodityList = new ArrayList<>();
-        Commodity commodity = new Commodity();
-        int idcommodity = 1;
-        String category = "category";
-        String model ="model";
-        String picture="/assets/commoditypic/1.jpg";
-        String color="color";
-        String topfabric="topfabric";
-        String underfabric="underfabric";
-        double factoryprice =0.1;
-        double retailprice =0.2;
-        String remark = "remark";
-        String status ="status";
-
-        for (int i = 0;i<100;i++)
-        {
-            commodity.setIdcommodity(i+idcommodity);
-            commodity.setCategory(category+i);
-            commodity.setModel(model+i);
-            commodity.setPicture(picture);
-            commodity.setColor(color+i);
-            commodity.setTopfabric(topfabric+i);
-            commodity.setUnderfabric(underfabric+i);
-            commodity.setFactoryprice(factoryprice+i);
-            commodity.setRetailprice(retailprice+i);
-            commodity.setRemark(remark+i);
-            commodity.setStatus(status+i);
-
-            commodityList.add(commodity);
-        }
-        return commodityList;
-    }
-
-=======
-
+        //todo 条件筛选
         CommodityDAO commodityDAO=new CommodityDAOImpl();
 
-        PageModel<Commodity> pageModel=null;
+        PageModel<Commodity> pageModel;
 
         try {
             pageModel=new PageModel<Commodity>(1,commodityDAO.getTotalRecord(),8);
@@ -96,7 +55,7 @@ public class CommodityController {
     @RequestMapping("/updatePageList")
     public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize){
         CommodityDAO commodityDAO = new CommodityDAOImpl();
-        PageModel<Commodity> pageModel=null;
+        PageModel<Commodity> pageModel;
         ModelAndView modelAndView=new ModelAndView();
         try {
             pageModel=new PageModel<Commodity>(pageNumber,totalRecord,pageSize);
@@ -111,32 +70,34 @@ public class CommodityController {
 
         return new ModelAndView();
     }
-    
->>>>>>> ae91ac1de2f998ff3f8657b6ea6f1024208eeb35
+
     @RequestMapping("/addCommodity")
     public ModelAndView addCommodity(Commodity commodity){
         //todo：上传图片的问题
-        //todo:添加数据
-
+        ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO=new CommodityDAOImpl();
-        commodityDAO.addCommodity(commodity);
-
+        try {
+            commodityDAO.addCommodity(commodity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
         return new ModelAndView();
     }
 
     @RequestMapping("/editCommodity")
     public ModelAndView editCommodity(Commodity commodity){
-        //todo：上传图片的问题
+
+        ModelAndView modelAndView=new ModelAndView();
         try {
-<<<<<<< HEAD
-            CommodityDAO commodityDAO = new CommodityDAOImpl();
-            commodityDAO.editCommodity(commodity);
-=======
             //处理字符串乱码问题
             commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
->>>>>>> ae91ac1de2f998ff3f8657b6ea6f1024208eeb35
+            //todo:陈亮，dao操作
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
         }
 
         return new ModelAndView();
@@ -152,9 +113,15 @@ public class CommodityController {
      * */
     @RequestMapping("/removeCommodity")
     public ModelAndView removeCommodity(int idcommodity){
-        //todo：赵奇
+        ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO = new CommodityDAOImpl();
-        commodityDAO.removeCommodity(idcommodity);
+        try {
+            commodityDAO.removeCommodity(idcommodity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
         return new ModelAndView();
     }
 
