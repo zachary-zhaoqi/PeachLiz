@@ -1,6 +1,7 @@
 package model;
 
 public class Manager {
+    //todo:操作员
     private int idmanager;
     private String managername;
 

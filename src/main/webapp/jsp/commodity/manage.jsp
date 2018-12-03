@@ -41,12 +41,13 @@
     </style>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="index.html" method="get">
-    <select id="commodityAttribute">
+<form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/queryCommodity" method="post" onsubmit="queryCommodityHandle()">
+    <select name="commodityAttribute" id="commodityAttribute">
         <option value="model">编号</option>
         <option value="model">品类</option>
         <option value="color">颜色</option>
         <option value="remark">备注</option>
+        <option value="status">产品状态</option>
     </select>
     <input type="text" name="commodityAttributeDetails" id="commodityAttributeDetails"class="abc input-default" value="">&nbsp;&nbsp;
     <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -80,7 +81,10 @@
         <td>零售价</td>
         <td>备注</td>
         <td>产品状态</td>
-        <td>编辑</td>
+        <td>
+            <button type="button" class="btn btn-success" id="editCommodity">编辑</button>
+            <button type="button" class="btn btn-success" id="removeCommodity">下架</button>
+        </td>
     </tr>
 </table>
 
@@ -89,6 +93,12 @@
     $(function () {
         $('#addnewCommodity').click(function(){
             window.location.href="${pageContext.request.contextPath}/jsp/commodity/add.jsp";
+        });
+        $('#editCommodity').click(function(){
+            window.location.href="${pageContext.request.contextPath}/jsp/commodity/edit.jsp";
+        });
+        $('#removeCommodity').click(function(){
+            window.location.href="${pageContext.request.contextPath}/removeCommodity?";
         });
     });
 

@@ -2,18 +2,16 @@
   Created by IntelliJ IDEA.
   User: starr
   Date: 2018/12/3
-  Time: 11:08
+  Time: 12:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html>
 <head>
-    <title>添加商品</title>
+    <title>Title</title>
 </head>
 <body>
-
-<form action="${pageContext.request.contextPath}/addCommodity" method="post" onsubmit="">
+<form action="${pageContext.request.contextPath}/addCommodity" method="post">
     <table>
         <tr>
             <td>
@@ -93,8 +91,8 @@
             </td>
             <td>
                 <select name="status" >
-                <option value="model">正常</option>
-                <option value="model">冻结</option>
+                    <option value="model">正常</option>
+                    <option value="model">冻结</option>
                 </select>
             </td>
         </tr>
@@ -106,6 +104,5 @@
     </table>
 
 </form>
-
 </body>
 </html>
