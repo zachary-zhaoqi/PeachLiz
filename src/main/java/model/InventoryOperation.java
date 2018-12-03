@@ -8,7 +8,7 @@ public class InventoryOperation {
     /**操作员id*/
     private int idoperator;
     /**操作时间*/
-    private int operationdate;
+    private String operationdate;
     /**改动数量*/
     private int change;
 
@@ -28,7 +28,7 @@ public class InventoryOperation {
         return idoperation;
     }
 
-    public int getOperationdate() {
+    public String getOperationdate() {
         return operationdate;
     }
 
@@ -48,7 +48,7 @@ public class InventoryOperation {
         this.idoperation = idoperation;
     }
 
-    public void setOperationdate(int operationdate) {
+    public void setOperationdate(String operationdate) {
         this.operationdate = operationdate;
     }
 }
