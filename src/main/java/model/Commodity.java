@@ -15,9 +15,9 @@ public class Commodity {
     /**规格*/
     private String specification;
     /**面-面料型号*/
-    private String topplusmodel;
+    private String topfabric;
     /**底-面料型号*/
-    private String underplusmodel;
+    private String underfabric;
     /**出厂价*/
     private String factoryprice ;
     /**零售价*/
@@ -83,12 +83,12 @@ public class Commodity {
         return status;
     }
 
-    public String getTopplusmodel() {
-        return topplusmodel;
+    public String getTopfabric() {
+        return topfabric;
     }
 
-    public String getUnderplusmodel() {
-        return underplusmodel;
+    public String getUnderfabric() {
+        return underfabric;
     }
 
     public void setColor(String color) {
@@ -115,12 +115,12 @@ public class Commodity {
         this.status = status;
     }
 
-    public void setTopplusmodel(String topplusmodel) {
-        this.topplusmodel = topplusmodel;
+    public void setTopfabric(String topfabric) {
+        this.topfabric = topfabric;
     }
 
-    public void setUnderplusmodel(String underplusmodel) {
-        this.underplusmodel = underplusmodel;
+    public void setUnderfabric(String underfabric) {
+        this.underfabric = underfabric;
     }
 
 }
