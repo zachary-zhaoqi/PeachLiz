@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="model.Commodity" %><%--
   Created by IntelliJ IDEA.
   User: starr
   Date: 2018/12/3
@@ -54,6 +55,8 @@
     <button type="button" class="btn btn-success" id="addnewCommodity">新增产品</button>
 </form>
 
+
+
 <table class="table table-bordered table-hover definewidth m10">
     <thead>
     <tr>
@@ -70,23 +73,35 @@
         <th>操作</th>
     </tr>
     </thead>
-    <tr>
-        <td>品类</td>
-        <td>型号</td>
-        <td>照片</td>
-        <td>颜色</td>
-        <td>面-面料型号</td>
-        <td>底-面料型号</td>
-        <td>出厂价</td>
-        <td>零售价</td>
-        <td>备注</td>
-        <td>产品状态</td>
-        <td>
-            <button type="button" class="btn btn-success" id="editCommodity">编辑</button>
-            <button type="button" class="btn btn-success" id="removeCommodity">下架</button>
-            <span hidden>1234</span>
-        </td>
-    </tr>
+
+
+    <%
+        List<Commodity> commodityList= (List<Commodity>) request.getAttribute("commodityList");
+        if (commodityList!=null){
+            for (Commodity commodity :commodityList) {
+                out.println(
+                    "   <tr>\n" +
+                    "        <td>"+commodity.getCategory()+"</td>\n" +
+                    "        <td>"+commodity.getModel()+"</td>\n" +
+                    "        <td><img src=\""+commodity.getPicture()+"\"></td>\n" +
+                    "        <td>"+commodity.getColor()+"</td>\n" +
+                    "        <td>"+commodity.getTopfabric()+"</td>\n" +
+                    "        <td>"+commodity.getUnderfabric()+"</td>\n" +
+                    "        <td>"+commodity.getFactoryprice()+"</td>\n" +
+                    "        <td>"+commodity.getRetailprice()+"</td>\n" +
+                    "        <td>"+commodity.getRemark()+"</td>\n" +
+                    "        <td>"+commodity.getStatus()+"</td>\n" +
+                    "        <td>\n" +
+                    "            <button type=\"button\" class=\"btn btn-success\" id=\"editCommodity\">编辑</button>\n" +
+                    "            <button type=\"button\" class=\"btn btn-success\" id=\"removeCommodity\">下架</button>\n" +
+                    "            <span hidden>"+commodity.getIdcommodity()+"</span>\n" +
+                    "        </td>\n" +
+                    "    </tr>"
+                );
+            }
+        }
+    %>
+
 </table>
 
 
