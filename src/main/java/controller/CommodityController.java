@@ -1,5 +1,6 @@
 package controller;
 
+import model.Commodity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,16 +32,8 @@ public class CommodityController {
     }
 
     @RequestMapping("/addCommodity")
-    public ModelAndView addCommodity(String category,String model,String picture,String color,
-                                     String topfabric,String underfabric,String factoryprice,
-                                     String retailprice,String remark,String status){
+    public ModelAndView addCommodity(Commodity commodity){
         //todo：上传图片的问题
-        try {
-            //处理字符串乱码问题
-            category= new String(category.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
 
         return new ModelAndView();
     }
@@ -60,17 +53,13 @@ public class CommodityController {
         return new ModelAndView();
     }
 
+    /**
+     * @param idcommodity 商品数据库id
+     * 将该商品设置为冻结状态。
+     * */
     @RequestMapping("/removeCommodity")
-    public ModelAndView removeCommodity(String category,String model,String picture,String color,
-                                      String topfabric,String underfabric,String factoryprice,
-                                      String retailprice,String remark,String status){
-        //todo：上传图片的问题
-        try {
-            //处理字符串乱码问题
-            category= new String(category.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    public ModelAndView removeCommodity(int idcommodity){
+        //todo：赵奇
 
         return new ModelAndView();
     }

@@ -10,10 +10,13 @@
 <html>
 <head>
     <title>添加商品</title>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/myjs.js"></script>
+
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/addCommodity" method="post" onsubmit="">
+<form id="addCommodityForm" action="${pageContext.request.contextPath}/addCommodity" method="post">
     <table>
         <tr>
             <td>
@@ -100,7 +103,7 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="添加"/>
+                <button onclick="addCommodity()">添加</button>
             </td>
         </tr>
     </table>
