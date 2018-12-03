@@ -1,4 +1,4 @@
-<%@ page import="model.Manager" %><%--
+<%@ page import="model.Operator" %><%--
   Created by IntelliJ IDEA.
   User: starr
   Date: 2018/12/3
@@ -19,7 +19,7 @@
 </head>
 <body>
 <%
-    Manager manager= (Manager) session.getAttribute("Manager");
+    Operator manager= (Operator) session.getAttribute("Operator");
 %>
 <div class="header">
 
