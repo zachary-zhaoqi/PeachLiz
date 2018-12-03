@@ -29,7 +29,7 @@ CREATE TABLE `inventoryoperation` (
   `operationdate` varchar(45) DEFAULT NULL COMMENT '操作时间',
   `change` int(11) DEFAULT NULL COMMENT '改动数量',
   PRIMARY KEY (`idoperation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='库存操作细则';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='库存操作细则';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `inventoryoperation` (
 
 LOCK TABLES `inventoryoperation` WRITE;
 /*!40000 ALTER TABLE `inventoryoperation` DISABLE KEYS */;
+INSERT INTO `inventoryoperation` VALUES (1,1,1,'10',100),(2,2,2,'11',101),(3,3,3,'12',102),(4,4,4,'13',103),(5,5,5,'14',104),(6,6,6,'15',105),(7,7,7,'16',106),(8,8,8,'17',107),(9,9,9,'18',108),(10,10,10,'19',109);
 /*!40000 ALTER TABLE `inventoryoperation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 15:38:27
+-- Dump completed on 2018-12-03 21:42:29

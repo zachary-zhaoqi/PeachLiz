@@ -29,7 +29,7 @@ CREATE TABLE `productoperation` (
   `operationdate` varchar(45) DEFAULT NULL COMMENT '操作时间',
   `change` varchar(45) DEFAULT NULL COMMENT '改变产品状态',
   PRIMARY KEY (`idoperation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='产品操作细则';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='产品操作细则';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `productoperation` (
 
 LOCK TABLES `productoperation` WRITE;
 /*!40000 ALTER TABLE `productoperation` DISABLE KEYS */;
+INSERT INTO `productoperation` VALUES (1,1,1,'10','空闲'),(2,2,2,'11','空闲'),(3,3,3,'12','空闲'),(4,4,4,'13','空闲'),(5,5,5,'14','空闲'),(6,6,6,'15','空闲'),(7,7,7,'16','空闲'),(8,8,8,'17','空闲'),(9,9,9,'18','空闲'),(10,10,10,'19','空闲');
 /*!40000 ALTER TABLE `productoperation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 15:38:24
+-- Dump completed on 2018-12-03 21:42:27

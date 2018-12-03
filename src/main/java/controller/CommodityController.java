@@ -1,5 +1,7 @@
 package controller;
 
+import dao.CommodityDAO;
+import dao.impl.CommodityDAOImpl;
 import model.Commodity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,12 @@ public class CommodityController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        List<Commodity> commodityList = getCommodities();
+        ModelAndView modelAndView=new ModelAndView("commodity/manage","commodityList",commodityList);
+        return modelAndView;
+    }
+
+    private List<Commodity> getCommodities() {
         List<Commodity> commodityList = new ArrayList<>();
         Commodity commodity = new Commodity();
         int idcommodity = 1;
@@ -58,14 +66,17 @@ public class CommodityController {
 
             commodityList.add(commodity);
         }
-        ModelAndView modelAndView=new ModelAndView("commodity/manage","commodityList",commodityList);
-        return modelAndView;
+        return commodityList;
     }
-    
+
     @RequestMapping("/addCommodity")
     public ModelAndView addCommodity(Commodity commodity){
         //todo：上传图片的问题
         //todo:添加数据
+
+        CommodityDAO commodityDAO=new CommodityDAOImpl();
+        commodityDAO.addCommodity(commodity);
+
         return new ModelAndView();
     }
 
@@ -73,8 +84,8 @@ public class CommodityController {
     public ModelAndView editCommodity(Commodity commodity){
         //todo：上传图片的问题
         try {
-            //处理字符串乱码问题
-            category= new String(category.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
+            CommodityDAO commodityDAO = new CommodityDAOImpl();
+            commodityDAO.editCommodity(commodity);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -82,6 +93,10 @@ public class CommodityController {
         return new ModelAndView();
     }
 
+    public String turnString(String s) throws UnsupportedEncodingException {
+        s=new String(s.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
+        return s;
+    }
     /**
      * @param idcommodity 商品数据库id
      * 将该商品设置为冻结状态。
@@ -89,7 +104,8 @@ public class CommodityController {
     @RequestMapping("/removeCommodity")
     public ModelAndView removeCommodity(int idcommodity){
         //todo：赵奇
-
+        CommodityDAO commodityDAO = new CommodityDAOImpl();
+        commodityDAO.removeCommodity(idcommodity);
         return new ModelAndView();
     }
 
