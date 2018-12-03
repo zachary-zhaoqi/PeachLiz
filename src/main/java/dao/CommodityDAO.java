@@ -2,6 +2,7 @@ package dao;
 
 import model.Commodity;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CommodityDAO {
@@ -15,7 +16,7 @@ public interface CommodityDAO {
     /**
      * 获取数据库总记录数
      * */
-    int getTotalRecord();
+    int getTotalRecord() throws SQLException;
 
     /**
      * 得到请求页的数据列表

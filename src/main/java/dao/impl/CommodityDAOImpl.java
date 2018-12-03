@@ -4,6 +4,7 @@ import dao.CommodityDAO;
 import jdbc.JdbcOperator;
 import model.Commodity;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class CommodityDAOImpl implements CommodityDAO {
@@ -20,9 +21,10 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public int getTotalRecord() {
-        String sql="select count(*) totalRecord from book";
-        return 0;
+    public int getTotalRecord() throws SQLException {
+        String sql="select count(*) from commodity";
+        int totalRecord=jdbcOperator.queryForIntOnly(sql);
+        return totalRecord;
     }
 
     @Override
