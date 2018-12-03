@@ -21,10 +21,6 @@ public class JdbcOperator {
         this.dataSource = dataSource;
     }
 
-
-    /**
-     *
-     * */
     public int executeUpdateBack(String sql, Connection connection,Object... params ) throws SQLException {
         PreparedStatement preparedStatement = null;
 
@@ -46,7 +42,6 @@ public class JdbcOperator {
         }
         return result;
     }
-
 
     public int executeUpdate(String sql, Object... params) throws SQLException {
         Connection connection = null;
@@ -70,6 +65,39 @@ public class JdbcOperator {
             }
             if (connection != null) {
                 closeConnection(connection);
+            }
+        }
+        return result;
+    }
+
+    public int queryForIntOnly(String sql, Object... params) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        int result = -1;
+
+        try {
+            connection = dataSource.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < params.length; i++) {
+                preparedStatement.setObject(i + 1, params[i]);
+            }
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                result= (int) resultSet.getObject(1);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (preparedStatement != null) {
+                closePreparedStatement(preparedStatement);
+            }
+            if (connection != null) {
+                closeConnection(connection);
+            }
+            if (resultSet != null) {
+                closeResultSet(resultSet);
             }
         }
         return result;
@@ -127,8 +155,6 @@ public class JdbcOperator {
         }
         return object;
     }
-
-
 
     public List queryForJavaBeanList(String sql, Class javaBeanClass, Object... params) throws Exception {
         List<Object>list=new ArrayList<Object>();
