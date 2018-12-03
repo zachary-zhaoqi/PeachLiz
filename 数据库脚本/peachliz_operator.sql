@@ -29,7 +29,7 @@ CREATE TABLE `operator` (
   `name` varchar(45) DEFAULT NULL COMMENT '姓名',
   `status` varchar(45) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`idoperator`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='操作员';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='操作员';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `operator` (
 
 LOCK TABLES `operator` WRITE;
 /*!40000 ALTER TABLE `operator` DISABLE KEYS */;
+INSERT INTO `operator` VALUES (1,'001','100','陈一','空闲'),(2,'002','101','陈二','空闲'),(3,'003','102','陈三','空闲'),(4,'004','103','陈四','空闲'),(5,'005','104','陈五','空闲'),(6,'006','105','陈六','空闲'),(7,'007','106','陈七','空闲'),(8,'008','107','陈八','空闲'),(9,'009','108','陈九','空闲'),(10,'010','109','陈十','空闲');
 /*!40000 ALTER TABLE `operator` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 15:38:28
+-- Dump completed on 2018-12-03 21:42:32

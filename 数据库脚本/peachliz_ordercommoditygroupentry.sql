@@ -30,7 +30,7 @@ CREATE TABLE `ordercommoditygroupentry` (
   `detail` varchar(100) DEFAULT NULL COMMENT '工艺细节',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`idproductteam`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='产品组条目';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='产品组条目';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `ordercommoditygroupentry` (
 
 LOCK TABLES `ordercommoditygroupentry` WRITE;
 /*!40000 ALTER TABLE `ordercommoditygroupentry` DISABLE KEYS */;
+INSERT INTO `ordercommoditygroupentry` VALUES (1,1,100,1000,'完美',''),(2,2,101,1001,'完美',''),(3,3,102,1002,'完美',''),(4,4,103,1003,'完美',''),(5,5,104,1004,'完美',''),(6,6,105,1005,'完美',''),(7,7,106,1006,'完美',''),(8,8,107,1007,'完美',''),(9,9,108,1008,'完美',''),(10,10,109,1009,'完美','');
 /*!40000 ALTER TABLE `ordercommoditygroupentry` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 15:38:26
+-- Dump completed on 2018-12-03 21:42:29

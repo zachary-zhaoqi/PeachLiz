@@ -29,7 +29,7 @@ CREATE TABLE `ordercommoditygroup` (
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `total` double DEFAULT NULL COMMENT '合计',
   PRIMARY KEY (`idorder`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单商品组';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单商品组';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `ordercommoditygroup` (
 
 LOCK TABLES `ordercommoditygroup` WRITE;
 /*!40000 ALTER TABLE `ordercommoditygroup` DISABLE KEYS */;
+INSERT INTO `ordercommoditygroup` VALUES (1,1,'一','',100),(2,2,'二','',101),(3,3,'三','',102),(4,4,'四','',103),(5,5,'五','',104),(6,6,'六','',105),(7,7,'七','',106),(8,8,'八','',107),(9,9,'九','',108),(10,10,'十','',109);
 /*!40000 ALTER TABLE `ordercommoditygroup` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 15:38:25
+-- Dump completed on 2018-12-03 21:42:28

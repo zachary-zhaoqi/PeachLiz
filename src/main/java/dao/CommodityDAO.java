@@ -1,8 +1,8 @@
 package dao;
 
-import jdbc.JdbcOperator;
 import model.Commodity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface CommodityDAO {
@@ -10,7 +10,7 @@ public interface CommodityDAO {
      * @param commodity 可能只有id
      *                  将该商品状态设置为冻结
      */
-    void removeCommodity(Commodity commodity);
+    void removeCommodity(int commodity);
 
     /**
      * 获取数据库总记录数
@@ -22,4 +22,7 @@ public interface CommodityDAO {
      */
     List<Commodity> getBookList(int index, int pageSize);
 
+    void addCommodity(Commodity commodity);
+
+    void editCommodity(Commodity commodity) throws UnsupportedEncodingException;
 }

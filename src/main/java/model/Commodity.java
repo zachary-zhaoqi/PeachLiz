@@ -4,6 +4,8 @@ package model;
 public class Commodity {
     /**产品ID*/
     private int idcommodity;
+    /**箱号*/
+    private String container;
     /**品类*/
     private String category;
     /**型号*/
@@ -12,7 +14,7 @@ public class Commodity {
     private String picture;
     /**颜色*/
     private String color;
-    /**面-面料型号*/
+    /**面-面料型号*/1
     private String topfabric;
     /**底-面料型号*/
     private String underfabric;
@@ -26,6 +28,14 @@ public class Commodity {
     private String remark;
     /**产品状态*/
     private String status;
+
+    public String getContainer() {
+        return container;
+    }
+
+    public void setContainer(String container) {
+        this.container = container;
+    }
 
     public String getCategory() {
         return category;
