@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Controller
 public class CommodityController {
@@ -28,6 +29,37 @@ public class CommodityController {
             e.printStackTrace();
         }
 
+
+        List<Commodity> commodityList  ;
+        Commodity commodity = new Commodity();
+        int idcommodity = 1;
+        String category = "category";
+        String model ="model";
+        String picture="picture";
+        String color="color";
+        String topfabric="topfabric";
+        String underfabric="underfabric";
+        double factoryprice =0.1;
+        double retailprice =0.2;
+        String remark = "remark";
+        String status ="status";
+
+        for (int i = 0;i<100;i++)
+        {
+            commodity.setIdcommodity(i+idcommodity);
+            commodity.setCategory(category+i);
+            commodity.setModel(model+i);
+            commodity.setModel(picture+i);
+            commodity.setColor(color+i);
+            commodity.setTopfabric(topfabric+i);
+            commodity.setUnderfabric(underfabric+i);
+            commodity.setFactoryprice(factoryprice+i);
+            commodity.setRetailprice(retailprice+i);
+            commodity.setRemark(remark+i);
+            commodity.setStatus(status+i);
+
+            commodityList.add(commodity);
+        }
         return new ModelAndView();
     }
 
