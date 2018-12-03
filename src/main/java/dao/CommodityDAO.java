@@ -20,6 +20,6 @@ public interface CommodityDAO {
     /**
      * 得到请求页的数据列表
      */
-    List<Commodity> getBookList(int index, int pageSize);
+    List<Commodity> getCommityPageList(int index, int pageSize) throws Exception;
 
 }

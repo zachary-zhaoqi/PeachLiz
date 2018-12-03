@@ -8,22 +8,21 @@ public class PageModel<T> {
     private int pageNumber;     //当前页号
     private int totalRecord;    //总记录数
     private int pageSize;       //页面大小
-    private int totalPage;      //总页数
-
 
     public PageModel(int pageNumber, int totalRecord, int pageSize) {
         this.pageNumber = pageNumber;
         this.totalRecord = totalRecord;
         this.pageSize = pageSize;
+        this.list=null;
     }
 
     public List<T> getList() {
         return list;
     }
+
     public void setList(List<T> list) {
         this.list = list;
     }
-
 
     public int getPageNumber() {
         return this.pageNumber;
@@ -42,10 +41,16 @@ public class PageModel<T> {
         this.pageNumber = pageNumber;
     }
 
+    /**
+     * @return 总记录数
+     * */
     public int getTotalRecord() {
         return totalRecord;
     }
 
+    /**
+     * @param totalRecord 总记录数
+     * */
     public void setTotalRecord(int totalRecord) {
         this.totalRecord = totalRecord;
     }

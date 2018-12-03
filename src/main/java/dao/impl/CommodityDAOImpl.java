@@ -11,6 +11,10 @@ public class CommodityDAOImpl implements CommodityDAO {
 
     private JdbcOperator jdbcOperator;
 
+    public CommodityDAOImpl() {
+        this.jdbcOperator = new JdbcOperator();
+    }
+
     public CommodityDAOImpl(JdbcOperator jdbcOperator) {
         this.jdbcOperator = jdbcOperator;
     }
@@ -28,7 +32,9 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public List<Commodity> getBookList(int index, int pageSize) {
-        return null;
+    public List<Commodity> getCommityPageList(int index, int pageSize) throws Exception {
+        String sql="select * from commodity limit ?,?";
+        List list=jdbcOperator.queryForJavaBeanList(sql,Commodity.class,index,pageSize);
+        return list;
     }
 }

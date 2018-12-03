@@ -1,6 +1,9 @@
 package controller;
 
+import dao.CommodityDAO;
+import dao.impl.CommodityDAOImpl;
 import model.Commodity;
+import model.PageModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +23,9 @@ public class CommodityController {
      * */
     @RequestMapping("/queryCommodity")
     public ModelAndView queryCommodity(String commodityAttribute,String commodityAttributeDetails){
-        //todo：上传图片的问题
+
+        ModelAndView modelAndView=new ModelAndView();
+
         try {
             //处理字符串乱码问题
             commodityAttribute= new String(commodityAttribute.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
@@ -28,38 +33,42 @@ public class CommodityController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        List<Commodity> commodityList = new ArrayList<>();
-        Commodity commodity = new Commodity();
-        int idcommodity = 1;
-        String category = "category";
-        String model ="model";
-        String picture="/assets/commoditypic/1.jpg";
-        String color="color";
-        String topfabric="topfabric";
-        String underfabric="underfabric";
-        double factoryprice =0.1;
-        double retailprice =0.2;
-        String remark = "remark";
-        String status ="status";
 
-        for (int i = 0;i<100;i++)
-        {
-            commodity.setIdcommodity(i+idcommodity);
-            commodity.setCategory(category+i);
-            commodity.setModel(model+i);
-            commodity.setPicture(picture);
-            commodity.setColor(color+i);
-            commodity.setTopfabric(topfabric+i);
-            commodity.setUnderfabric(underfabric+i);
-            commodity.setFactoryprice(factoryprice+i);
-            commodity.setRetailprice(retailprice+i);
-            commodity.setRemark(remark+i);
-            commodity.setStatus(status+i);
+        CommodityDAO commodityDAO=new CommodityDAOImpl();
 
-            commodityList.add(commodity);
+        PageModel<Commodity> pageModel=null;
+
+        try {
+            pageModel=new PageModel<Commodity>(1,commodityDAO.getTotalRecord(),8);
+            pageModel.setList(commodityDAO.getCommityPageList(pageModel.getIndex(),pageModel.getPageSize()));
+            modelAndView.setViewName("commodity/manage");
+            modelAndView.addObject("PageModel",pageModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
         }
-        ModelAndView modelAndView=new ModelAndView("commodity/manage","commodityList",commodityList);
+
         return modelAndView;
+    }
+
+    @RequestMapping("/updatePageList")
+    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize){
+        CommodityDAO commodityDAO = new CommodityDAOImpl();
+        PageModel<Commodity> pageModel=null;
+        ModelAndView modelAndView=new ModelAndView();
+        try {
+            pageModel=new PageModel<Commodity>(pageNumber,totalRecord,pageSize);
+            pageModel.setList(commodityDAO.getCommityPageList(pageModel.getIndex(),pageModel.getPageSize()));
+            modelAndView.setViewName("commodity/manage");
+            modelAndView.addObject("PageModel",pageModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
+
+        return new ModelAndView();
     }
     
     @RequestMapping("/addCommodity")
@@ -74,7 +83,7 @@ public class CommodityController {
         //todo：上传图片的问题
         try {
             //处理字符串乱码问题
-            category= new String(category.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
+            commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
