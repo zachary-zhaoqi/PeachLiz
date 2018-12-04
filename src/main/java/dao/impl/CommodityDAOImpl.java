@@ -29,22 +29,20 @@ public class CommodityDAOImpl implements CommodityDAO {
                 "status = '冻结'" +
                 "where idcommodity = ?;";
 
-        int Result = jdbcOperator.executeUpdate(sql,
-                commodity
-        );
+        jdbcOperator.executeUpdate(sql, commodity);
 
     }
 
     @Override
-    public int getTotalRecord() throws SQLException {
-        String sql="select count(*) from commodity";
-        return jdbcOperator.queryForIntOnly(sql);
+    public int getTotalRecord(String commodityAttribute, String commodityAttributeDetails) throws SQLException {
+        String sql="select count(*) from commodity where "+commodityAttribute+" like ?";
+        return jdbcOperator.queryForIntOnly(sql,commodityAttributeDetails);
     }
 
     @Override
-    public List<Commodity> getCommityPageList(int index, int pageSize) throws Exception {
-        String sql="select * from commodity limit ?,?";
-        return jdbcOperator.queryForJavaBeanList(sql,Commodity.class,index,pageSize);
+    public List<Commodity> getCommityPageList(String commodityAttribute, String commodityAttributeDetails, int index, int pageSize) throws Exception {
+        String sql="select * from commodity where "+commodityAttribute+" like ? limit ?,? ";
+        return jdbcOperator.queryForJavaBeanList(sql,Commodity.class,commodityAttributeDetails,index,pageSize);
     }
 
     @Override
@@ -81,7 +79,7 @@ public class CommodityDAOImpl implements CommodityDAO {
                 "container,category,model,picture,color,topfabric,underfabric,Accessoriesfabric,factoryprice,retailprice,remark,status,creterdate)" +
                 "values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
-        int Result = jdbcOperator.executeUpdate(sql,
+        jdbcOperator.executeUpdate(sql,
                 turnString(commodity.getContainer()),
                 turnString(commodity.getCategory()),
                 turnString(commodity.getModel()),
@@ -98,6 +96,7 @@ public class CommodityDAOImpl implements CommodityDAO {
                 turnString(commodity.getStatus()),
                 commodity.getCreterdate()
         );
+        // TODO: 2018/12/4 产品操作表
     }
 
     @Override

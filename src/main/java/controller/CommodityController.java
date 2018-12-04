@@ -11,8 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class CommodityController {
@@ -35,14 +33,20 @@ public class CommodityController {
             e.printStackTrace();
         }
 
+       if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
+            commodityAttributeDetails="%";
+        }
+
         //todo 条件筛选
         CommodityDAO commodityDAO=new CommodityDAOImpl();
 
         PageModel<Commodity> pageModel;
 
-        try {
-            pageModel=new PageModel<Commodity>(1,commodityDAO.getTotalRecord(),8);
-            pageModel.setList(commodityDAO.getCommityPageList(pageModel.getIndex(),pageModel.getPageSize()));
+
+        try {pageModel= new PageModel<>(1, commodityDAO.getTotalRecord(commodityAttribute, commodityAttributeDetails), 8);
+            pageModel.setWhereName(new String[]{commodityAttribute});
+            pageModel.setWhereValue(new String[]{commodityAttributeDetails});
+            pageModel.setList(commodityDAO.getCommityPageList(commodityAttribute,commodityAttributeDetails,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
@@ -61,7 +65,7 @@ public class CommodityController {
         ModelAndView modelAndView=new ModelAndView();
         try {
             pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
-            pageModel.setList(commodityDAO.getCommityPageList(pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(commodityDAO.getCommityPageList(pageModel.getWhereName()[0], pageModel.getWhereValue()[0], pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
