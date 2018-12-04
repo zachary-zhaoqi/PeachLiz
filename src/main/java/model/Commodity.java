@@ -30,8 +30,6 @@ public class Commodity {
     private String status;
     /**添加时间*/
     private String creterdate;
-    //todo 陈亮 数据库添加一个这个属性，默认当前时间，或者放在java源码中获取当前时间写入也可以。
-
 
     //以下属性为了方便操作。
 

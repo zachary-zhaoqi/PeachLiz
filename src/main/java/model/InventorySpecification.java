@@ -64,6 +64,6 @@ public class InventorySpecification {
 
     public void setCommodity() {
         CommodityDAO commodityDAO=new CommodityDAOImpl();
-        this.commodity = commodityDAO.getcommodity(this.);
+        this.commodity = commodityDAO.getcommodity(this.idcommodity);
     }
 }

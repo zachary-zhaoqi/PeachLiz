@@ -156,6 +156,12 @@ public class CommodityDAOImpl implements CommodityDAO {
         );
     }
 
+    @Override
+    public Commodity getcommodity(int idcommodity) {
+        //todo 段俊成
+        return null;
+    }
+
     public String turnString(String s) throws UnsupportedEncodingException {
         s=new String(s.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
         return s;

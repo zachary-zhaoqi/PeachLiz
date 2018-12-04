@@ -44,5 +44,10 @@ public interface CommodityDAO {
 
     void editCommodity(Commodity commodity) throws UnsupportedEncodingException, SQLException;
 
-
+    /**
+     * @param idcommodity 产品id
+     * @return 完整的产品实体
+     *                    根据产品id获取数据库中的响应属性
+     * */
+    Commodity getcommodity(int idcommodity);
 }

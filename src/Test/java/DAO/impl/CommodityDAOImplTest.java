@@ -29,7 +29,6 @@ public class CommodityDAOImplTest {
     public void addCommodity() {
 
         Commodity commodity = new Commodity();
-        commodity.se
     }
 
     @Test
@@ -39,4 +38,6 @@ public class CommodityDAOImplTest {
     @Test
     public void turnString() {
     }
+
+
 }
