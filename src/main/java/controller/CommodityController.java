@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class CommodityController {
     }
 
     @RequestMapping("/addCommodity")
-    public ModelAndView addCommodity(Commodity commodity){
+    public ModelAndView addCommodity(Commodity commodity) throws SQLException {
         //todo：上传图片的问题
         //todo:添加数据
 
@@ -88,6 +89,8 @@ public class CommodityController {
             commodityDAO.editCommodity(commodity);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return new ModelAndView();
@@ -102,7 +105,7 @@ public class CommodityController {
      * 将该商品设置为冻结状态。
      * */
     @RequestMapping("/removeCommodity")
-    public ModelAndView removeCommodity(int idcommodity){
+    public ModelAndView removeCommodity(int idcommodity) throws SQLException {
         //todo：赵奇
         CommodityDAO commodityDAO = new CommodityDAOImpl();
         commodityDAO.removeCommodity(idcommodity);
