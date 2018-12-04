@@ -1,24 +1,28 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PageModel<T> {
+public class PageModel<T>implements Serializable {
 
     private List<T> list;
     private int pageNumber;     //当前页号
     private int totalRecord;    //总记录数
     private int pageSize;       //页面大小
+    private String []whereName;
+    private String []whereValue;
 
     public PageModel(int pageNumber, int totalRecord, int pageSize) {
         this.totalRecord = totalRecord;
         this.pageSize = pageSize;
         this.list=null;
-        if (pageNumber < 1) {
-            pageNumber = 1;
-        }
         if (pageNumber > getTotalPage()) {
             pageNumber = getTotalPage();
         }
+        if (pageNumber < 1) {
+            pageNumber = 1;
+        }
+
         this.pageNumber = pageNumber;
 
     }
@@ -93,5 +97,21 @@ public class PageModel<T> {
         return "Page [list=" + list + ", pageNumber=" + pageNumber
                 + ",  totalRecord=" + totalRecord
                 + ", pageSize=" + pageSize + "]";
+    }
+
+    public String[] getWhereName() {
+        return whereName;
+    }
+
+    public void setWhereName(String[] whereName) {
+        this.whereName = whereName;
+    }
+
+    public String[] getWhereValue() {
+        return whereValue;
+    }
+
+    public void setWhereValue(String[] whereValue) {
+        this.whereValue = whereValue;
     }
 }

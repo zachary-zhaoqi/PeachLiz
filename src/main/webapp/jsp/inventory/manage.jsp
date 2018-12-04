@@ -1,6 +1,7 @@
 <%@ page import="model.Commodity" %>
 <%@ page import="model.PageModel" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="model.InventorySpecification" %><%--
   Created by IntelliJ IDEA.
   User: starr
   Date: 2018/12/4
@@ -45,13 +46,13 @@
         </tr>
         </thead>
 
-
         <%
-            PageModel<Commodity> pageModel= (PageModel<Commodity>) request.getAttribute("PageModel");
+            PageModel<InventorySpecification> pageModel= (PageModel<InventorySpecification>) request.getAttribute("InventorySpecification");
             if (pageModel!=null){
-                List<Commodity> commodityList= pageModel.getList();
-                if (commodityList!=null){
-                    for (Commodity commodity :commodityList) {
+                List<InventorySpecification> inventorySpecificationList= pageModel.getList();
+                if (inventorySpecificationList!=null){
+                    for (InventorySpecification inventorySpecification :inventorySpecificationList) {
+                        Commodity commodity=inventorySpecification.getCommodity();
                         out.println(
                                 "   <tr>\n" +
                                         "        <td>"+commodity.getCategory()+"</td>\n" +
@@ -59,7 +60,7 @@
                                         "        <td>"+commodity.getModel()+"</td>\n" +
                                         "        <td><img src=\""+request.getContextPath()+"/assets"+commodity.getPicture()+"\" width=\"150px\"></td>\n" +
                                         "        <td>"+commodity.getRemark()+"</td>\n" +
-                                        "        <td>"++"</td>\n" +
+                                        "        <td>"+inventorySpecification.getNumber()+"</td>\n" +
                                         "        <td>\n" +
                                         "            <span hidden>"+commodity.getIdcommodity()+"</span>\n" +
                                         "        </td>\n" +

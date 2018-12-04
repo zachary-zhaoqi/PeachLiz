@@ -26,7 +26,6 @@ public class CommodityDAOImplTest {
     @Test
     public void removeCommodity() throws SQLException {
         commodityDAO.removeCommodity(2);
-
     }
 
     @Test
