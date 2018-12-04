@@ -28,7 +28,9 @@ public class Commodity {
     private String remark;
     /**产品状态*/
     private String status;
-
+    /**添加时间*/
+    private String creterdate;
+    //todo 陈亮 数据库添加一个这个属性，默认当前时间，或者放在java源码中获取当前时间写入也可以。
     public String getCategory() {
         return category;
     }
@@ -131,5 +133,13 @@ public class Commodity {
 
     public void setContainer(String container) {
         this.container = container;
+    }
+
+    public String getCreterdate() {
+        return creterdate;
+    }
+
+    public void setCreterdate(String creterdate) {
+        this.creterdate = creterdate;
     }
 }

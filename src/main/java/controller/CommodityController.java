@@ -73,7 +73,8 @@ public class CommodityController {
 
     @RequestMapping("/addCommodity")
     public ModelAndView addCommodity(Commodity commodity){
-        //todo：上传图片的问题
+        //todo：上传图片的问题；添加一条库存信息，数量为零；
+
         ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO=new CommodityDAOImpl();
         try {
