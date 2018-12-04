@@ -13,7 +13,7 @@ public class InventorySpecification {
     /**
      * 产品id
      */
-    private int idproduct;
+    private int idcommodity;
     /**
      * 尺寸
      */
@@ -34,8 +34,8 @@ public class InventorySpecification {
         return idinventory;
     }
 
-    public int getIdproduct() {
-        return idproduct;
+    public int getIdcommodity() {
+        return idcommodity;
     }
 
     public String getSize() {
@@ -50,8 +50,8 @@ public class InventorySpecification {
         this.idinventory = idinventory;
     }
 
-    public void setIdproduct(int idproduct) {
-        this.idproduct = idproduct;
+    public void setIdcommodity(int idcommodity) {
+        this.idcommodity = idcommodity;
     }
 
     public void setSize(String size) {

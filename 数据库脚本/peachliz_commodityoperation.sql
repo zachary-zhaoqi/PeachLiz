@@ -16,15 +16,15 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `productoperation`
+-- Table structure for table `commodityoperation`
 --
 
-DROP TABLE IF EXISTS `productoperation`;
+DROP TABLE IF EXISTS `commodityoperation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `productoperation` (
+CREATE TABLE `commodityoperation` (
   `idoperation` int(11) NOT NULL AUTO_INCREMENT COMMENT '操作id',
-  `idproduct` int(11) DEFAULT NULL COMMENT '库存id',
+  `idcommodity` int(11) DEFAULT NULL COMMENT '库存id',
   `idoperator` int(11) DEFAULT NULL COMMENT '操作员id',
   `operationdate` varchar(45) DEFAULT NULL COMMENT '操作时间',
   `change` varchar(45) DEFAULT NULL COMMENT '改变产品状态',
@@ -33,13 +33,13 @@ CREATE TABLE `productoperation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `productoperation`
+-- Dumping data for table `commodityoperation`
 --
 
-LOCK TABLES `productoperation` WRITE;
-/*!40000 ALTER TABLE `productoperation` DISABLE KEYS */;
-INSERT INTO `productoperation` VALUES (1,1,1,'10','空闲'),(2,2,2,'11','空闲'),(3,3,3,'12','空闲'),(4,4,4,'13','空闲'),(5,5,5,'14','空闲'),(6,6,6,'15','空闲'),(7,7,7,'16','空闲'),(8,8,8,'17','空闲'),(9,9,9,'18','空闲'),(10,10,10,'19','空闲');
-/*!40000 ALTER TABLE `productoperation` ENABLE KEYS */;
+LOCK TABLES `commodityoperation` WRITE;
+/*!40000 ALTER TABLE `commodityoperation` DISABLE KEYS */;
+INSERT INTO `commodityoperation` VALUES (1,1,1,'10','空闲'),(2,2,2,'11','空闲'),(3,3,3,'12','空闲'),(4,4,4,'13','空闲'),(5,5,5,'14','空闲'),(6,6,6,'15','空闲'),(7,7,7,'16','空闲'),(8,8,8,'17','空闲'),(9,9,9,'18','空闲'),(10,10,10,'19','空闲');
+/*!40000 ALTER TABLE `commodityoperation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-04 14:40:40
+-- Dump completed on 2018-12-04 18:24:29

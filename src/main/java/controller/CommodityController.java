@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class CommodityController {
@@ -72,8 +74,9 @@ public class CommodityController {
     }
 
     @RequestMapping("/addCommodity")
-    public ModelAndView addCommodity(Commodity commodity){
-        //todo：上传图片的问题；添加一条库存信息，数量为零；
+    public ModelAndView addCommodity(Commodity commodity) throws SQLException {
+        //todo：上传图片的问题
+        //todo:添加数据
 
         ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO=new CommodityDAOImpl();
@@ -83,6 +86,8 @@ public class CommodityController {
             e.printStackTrace();
             modelAndView.setViewName("error");
             modelAndView.addObject("errormessage",e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
         return new ModelAndView();
     }
@@ -92,13 +97,17 @@ public class CommodityController {
 
         ModelAndView modelAndView=new ModelAndView();
         try {
-            //处理字符串乱码问题
-            commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
-            //todo:陈亮，dao操作
+//            //处理字符串乱码问题
+//            commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            CommodityDAO commodityDAO = new CommodityDAOImpl();
+            commodityDAO.editCommodity(commodity);
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             modelAndView.setViewName("error");
             modelAndView.addObject("errormessage",e.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return new ModelAndView();
@@ -113,7 +122,8 @@ public class CommodityController {
      * 将该商品设置为冻结状态。
      * */
     @RequestMapping("/removeCommodity")
-    public ModelAndView removeCommodity(int idcommodity){
+    public ModelAndView removeCommodity(int idcommodity) throws SQLException {
+        //todo：赵奇
         ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO = new CommodityDAOImpl();
         try {
