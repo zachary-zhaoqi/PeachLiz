@@ -78,21 +78,22 @@ public class CommodityDAOImpl implements CommodityDAO {
         }
 
         String sql = "insert into `commodity` (" +
-                "container,category,category,model,picture,color,topfabric,underfabric,Accessoriesfabric,factoryprice,retailprice,remark,status,creterdate)" +
-                "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                "container,category,model,picture,color,topfabric,underfabric,Accessoriesfabric,factoryprice,retailprice,remark,status,creterdate)" +
+                "values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
         int Result = jdbcOperator.executeUpdate(sql,
                 turnString(commodity.getContainer()),
                 turnString(commodity.getCategory()),
-                turnString(commodity.getCategory()),
                 turnString(commodity.getModel()),
                 turnString(commodity.getPicture()),
                 turnString(commodity.getColor()),
+
                 turnString(commodity.getTopfabric()),
                 turnString(commodity.getUnderfabric()),
                 turnString(commodity.getAccessoriesfabric()),
                 commodity.getFactoryprice(),
                 commodity.getRetailprice(),
+
                 turnString(commodity.getRemark()),
                 turnString(commodity.getStatus()),
                 commodity.getCreterdate()
@@ -132,23 +133,25 @@ public class CommodityDAOImpl implements CommodityDAO {
 
 
 
-        String sql = "UPDATE commodity SET" +
-                "container=?,category=?,category=?,model=?,picture=?,color=?,topfabric=?," +
-                "underfabric=?,Accessoriesfabric=?,factoryprice=?,retailprice=?,remark=?,status=?，creterdate=？)" +
-                "WHERE idcommodity = ?;";
+        String sql = "UPDATE `commodity` SET " +
+                "container=?,category=?,model=?,picture=?,color=?," +
+                "topfabric=?,underfabric=?,Accessoriesfabric=?,factoryprice=?,retailprice=?," +
+                "remark=?,status=?,creterdate=? " +
+                "WHERE idcommodity=?;";
 
         int Result = jdbcOperator.executeUpdate(sql,
                 turnString(commodity.getContainer()),
                 turnString(commodity.getCategory()),
-                turnString(commodity.getCategory()),
                 turnString(commodity.getModel()),
                 turnString(commodity.getPicture()),
                 turnString(commodity.getColor()),
+
                 turnString(commodity.getTopfabric()),
                 turnString(commodity.getUnderfabric()),
                 turnString(commodity.getAccessoriesfabric()),
                 commodity.getFactoryprice(),
                 commodity.getRetailprice(),
+
                 turnString(commodity.getRemark()),
                 turnString(commodity.getStatus()),
                 commodity.getCreterdate(),

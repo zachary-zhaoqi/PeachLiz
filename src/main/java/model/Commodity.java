@@ -2,7 +2,7 @@ package model;
 //产品：产品id，品类，型号，图片，颜色，规格，面-面料型号，底-面料型号，出厂价，零售价，备注，产品状态。
 
 public class Commodity {
-    /**产品ID*/
+    /**产品ID,自增长*/
     private int idcommodity;
     /**箱号*/
     private String container;
@@ -12,23 +12,23 @@ public class Commodity {
     private String model;
     /**图片*/
     private String picture;
-    /**颜色*/
+    /**颜色，可以为null*/
     private String color;
-    /**顶面面料型号*/
+    /**顶面面料型号，可以为null*/
     private String topfabric;
-    /**底面面料型号*/
+    /**底面面料型号，可以为null*/
     private String underfabric;
-    /**附件面料型号*/
+    /**附件面料型号，可以为null*/
     private String accessoriesfabric;
     /**出厂价*/
     private double factoryprice ;
     /**零售价*/
     private double retailprice;
-    /**备注*/
+    /**备注，可以为null*/
     private String remark;
     /**产品状态*/
     private String status;
-    /**添加时间*/
+    /**添加时间，可以为null*/
     private String creterdate;
 
     //以下属性为了方便操作。
