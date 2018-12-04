@@ -30,6 +30,7 @@ public class CommodityDAOImpl implements CommodityDAO {
         int Result = jdbcOperator.executeUpdate(sql,
                 commodity
         );
+        //todo 陈亮 写个测试类
 
     }
 

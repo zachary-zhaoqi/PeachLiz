@@ -17,14 +17,18 @@ public interface CommodityDAO {
     /**
      * 获取数据库总记录数
      */
-    int getTotalRecord() throws SQLException;
+    int getTotalRecord() throws SQLException;//todo 陈亮 写一个单元测试
 
     /**
+     * @param index 当前索引  即从哪个数据开始查
+     * @param pageSize 页面大小  即查多少条数据
      * 得到请求页的数据列表
      */
-    List<Commodity> getCommityPageList(int index, int pageSize) throws Exception;
+    List<Commodity> getCommityPageList(int index, int pageSize) throws Exception;//todo 陈亮 写一个单元测试
 
+    //todo 陈亮 写一下文档
     void addCommodity(Commodity commodity) throws SQLException;
 
+    //todo 陈亮 写一下文档
     void editCommodity(Commodity commodity) throws UnsupportedEncodingException, SQLException;
 }
