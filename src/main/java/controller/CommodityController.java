@@ -83,6 +83,8 @@ public class CommodityController {
             e.printStackTrace();
             modelAndView.setViewName("error");
             modelAndView.addObject("errormessage",e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
         return new ModelAndView();
     }
@@ -92,13 +94,17 @@ public class CommodityController {
 
         ModelAndView modelAndView=new ModelAndView();
         try {
-            //处理字符串乱码问题
-            commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
-            //todo:陈亮，dao操作
+//            //处理字符串乱码问题
+//            commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            CommodityDAO commodityDAO = new CommodityDAOImpl();
+            commodityDAO.editCommodity(commodity);
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             modelAndView.setViewName("error");
             modelAndView.addObject("errormessage",e.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return new ModelAndView();

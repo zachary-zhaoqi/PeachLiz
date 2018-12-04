@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `productoperation`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `productoperation` (
   `idoperation` int(11) NOT NULL AUTO_INCREMENT COMMENT '操作id',
-  `idproduct` int(11) DEFAULT NULL COMMENT '库存id',
+  `idcommodity` int(11) DEFAULT NULL COMMENT '库存id',
   `idoperator` int(11) DEFAULT NULL COMMENT '操作员id',
   `operationdate` varchar(45) DEFAULT NULL COMMENT '操作时间',
   `change` varchar(45) DEFAULT NULL COMMENT '改变产品状态',
