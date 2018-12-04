@@ -26,7 +26,6 @@ public class CommodityDAOImplTest {
     @Test
     public void removeCommodity() throws SQLException {
         commodityDAO.removeCommodity(2);
-
     }
 
     @Test
@@ -38,15 +37,10 @@ public class CommodityDAOImplTest {
     }
 
     @Test
-<<<<<<< HEAD
-    public void addCommodity() {
-        Commodity commodity = new Commodity();
-=======
     public void addCommodity() throws UnsupportedEncodingException, SQLException {
 
         resetcommodity();
         commodityDAO.addCommodity(commodity);
->>>>>>> master
     }
 
     @Test
