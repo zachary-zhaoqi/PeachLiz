@@ -21,12 +21,14 @@ public class InventoryController {
     /**
      * @param whereName 属性名
      * @param whereValue 属性值
-     *
-     * 通过某一个属性(商品的型号)来查询产品，若属性值为空则查询全部库存。
+     * 通过某一个商品的型号来查询产品，若值为空则查询全部库存.
+     *                   得到为此型号的全部id
+     *                   再通过id查询全部库存数据
      * */
     @RequestMapping("queryInventory")
     public ModelAndView queryInventory(String whereName,String whereValue){
         // TODO: 2018/12/5 与commodityController中的查询太像了，想着提取一下
+        // TODO: 2018/12/5 陈亮 来问我下怎么写
         ModelAndView modelAndView=new ModelAndView();
         PageModel<InventorySpecification> pageModel;
         try {
@@ -40,7 +42,7 @@ public class InventoryController {
         if (null==whereValue||"".equals(whereValue)){
             whereValue="%";
         }
-        InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl()
+        InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl();
 
         try {
             pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(whereName, whereValue), 8);
@@ -56,5 +58,20 @@ public class InventoryController {
         }
 
         return modelAndView;
+    }
+
+
+    /**
+     * @param commodityModel    产品编号
+     * @param Specification     产品规格
+     * @param number            库存数
+     *
+     *                          通过产品编号查找产品id
+     *                          自动生成库存id，填充相应的数据
+     * */
+    @RequestMapping("addInventorySpecification")
+    public ModelAndView addInventorySpecification(String commodityModel,String Specification,int number){
+        // TODO: 2018/12/5 陈亮，按上面说明写,保存到数据库就行了，剩下部分留个todo给我，这个删掉
+        return null;
     }
 }
