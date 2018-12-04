@@ -25,10 +25,10 @@
 </head>
 <body>
     <form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/queryInventory" method="post" onsubmit="queryCommodityHandle()">
-        <select name="commodityAttribute" >
+        <select name="whereName">
             <option value="model">型号</option>
         </select>
-        <input type="text" name="commodityAttributeDetails" class="abc input-default" value="">&nbsp;&nbsp;
+        <input type="text" name="whereValue" class="abc input-default" value="">&nbsp;&nbsp;
         <button type="submit" class="btn btn-primary">查询库存</button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-success" id="addnewCommodity">新增产品</button>
     </form>
@@ -71,6 +71,31 @@
             }
         %>
     </table>
+
+    <%
+        //这块主要做分页的导航，更新页面
+        if (pageModel!=null){
+            if ("%"==pageModel.getWhereValue()){
+                pageModel.setWhereValue("");
+            }
+            String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord()+"&commodityAttribute="+pageModel.getWhereName()+"&commodityAttributeDetails="+pageModel.getWhereValue();
+            out.println(
+                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
+                            "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"
+            );
+            for (int i = 0; i < pageModel.getTotalPage(); i++) {
+                if ((i+1)!=pageModel.getPageNumber()){
+                    out.println("<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(i+1)+pageParmeStr+"\">"+Integer.toString(i+1)+"</a>");
+                }else {
+                    out.println("<span>"+Integer.toString(i+1)+"</span>");
+                }
+            }
+            out.println(
+                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()+1)+pageParmeStr+"\">下一页</a>" +
+                            "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+pageModel.getTotalPage()+pageParmeStr+"\">尾页</a>"
+            );
+        }
+    %>
 
 
 </body>

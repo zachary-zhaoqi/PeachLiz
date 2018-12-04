@@ -28,14 +28,14 @@
 </head>
 <body>
     <form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/queryCommodity" method="post">
-        <select name="commodityAttribute" id="commodityAttribute">
+        <select name="whereName" id="commodityAttribute">
             <option value="model">型号</option>
             <option value="model">品类</option>
             <option value="color">颜色</option>
             <option value="remark">备注</option>
             <option value="status">产品状态</option>
         </select>
-        <input type="text" name="commodityAttributeDetails" id="commodityAttributeDetails"class="abc input-default" value="">&nbsp;&nbsp;
+        <input type="text" name="whereValue" id="commodityAttributeDetails" class="abc input-default" value="">&nbsp;&nbsp;
         <button type="submit" class="btn btn-primary">查询商品</button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-success" id="addnewCommodity">新增产品</button>
     </form>
@@ -99,7 +99,10 @@
     <%
         //这块主要做分页的导航，更新页面
         if (pageModel!=null){
-            String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord();
+            if ("%"==pageModel.getWhereValue()){
+                pageModel.setWhereValue("");
+            }
+            String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord()+"&commodityAttribute="+pageModel.getWhereName()+"&commodityAttributeDetails="+pageModel.getWhereValue();
             out.println(
                     "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
                     "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"

@@ -9,8 +9,8 @@ public class PageModel<T>implements Serializable {
     private int pageNumber;     //当前页号
     private int totalRecord;    //总记录数
     private int pageSize;       //页面大小
-    private String []whereName;
-    private String []whereValue;
+    private String whereName;   //条件名称
+    private String whereValue;  //条件值
 
     public PageModel(int pageNumber, int totalRecord, int pageSize) {
         this.totalRecord = totalRecord;
@@ -99,19 +99,19 @@ public class PageModel<T>implements Serializable {
                 + ", pageSize=" + pageSize + "]";
     }
 
-    public String[] getWhereName() {
+    public String getWhereName() {
         return whereName;
     }
 
-    public void setWhereName(String[] whereName) {
+    public void setWhereName(String whereName) {
         this.whereName = whereName;
     }
 
-    public String[] getWhereValue() {
+    public String getWhereValue() {
         return whereValue;
     }
 
-    public void setWhereValue(String[] whereValue) {
+    public void setWhereValue(String whereValue) {
         this.whereValue = whereValue;
     }
 }

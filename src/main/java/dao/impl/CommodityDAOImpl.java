@@ -36,15 +36,15 @@ public class CommodityDAOImpl implements CommodityDAO {
 
 
     @Override
-    public int getTotalRecord(String commodityAttribute, String commodityAttributeDetails) throws SQLException {
-        String sql="select count(*) from commodity where "+commodityAttribute+" like ?";
-        return jdbcOperator.queryForIntOnly(sql,commodityAttributeDetails);
+    public int getTotalRecord(String whereName, String whereValue) throws SQLException {
+        String sql="select count(*) from commodity where "+ whereName +" like ?";
+        return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 
     @Override
-    public List<Commodity> getCommityPageList(String commodityAttribute, String commodityAttributeDetails, int index, int pageSize) throws Exception {
-        String sql="select * from commodity where "+commodityAttribute+" like ? limit ?,? ";
-        return jdbcOperator.queryForJavaBeanList(sql,Commodity.class,commodityAttributeDetails,index,pageSize);
+    public List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception {
+        String sql="select * from commodity where "+ whereName +" like ? limit ?,? ";
+        return jdbcOperator.queryForJavaBeanList(sql,Commodity.class, whereValue,index,pageSize);
     }
 
     @Override

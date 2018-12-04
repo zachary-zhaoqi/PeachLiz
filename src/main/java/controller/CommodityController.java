@@ -15,38 +15,36 @@ import java.sql.SQLException;
 @Controller
 public class CommodityController {
     /**
-     * @param commodityAttribute 属性名
-     * @param commodityAttributeDetails 属性值
+     * @param whereName 属性名
+     * @param whereValue 属性值
      *
      * 通过某一个属性来查询产品，若属性值为空则查询全部产品。
      * */
     @RequestMapping("/queryCommodity")
-    public ModelAndView queryCommodity(String commodityAttribute,String commodityAttributeDetails){
+    public ModelAndView queryCommodity(String whereName,String whereValue){
 
         ModelAndView modelAndView=new ModelAndView();
-
+        PageModel<Commodity> pageModel;
         try {
             //处理字符串乱码问题
-            commodityAttribute= new String(commodityAttribute.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
-            commodityAttributeDetails= new String(commodityAttributeDetails.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
+            whereName= new String(whereName.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
+            whereValue= new String(whereValue.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
-       if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
-            commodityAttributeDetails="%";
+        if (null==whereValue||"".equals(whereValue)){
+            whereValue="%";
         }
 
-        //todo 条件筛选
         CommodityDAO commodityDAO=new CommodityDAOImpl();
 
-        PageModel<Commodity> pageModel;
 
-
-        try {pageModel= new PageModel<>(1, commodityDAO.getTotalRecord(commodityAttribute, commodityAttributeDetails), 8);
-            pageModel.setWhereName(new String[]{commodityAttribute});
-            pageModel.setWhereValue(new String[]{commodityAttributeDetails});
-            pageModel.setList(commodityDAO.getCommityPageList(commodityAttribute,commodityAttributeDetails,pageModel.getIndex(),pageModel.getPageSize()));
+        try {
+            pageModel= new PageModel<>(1, commodityDAO.getTotalRecord(whereName, whereValue), 8);
+            pageModel.setWhereName(whereName);
+            pageModel.setWhereValue(whereValue);
+            pageModel.setList(commodityDAO.getPageList(whereName,whereValue,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
@@ -59,13 +57,18 @@ public class CommodityController {
     }
 
     @RequestMapping("/updatePageList")
-    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize){
+    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
         CommodityDAO commodityDAO = new CommodityDAOImpl();
         PageModel<Commodity> pageModel;
         ModelAndView modelAndView=new ModelAndView();
+        if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
+            commodityAttributeDetails="%";
+        }
         try {
             pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
-            pageModel.setList(commodityDAO.getCommityPageList(pageModel.getWhereName()[0], pageModel.getWhereValue()[0], pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setWhereName(commodityAttribute);
+            pageModel.setWhereValue(commodityAttributeDetails);
+            pageModel.setList(commodityDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {

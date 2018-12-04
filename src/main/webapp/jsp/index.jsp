@@ -70,7 +70,7 @@
                     {
                         text:'库存管理',
                         items: [
-                            {id:'20', text:'库存管理', href:'#'}
+                            {id:'20', text:'库存管理', href:'${pageContext.request.contextPath}/jsp/inventory/manage.jsp'}
                         ]
                     }
                 ]

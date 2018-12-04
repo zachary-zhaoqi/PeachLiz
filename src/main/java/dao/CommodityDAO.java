@@ -16,18 +16,18 @@ public interface CommodityDAO {
 
     /**
      * 获取数据库总记录数
-     * @param commodityAttribute
-     * @param commodityAttributeDetails
+     * @param whereName
+     * @param whereValue
      */
-    int getTotalRecord(String commodityAttribute, String commodityAttributeDetails) throws SQLException;
+    int getTotalRecord(String whereName, String whereValue) throws SQLException;
 
     /**
-     * @param commodityAttribute
-     * @param commodityAttributeDetails
+     * @param whereName
+     * @param whereValue
      * @param index 当前索引  即从哪个数据开始查
      * @param pageSize 页面大小  即查多少条数据
      */
-    List<Commodity> getCommityPageList(String commodityAttribute, String commodityAttributeDetails, int index, int pageSize) throws Exception;
+    List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception;
 
 
     /**
