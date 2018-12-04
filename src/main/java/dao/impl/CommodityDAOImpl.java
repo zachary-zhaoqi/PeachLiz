@@ -6,6 +6,7 @@ import model.Commodity;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.List;
 
 public class CommodityDAOImpl implements CommodityDAO {
@@ -17,7 +18,7 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public void removeCommodity(int commodity) {
+    public void removeCommodity(int commodity) throws SQLException {
         String sql = "UPDATE commodity SET" +
                 "status = '冻结'" +
                 "where idcommodity = ?;";
@@ -40,7 +41,7 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public void addCommodity(Commodity commodity) {
+    public void addCommodity(Commodity commodity) throws SQLException {
 
         if (commodity.getRemark() == null)
         {
@@ -114,7 +115,7 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public void editCommodity(Commodity commodity) throws UnsupportedEncodingException {
+    public void editCommodity(Commodity commodity) throws UnsupportedEncodingException, SQLException {
 //        UPDATE pillow SET stock = stock-? WHERE idpillow = ?
         String sql = "UPDATE commodity SET" +
                 "container=?,category=?,category=?,model=?,picture=?,color=?,topfabric=?," +
