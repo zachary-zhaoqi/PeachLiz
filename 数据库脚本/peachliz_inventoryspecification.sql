@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `inventoryspecification`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `inventoryspecification` (
   `idinventory` int(11) NOT NULL AUTO_INCREMENT COMMENT '库存id',
-  `idproduct` int(11) DEFAULT NULL COMMENT '产品id',
+  `idcommodity` int(11) DEFAULT NULL COMMENT '产品id',
   `size` varchar(45) DEFAULT NULL COMMENT '尺寸',
   `number` int(11) DEFAULT NULL COMMENT '数量',
   PRIMARY KEY (`idinventory`)
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 21:42:31
+-- Dump completed on 2018-12-04 18:24:31

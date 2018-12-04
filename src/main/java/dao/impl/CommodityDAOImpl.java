@@ -7,6 +7,8 @@ import model.Commodity;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class CommodityDAOImpl implements CommodityDAO {
@@ -17,9 +19,13 @@ public class CommodityDAOImpl implements CommodityDAO {
         this.jdbcOperator = new JdbcOperator();
     }
 
+    public CommodityDAOImpl(JdbcOperator jdbcOperator) {
+        this.jdbcOperator = jdbcOperator;
+    }
+
     @Override
     public void removeCommodity(int commodity) throws SQLException {
-        String sql = "UPDATE commodity SET" +
+        String sql = "UPDATE commodity SET " +
                 "status = '冻结'" +
                 "where idcommodity = ?;";
 
@@ -30,18 +36,19 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public int getTotalRecord() {
-        String sql="select count(*) totalRecord from book";
-        return 0;
+    public int getTotalRecord() throws SQLException {
+        String sql="select count(*) from commodity";
+        return jdbcOperator.queryForIntOnly(sql);
     }
 
     @Override
-    public List<Commodity> getBookList(int index, int pageSize) {
-        return null;
+    public List<Commodity> getCommityPageList(int index, int pageSize) throws Exception {
+        String sql="select * from commodity limit ?,?";
+        return jdbcOperator.queryForJavaBeanList(sql,Commodity.class,index,pageSize);
     }
 
     @Override
-    public void addCommodity(Commodity commodity) throws SQLException {
+    public void addCommodity(Commodity commodity) throws SQLException, UnsupportedEncodingException {
 
         if (commodity.getRemark() == null)
         {
@@ -64,62 +71,70 @@ public class CommodityDAOImpl implements CommodityDAO {
             commodity.setColor("");
         }
 
-//        /**产品ID*/
-//        private int idcommodity;
-//        /**箱号*/
-//        private String container;
-//        /**品类*/
-//        private String category;
-//        /**型号*/
-//        private String model;
-//        /**图片*/
-//        private String picture;
-//        /**颜色*/
-//        private String color;
-//        /**面-面料型号*/
-//        private String topfabric;
-//        /**底-面料型号*/
-//        private String underfabric;
-//        /**附件面料型号*/
-//        private String Accessoriesfabric;
-//        /**出厂价*/
-//        private double factoryprice ;
-//        /**零售价*/
-//        private double retailprice;
-//        /**备注*/
-//        private String remark;
-//        /**产品状态*/
-//        private String status;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        if (commodity.getCreterdate() == null)
+        {
+            commodity.setCreterdate(df.format(new Date()));// new Date()为获取当前系统时间
+        }
 
         String sql = "insert into `commodity` (" +
-                "container,category,category,model,picture,color,topfabric,underfabric,Accessoriesfabric,factoryprice,retailprice,remark,status)" +
-                "values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                "container,category,category,model,picture,color,topfabric,underfabric,Accessoriesfabric,factoryprice,retailprice,remark,status,creterdate)" +
+                "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
         int Result = jdbcOperator.executeUpdate(sql,
-                commodity.getContainer(),
-                commodity.getCategory(),
-                commodity.getCategory(),
-                commodity.getModel(),
-                commodity.getPicture(),
-                commodity.getColor(),
-                commodity.getTopfabric(),
-                commodity.getUnderfabric(),
-                commodity.getAccessoriesfabric(),
+                turnString(commodity.getContainer()),
+                turnString(commodity.getCategory()),
+                turnString(commodity.getCategory()),
+                turnString(commodity.getModel()),
+                turnString(commodity.getPicture()),
+                turnString(commodity.getColor()),
+                turnString(commodity.getTopfabric()),
+                turnString(commodity.getUnderfabric()),
+                turnString(commodity.getAccessoriesfabric()),
                 commodity.getFactoryprice(),
                 commodity.getRetailprice(),
-                commodity.getRemark(),
-                commodity.getStatus()
+                turnString(commodity.getRemark()),
+                turnString(commodity.getStatus()),
+                commodity.getCreterdate()
         );
-
-
     }
 
     @Override
     public void editCommodity(Commodity commodity) throws UnsupportedEncodingException, SQLException {
 //        UPDATE pillow SET stock = stock-? WHERE idpillow = ?
+
+        if (commodity.getRemark() == null)
+        {
+            commodity.setRemark("");
+        }
+        if (commodity.getTopfabric() == null)
+        {
+            commodity.setTopfabric("");
+        }
+        if (commodity.getUnderfabric() == null)
+        {
+            commodity.setUnderfabric("");
+        }
+        if (commodity.getAccessoriesfabric() == null)
+        {
+            commodity.setAccessoriesfabric("");
+        }
+        if (commodity.getColor() == null)
+        {
+            commodity.setColor("");
+        }
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        if (commodity.getCreterdate() == null)
+        {
+            commodity.setCreterdate(df.format(new Date()));// new Date()为获取当前系统时间
+        }
+
+
+
         String sql = "UPDATE commodity SET" +
                 "container=?,category=?,category=?,model=?,picture=?,color=?,topfabric=?," +
-                "underfabric=?,Accessoriesfabric=?,factoryprice=?,retailprice=?,remark=?,status=?)" +
+                "underfabric=?,Accessoriesfabric=?,factoryprice=?,retailprice=?,remark=?,status=?，creterdate=？)" +
                 "WHERE idcommodity = ?;";
 
         int Result = jdbcOperator.executeUpdate(sql,
@@ -136,6 +151,7 @@ public class CommodityDAOImpl implements CommodityDAO {
                 commodity.getRetailprice(),
                 turnString(commodity.getRemark()),
                 turnString(commodity.getStatus()),
+                commodity.getCreterdate(),
                 commodity.getIdcommodity()
         );
     }

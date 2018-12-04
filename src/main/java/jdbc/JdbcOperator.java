@@ -24,7 +24,7 @@ public class JdbcOperator {
     public int executeUpdateBack(String sql, Connection connection,Object... params ) throws SQLException {
         PreparedStatement preparedStatement = null;
 
-        int result = -1;
+        int result;
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -47,7 +47,7 @@ public class JdbcOperator {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        int result = -1;
+        int result;
 
         try {
             connection = dataSource.getConnection();
@@ -158,7 +158,7 @@ public class JdbcOperator {
 
     public List queryForJavaBeanList(String sql, Class javaBeanClass, Object... params) throws Exception {
         List<Object>list=new ArrayList<Object>();
-        Object object=null;
+        Object object;
         Connection conn = null;
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;

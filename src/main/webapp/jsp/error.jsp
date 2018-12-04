@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>出现错误啦</title>
 </head>
 <body>
-
+<h2>错误信息：</h2><br/>
+<h5><%=request.getAttribute("errormessage")%></h5><br/>
+<p>请联系技术支持人员，18760338358。</p>
 </body>
 </html>

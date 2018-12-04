@@ -16,30 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `shoppingaddress`
+-- Table structure for table `commodityoperation`
 --
 
-DROP TABLE IF EXISTS `shoppingaddress`;
+DROP TABLE IF EXISTS `commodityoperation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `shoppingaddress` (
-  `idshippingaddress` int(11) NOT NULL AUTO_INCREMENT COMMENT '收货地址id',
-  `contactname` varchar(45) DEFAULT NULL COMMENT '联系人姓名',
-  `contactqq` varchar(45) DEFAULT NULL COMMENT '联系人qq',
-  `contacttel` varchar(45) DEFAULT NULL COMMENT '联系人电话',
-  `address` varchar(45) DEFAULT NULL COMMENT '收货地址',
-  PRIMARY KEY (`idshippingaddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='收货地址';
+CREATE TABLE `commodityoperation` (
+  `idoperation` int(11) NOT NULL AUTO_INCREMENT COMMENT '操作id',
+  `idcommodity` int(11) DEFAULT NULL COMMENT '库存id',
+  `idoperator` int(11) DEFAULT NULL COMMENT '操作员id',
+  `operationdate` varchar(45) DEFAULT NULL COMMENT '操作时间',
+  `change` varchar(45) DEFAULT NULL COMMENT '改变产品状态',
+  PRIMARY KEY (`idoperation`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='产品操作细则';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `shoppingaddress`
+-- Dumping data for table `commodityoperation`
 --
 
-LOCK TABLES `shoppingaddress` WRITE;
-/*!40000 ALTER TABLE `shoppingaddress` DISABLE KEYS */;
-INSERT INTO `shoppingaddress` VALUES (1,'赵一','9876543001','1234567001','北京'),(2,'赵二','9876543002','1234567002','上海'),(3,'赵三','9876543003','1234567003','福州'),(4,'赵四','9876543004','1234567004','天津'),(5,'赵五','9876543005','1234567005','广州'),(6,'赵六','9876543006','1234567006','成都'),(7,'赵七','9876543007','1234567007','昆明'),(8,'赵八','9876543008','1234567008','杭州'),(9,'赵九','9876543009','1234567009','合肥'),(10,'赵十','9876543010','1234567010','长沙');
-/*!40000 ALTER TABLE `shoppingaddress` ENABLE KEYS */;
+LOCK TABLES `commodityoperation` WRITE;
+/*!40000 ALTER TABLE `commodityoperation` DISABLE KEYS */;
+INSERT INTO `commodityoperation` VALUES (1,1,1,'10','空闲'),(2,2,2,'11','空闲'),(3,3,3,'12','空闲'),(4,4,4,'13','空闲'),(5,5,5,'14','空闲'),(6,6,6,'15','空闲'),(7,7,7,'16','空闲'),(8,8,8,'17','空闲'),(9,9,9,'18','空闲'),(10,10,10,'19','空闲');
+/*!40000 ALTER TABLE `commodityoperation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-04 18:24:30
+-- Dump completed on 2018-12-04 18:24:29

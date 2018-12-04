@@ -1,10 +1,10 @@
 package model;
 //产品操作细则：产品id，操作员id，改变时间，改变产品状态。
-public class ProductOperation {
+public class CommodityOperation {
     /**操作id*/
     private int idoperation;
-    /**库存id*/
-    private int idproduct;
+    /**产品id*/
+    private int idcommodity;
     /**操作员id*/
     private int idoperator;
     /**操作时间*/
@@ -16,8 +16,8 @@ public class ProductOperation {
         return idoperator;
     }
 
-    public int getIdproduct() {
-        return idproduct;
+    public int getIdcommodity() {
+        return idcommodity;
     }
 
     public String getChange() {
@@ -36,8 +36,8 @@ public class ProductOperation {
         this.idoperator = idoperator;
     }
 
-    public void setIdproduct(int idproduct) {
-        this.idproduct = idproduct;
+    public void setIdcommodity(int idcommodity) {
+        this.idcommodity = idcommodity;
     }
 
     public void setChange(String change) {

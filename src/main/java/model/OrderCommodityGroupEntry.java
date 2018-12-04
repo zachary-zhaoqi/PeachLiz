@@ -1,11 +1,17 @@
 package model;
-//产品组条目：产品组编号（外键约束），库存id，零售价，数量，工艺细节，备注。
+//产品组条目：产品组编号,订单商品组id，库存id，零售价，数量，工艺细节，备注。
 
 public class OrderCommodityGroupEntry {
+
+
     /**
      * 产品组编号
      */
     private int idproductteam;
+    /**
+     * 订单商品组id
+     */
+    private int idgrop;
     /**
      * 库存id
      */
@@ -26,6 +32,14 @@ public class OrderCommodityGroupEntry {
      * 备注
      */
     private String remark;
+
+    public int getIdgrop() {
+        return idgrop;
+    }
+
+    public void setIdgrop(int idgrop) {
+        this.idgrop = idgrop;
+    }
 
     public int getIdproductteam() {
         return idproductteam;

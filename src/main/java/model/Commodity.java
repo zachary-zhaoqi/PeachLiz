@@ -14,12 +14,12 @@ public class Commodity {
     private String picture;
     /**颜色*/
     private String color;
-    /**面-面料型号*/1
+    /**顶面面料型号*/
     private String topfabric;
-    /**底-面料型号*/
+    /**底面面料型号*/
     private String underfabric;
     /**附件面料型号*/
-    private String Accessoriesfabric;
+    private String accessoriesfabric;
     /**出厂价*/
     private double factoryprice ;
     /**零售价*/
@@ -28,14 +28,9 @@ public class Commodity {
     private String remark;
     /**产品状态*/
     private String status;
-
-    public String getContainer() {
-        return container;
-    }
-
-    public void setContainer(String container) {
-        this.container = container;
-    }
+    /**添加时间*/
+    private String creterdate;
+    //todo 陈亮 数据库添加一个这个属性，默认当前时间，或者放在java源码中获取当前时间写入也可以。
 
     public String getCategory() {
         return category;
@@ -126,10 +121,26 @@ public class Commodity {
     }
 
     public String getAccessoriesfabric() {
-        return Accessoriesfabric;
+        return accessoriesfabric;
     }
 
     public void setAccessoriesfabric(String accessoriesfabric) {
-        Accessoriesfabric = accessoriesfabric;
+        this.accessoriesfabric = accessoriesfabric;
+    }
+
+    public String getContainer() {
+        return container;
+    }
+
+    public void setContainer(String container) {
+        this.container = container;
+    }
+
+    public String getCreterdate() {
+        return creterdate;
+    }
+
+    public void setCreterdate(String creterdate) {
+        this.creterdate = creterdate;
     }
 }
