@@ -58,7 +58,7 @@ public class CommodityController {
         PageModel<Commodity> pageModel;
         ModelAndView modelAndView=new ModelAndView();
         try {
-            pageModel=new PageModel<Commodity>(pageNumber,totalRecord,pageSize);
+            pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
             pageModel.setList(commodityDAO.getCommityPageList(pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
@@ -68,7 +68,7 @@ public class CommodityController {
             modelAndView.addObject("errormessage",e.getMessage());
         }
 
-        return new ModelAndView();
+        return modelAndView;
     }
 
     @RequestMapping("/addCommodity")

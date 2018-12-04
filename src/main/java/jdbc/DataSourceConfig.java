@@ -23,7 +23,7 @@ public class DataSourceConfig {
     /**
      * 配置文件的路径
      * */
-    private static final String DATASOURCE_CONFIG_FILE = "C:\\Users\\starr\\workspace\\PillowInventory\\src\\main\\resources\\dataSource.properties";
+    private static final String DATASOURCE_CONFIG_FILE = "C:\\Users\\starr\\workspace\\PeachLiz\\src\\main\\resources\\dataSource.properties";
     /**
      * 数据库帐号
      */
@@ -154,7 +154,7 @@ public class DataSourceConfig {
             connection = dataSource.getConnection();
             System.out.println(connection);
 
-            String sql="SELECT * FROM pillowinventory.pillow;";
+            String sql="SELECT * FROM peachliz.commodity;";
             preparedStatement=connection.prepareStatement(sql);
             resultSet=preparedStatement.executeQuery();
 

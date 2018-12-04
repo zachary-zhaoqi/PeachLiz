@@ -10,10 +10,17 @@ public class PageModel<T> {
     private int pageSize;       //页面大小
 
     public PageModel(int pageNumber, int totalRecord, int pageSize) {
-        this.pageNumber = pageNumber;
         this.totalRecord = totalRecord;
         this.pageSize = pageSize;
         this.list=null;
+        if (pageNumber < 1) {
+            pageNumber = 1;
+        }
+        if (pageNumber > getTotalPage()) {
+            pageNumber = getTotalPage();
+        }
+        this.pageNumber = pageNumber;
+
     }
 
     public List<T> getList() {

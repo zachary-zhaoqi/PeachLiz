@@ -1,4 +1,8 @@
 package model;
+
+import dao.CommodityDAO;
+import dao.impl.CommodityDAOImpl;
+
 //库存id，产品id，尺寸，数量。
 public class InventorySpecification {
 
@@ -18,6 +22,9 @@ public class InventorySpecification {
      * 数量
      */
     private int number;
+
+    //以下属性为了方便操作。
+    private Commodity commodity;//库存
 
     public int getNumber() {
         return number;
@@ -49,5 +56,14 @@ public class InventorySpecification {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public Commodity getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity() {
+        CommodityDAO commodityDAO=new CommodityDAOImpl();
+        this.commodity = commodityDAO.getcommodity(this.);
     }
 }

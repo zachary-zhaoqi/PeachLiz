@@ -1,4 +1,6 @@
-<%--
+<%@ page import="model.Commodity" %>
+<%@ page import="model.PageModel" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: starr
   Date: 2018/12/4
@@ -30,6 +32,44 @@
         <button type="button" class="btn btn-success" id="addnewCommodity">新增产品</button>
     </form>
 
+    <table class="table table-bordered table-hover definewidth m10">
+        <thead>
+        <tr>
+            <th>品类</th>
+            <th>箱号</th>
+            <th>型号</th>
+            <th>照片</th>
+            <th>备注</th>
+            <th>库存数</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+
+        <%
+            PageModel<Commodity> pageModel= (PageModel<Commodity>) request.getAttribute("PageModel");
+            if (pageModel!=null){
+                List<Commodity> commodityList= pageModel.getList();
+                if (commodityList!=null){
+                    for (Commodity commodity :commodityList) {
+                        out.println(
+                                "   <tr>\n" +
+                                        "        <td>"+commodity.getCategory()+"</td>\n" +
+                                        "        <td>"+commodity.getContainer()+"</td>\n" +
+                                        "        <td>"+commodity.getModel()+"</td>\n" +
+                                        "        <td><img src=\""+request.getContextPath()+"/assets"+commodity.getPicture()+"\" width=\"150px\"></td>\n" +
+                                        "        <td>"+commodity.getRemark()+"</td>\n" +
+                                        "        <td>"++"</td>\n" +
+                                        "        <td>\n" +
+                                        "            <span hidden>"+commodity.getIdcommodity()+"</span>\n" +
+                                        "        </td>\n" +
+                                        "    </tr>"
+                        );
+                    }
+                }
+            }
+        %>
+    </table>
 
 
 </body>

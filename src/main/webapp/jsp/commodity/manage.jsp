@@ -72,7 +72,7 @@
                             "        <td>"+commodity.getCategory()+"</td>\n" +
                             "        <td>"+commodity.getContainer()+"</td>\n" +
                             "        <td>"+commodity.getModel()+"</td>\n" +
-                            "        <td><img src=\""+request.getContextPath()+commodity.getPicture()+"\" width=\"150px\"></td>\n" +
+                            "        <td><img src=\""+request.getContextPath()+"/assets"+commodity.getPicture()+"\" width=\"150px\"></td>\n" +
                             "        <td>"+commodity.getColor()+"</td>\n" +
                             "        <td>"+commodity.getTopfabric()+"</td>\n" +
                             "        <td>"+commodity.getUnderfabric()+"</td>\n" +
@@ -102,7 +102,7 @@
             String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord();
             out.println(
                     "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
-                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()+1)+pageParmeStr+">上一页</a>"
+                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"
             );
             for (int i = 0; i < pageModel.getTotalPage(); i++) {
                 if ((i+1)!=pageModel.getPageNumber()){
@@ -112,7 +112,7 @@
                 }
             }
             out.println(
-                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">下一页</a>" +
+                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()+1)+pageParmeStr+"\">下一页</a>" +
                     "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+pageModel.getTotalPage()+pageParmeStr+"\">尾页</a>"
             );
         }

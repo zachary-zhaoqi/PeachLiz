@@ -31,4 +31,6 @@ public interface CommodityDAO {
 
     //todo 陈亮 写一下文档
     void editCommodity(Commodity commodity) throws UnsupportedEncodingException, SQLException;
+
+
 }

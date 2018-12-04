@@ -85,7 +85,7 @@ public class JdbcOperator {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
-                result= (int) resultSet.getObject(1);
+                result= resultSet.getInt(1);
             }
         } catch (SQLException e) {
             throw e;

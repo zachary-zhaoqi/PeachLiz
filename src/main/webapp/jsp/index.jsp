@@ -58,7 +58,7 @@
                         text:'商品管理',
                         items: [
                             {id:'10',text:'商品管理',href:'${pageContext.request.contextPath}/jsp/commodity/manage.jsp'},
-                            {id:'11',text:'品类管理',href:'Role/index.html'},
+                            {id:'11',text:'折扣管理',href:'#'},
                         ]
                     }
                 ]
@@ -70,7 +70,7 @@
                     {
                         text:'库存管理',
                         items: [
-                            {id:'20', text:'库存管理', href:'Node/index.html'}
+                            {id:'20', text:'库存管理', href:'#'}
                         ]
                     }
                 ]
