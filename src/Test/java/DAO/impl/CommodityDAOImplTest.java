@@ -27,7 +27,6 @@ public class CommodityDAOImplTest {
 
     @Test
     public void addCommodity() {
-
         Commodity commodity = new Commodity();
     }
 
