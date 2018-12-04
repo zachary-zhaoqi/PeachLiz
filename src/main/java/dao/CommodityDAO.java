@@ -49,5 +49,5 @@ public interface CommodityDAO {
      * @return 完整的产品实体
      *                    根据产品id获取数据库中的响应属性
      * */
-    Commodity getcommodity(int idcommodity);
+    Commodity getcommodity(int idcommodity) throws Exception;
 }

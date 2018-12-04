@@ -35,6 +35,8 @@ public class CommodityDAOImpl implements CommodityDAO {
 
     }
 
+
+
     @Override
     public int getTotalRecord() throws SQLException {
         String sql="select count(*) from commodity";
@@ -160,9 +162,13 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public Commodity getcommodity(int idcommodity) {
-        //todo 段俊成
-        return null;
+    public Commodity getcommodity(int idcommodity) throws Exception {
+
+        String sql = "select * from commodity where idcommodity = ?";
+
+        Commodity commodity = (Commodity) jdbcOperator.queryForJavaBean(sql,Commodity.class,idcommodity);
+
+        return commodity;
     }
 
     public String turnString(String s) throws UnsupportedEncodingException {

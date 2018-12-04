@@ -62,7 +62,7 @@ public class InventorySpecification {
         return commodity;
     }
 
-    public void setCommodity() {
+    public void setCommodity() throws Exception {
         CommodityDAO commodityDAO=new CommodityDAOImpl();
         this.commodity = commodityDAO.getcommodity(this.idcommodity);
     }
