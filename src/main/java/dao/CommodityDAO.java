@@ -15,19 +15,19 @@ public interface CommodityDAO {
     void removeCommodity(int commodity) throws SQLException;
 
     /**
+     * @param commodityAttribute
+     * @param commodityAttributeDetails
      * 获取数据库总记录数
-     * @param whereName
-     * @param whereValue
      */
-    int getTotalRecord(String whereName, String whereValue) throws SQLException;
+    int getTotalRecord(String commodityAttribute, String commodityAttributeDetails) throws SQLException;
 
     /**
-     * @param whereName
-     * @param whereValue
+     * @param commodityAttribute
+     * @param commodityAttributeDetails
      * @param index 当前索引  即从哪个数据开始查
      * @param pageSize 页面大小  即查多少条数据
      */
-    List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception;
+    List<Commodity> getCommityPageList(String commodityAttribute, String commodityAttributeDetails, int index, int pageSize) throws Exception;
 
 
     /**
@@ -53,4 +53,6 @@ public interface CommodityDAO {
      *                    根据产品id获取数据库中的响应属性
      * */
     Commodity getcommodity(int idcommodity) throws Exception;
+
+    List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception;
 }

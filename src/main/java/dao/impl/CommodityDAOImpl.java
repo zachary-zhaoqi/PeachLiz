@@ -33,12 +33,15 @@ public class CommodityDAOImpl implements CommodityDAO {
 
     }
 
-
-
     @Override
     public int getTotalRecord(String whereName, String whereValue) throws SQLException {
         String sql="select count(*) from commodity where "+ whereName +" like ?";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
+    }
+
+    @Override
+    public List<Commodity> getCommityPageList(String commodityAttribute, String commodityAttributeDetails, int index, int pageSize) throws Exception {
+        return null;
     }
 
     @Override
