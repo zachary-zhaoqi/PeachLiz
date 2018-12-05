@@ -1,5 +1,8 @@
 package model;
 
+import dao.InventorySpecificationDAO;
+import dao.impl.InventorySpecificationDaOImpl;
+
 public class OrderCommodityGroupEntry {
 
 
@@ -95,8 +98,8 @@ public class OrderCommodityGroupEntry {
         return inventorySpecification;
     }
 
-    public void setInventorySpecification() {
-        // TODO: 2018/12/5 陈亮 通过 this.idinventory 查询数据库得到inventorySpecification实体
-
+    public void setInventorySpecification() throws Exception {
+        InventorySpecificationDAO inventorySpecificationDAO = new InventorySpecificationDaOImpl();
+        this.inventorySpecification = inventorySpecificationDAO.getSqlinventorySpecification(this.idinventory);
     }
 }

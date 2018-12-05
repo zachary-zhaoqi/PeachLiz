@@ -72,6 +72,8 @@ public class InventoryController {
     @RequestMapping("addInventorySpecification")
     public ModelAndView addInventorySpecification(String commodityModel,String Specification,int number){
         // TODO: 2018/12/5 陈亮，按上面说明写,保存到数据库就行了，剩下部分留个todo给我，这个删掉
+
+
         return null;
     }
 }
