@@ -27,10 +27,11 @@ public class InventoryController {
      * */
     @RequestMapping("queryInventory")
     public ModelAndView queryInventory(String whereName,String whereValue){
-        // TODO: 2018/12/5 与commodityController中的查询太像了，想着提取一下
-        // TODO: 2018/12/5 陈亮 来问我下怎么写
+        // TODO: 2018/12/5 赵奇 与commodityController中的查询太像了，想着提取一下
+
         ModelAndView modelAndView=new ModelAndView();
         PageModel<InventorySpecification> pageModel;
+
         try {
             //处理字符串乱码问题
             whereName= new String(whereName.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
@@ -43,7 +44,7 @@ public class InventoryController {
             whereValue="%";
         }
         InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl();
-
+        // TODO: 2018/12/5 陈亮 来问我下怎么写
         try {
             pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(whereName, whereValue), 8);
             pageModel.setWhereName(whereName);

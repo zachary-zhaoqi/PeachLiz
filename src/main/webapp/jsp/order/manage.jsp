@@ -33,7 +33,7 @@
     <span>按状态查看状态</span>
 </div>
 <div style="float: right">
-    <button type="button" class="btn btn-success">创建新订单</button>
+    <button type="button" class="btn btn-success" id="newOrder">创建新订单</button>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -118,5 +118,16 @@
             }
         }
     %>
+
+
+
+    <script>
+        $(function () {
+            $('#newOrder').click(function(){
+                window.location.href="${pageContext.request.contextPath}/jsp/order/add.jsp";
+            });
+        });
+
+    </script>
 </body>
 </html>
