@@ -43,7 +43,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button type="button" class="btn btn-primary">全部订单</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>|</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-primary">待付定价</button>
+<button type="button" class="btn btn-primary" onclick="function queryforsttusdaifudingjin() {
+  window.location.href= '${pageContext.request.contextPath}/queryOrder';
+}">待付定价</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button type="button" class="btn btn-primary">待付尾款</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

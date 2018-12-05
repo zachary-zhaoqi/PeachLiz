@@ -17,7 +17,7 @@ public class OrderController {
      * @param whereName 属性名
      * @param whereValue 属性值
      * */
-    @RequestMapping("queryOrder")
+    @RequestMapping("/queryOrder")
     public ModelAndView queryOrder(String whereName, String whereValue){
         ModelAndView modelAndView=new ModelAndView();
         PageModel<Order> pageModel;
