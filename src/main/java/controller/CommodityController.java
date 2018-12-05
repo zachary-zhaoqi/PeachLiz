@@ -83,7 +83,15 @@ public class CommodityController {
     @RequestMapping("/addCommodity")
     public ModelAndView addCommodity(Commodity commodity) throws SQLException {
         //todo：上传图片的问题
-        //todo:添加数据
+        //todo：陈亮 在这里处理中文乱码问题 例子如下
+//        try {
+//            //处理字符串乱码问题
+//            whereName= new String(whereName.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
+//            whereValue= new String(whereValue.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+
 
         ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO=new CommodityDAOImpl();

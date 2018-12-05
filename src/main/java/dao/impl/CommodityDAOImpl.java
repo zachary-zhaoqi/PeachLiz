@@ -81,6 +81,8 @@ public class CommodityDAOImpl implements CommodityDAO {
                 "container,category,model,picture,color,topfabric,underfabric,Accessoriesfabric,factoryprice,retailprice,remark,status,creterdate)" +
                 "values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
+
+        //todo：陈亮 DAO里不要有编码处理
         jdbcOperator.executeUpdate(sql,
                 turnString(commodity.getContainer()),
                 turnString(commodity.getCategory()),
