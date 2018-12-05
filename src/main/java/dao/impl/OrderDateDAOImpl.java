@@ -4,6 +4,7 @@ import dao.OrderDateDAO;
 import dao.Tool;
 import jdbc.JdbcOperator;
 import model.OrderDate;
+import model.OrderMoney;
 
 import java.sql.SQLException;
 
@@ -31,5 +32,11 @@ public class OrderDateDAOImpl implements OrderDateDAO {
                 "where idorderdate = ?";
         jdbcOperator.executeUpdate(sql,orderDate.getOrderdate(),orderDate.getDowmpaymentdate(),orderDate.getFinalpaymentdate(),
                 orderDate.getShipmentdate(),orderDate.getAccomplishdate(),idorderdate);
+    }
+
+    @Override
+    public OrderDate getSqlOrderDate(int idorderdate) throws Exception {
+        String sql = "select * from orderdate where idorderdate=?;";
+        return (OrderDate) jdbcOperator.queryForJavaBean(sql,OrderDate.class,idorderdate);
     }
 }

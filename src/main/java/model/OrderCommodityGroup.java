@@ -1,5 +1,8 @@
 package model;
 
+import dao.OrderCommodityGroupEntryDAO;
+import dao.impl.OrderCommodityGroupEntryDAOImpl;
+
 import java.util.List;
 
 /**
@@ -19,6 +22,8 @@ public class OrderCommodityGroup {
     private String remark;
     /**合计*/
     private double total;
+    /**商品组图片*/
+    private String picture;
 
 
     //以下属性方便操作
@@ -68,8 +73,16 @@ public class OrderCommodityGroup {
         return orderCommodityGroupEntryList;
     }
 
-    public void setOrderCommodityGroupEntryList(List<OrderCommodityGroupEntry> orderCommodityGroupEntryList) {
-        // TODO: 2018/12/5 陈亮 通过 this.idgrop 查询数据库得到orderCommodityGroupEntryList
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+    public void setOrderCommodityGroupEntryList() throws Exception {
+        OrderCommodityGroupEntryDAO orderCommodityGroupEntryDAO = new OrderCommodityGroupEntryDAOImpl();
+        this.orderCommodityGroupEntryList =  orderCommodityGroupEntryDAO.getSqlorderCommodityGroupEntryList(this.idgrop);
     }
 
 }

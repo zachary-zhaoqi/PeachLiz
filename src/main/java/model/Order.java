@@ -1,11 +1,7 @@
 package model;
 
-import dao.OrderDAO;
-import dao.OrderDateDAO;
-import dao.ShoppingAddressDAO;
-import dao.impl.OrderDAOImpl;
-import dao.impl.OrderDateDAOImpl;
-import dao.impl.ShoppingAddressDAOImpl;
+import dao.*;
+import dao.impl.*;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
@@ -116,10 +112,10 @@ public class Order {
         return shoppingaddress;
     }
 
-    public void setShoppingaddress(Shoppingaddress shoppingaddress) throws UnsupportedEncodingException, SQLException {
+    public void setShoppingaddress() throws Exception {
 
         ShoppingAddressDAO shoppingAddressDAO = new ShoppingAddressDAOImpl();
-        shoppingAddressDAO.setShoppingAddress(shoppingaddress,this.idshippingaddress);
+       this.shoppingaddress = shoppingAddressDAO.getSqlShoppingAddress(this.idshippingaddress);
 
     }
 
@@ -127,19 +123,18 @@ public class Order {
         return orderDate;
     }
 
-    public void setOrderDate(OrderDate orderDate) {
-        // TODO: 2018/12/5 陈亮 通过 this.idorderDate 查询数据库得到orderDate对象
+    public void setOrderDate() throws Exception {
         OrderDateDAO orderDateDAO = new OrderDateDAOImpl();
-        orderDateDAO.setOrderDate(orderDate,this.idorderdate);
+       this.orderDate = orderDateDAO.getSqlOrderDate(this.idorderdate);
     }
 
     public OrderMoney getOrderMoney() {
         return orderMoney;
     }
 
-    public void setOrderMoney(OrderMoney orderMoney) {
-        // TODO: 2018/12/5 陈亮 通过 this.idorderMoney 查询数据库得到orderMoney对象
-
+    public void setOrderMoney() throws Exception {
+        OrderMoneyDAO orderMoneyDAO = new OrderMoneyDAOImpl();
+        this.orderMoney=orderMoneyDAO.getSqlOrderMoney(this.idorderamount);
 
     }
 
@@ -147,7 +142,10 @@ public class Order {
         return orderCommodityGroupList;
     }
 
-    public void setOrderCommodityGroupList(List<OrderCommodityGroup> orderCommodityGroupList) {
-        // TODO: 2018/12/5 陈亮 通过 this.idorder 查询数据库得到orderCommodityGroup数组
+    public void setOrderCommodityGroupList() throws Exception {
+
+        OrderCommodityGroupDAO orderCommodityGroupDAO = new OrderCommodityGroupDAOImpl();
+        this.orderCommodityGroupList = orderCommodityGroupDAO.getSqlidorderCommodityGroup(this.idorder);
+
     }
 }
