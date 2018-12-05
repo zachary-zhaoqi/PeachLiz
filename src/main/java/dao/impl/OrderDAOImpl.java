@@ -2,7 +2,7 @@ package dao.impl;
 
 import dao.OrderDAO;
 import dao.PageModelDAO;
-import model.Commodity;
+import model.Order;
 import model.OrderDate;
 
 import java.sql.SQLException;
@@ -22,13 +22,15 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     @Override
     public List getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception {
         return null;
-    public List getOrderList(String status) {
-        return null;
+
     }
+
 
     @Override
     public void addOrder(Order order) {
+    }
 
-
+    public List getOrderList(String status) {
+        return null;
     }
 }
