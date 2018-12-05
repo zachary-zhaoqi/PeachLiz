@@ -26,12 +26,12 @@ public class OrderDateDAOImpl implements OrderDateDAO {
     Tool tool = new Tool();
     JdbcOperator jdbcOperator = new JdbcOperator();
     @Override
-    public void setOrderDate(OrderDate orderDate, int idorderdate) throws SQLException {
-        String sql = "update orderdate set "+
-                "orderdate = ? ,dowmpaymentdate = ? ,finalpaymentdate = ? ,shipmentdate = ? ,accomplishdate = ?"+
-                "where idorderdate = ?";
+    public void setOrderDate(OrderDate orderDate) throws SQLException {
+        String sql = "insert into `orderdate` (" +
+                "orderdate,dowmpaymentdate,finalpaymentdate,shipmentdate,accomplishdate,plandate)" +
+                "values (?,?,?,?,?,?);";
         jdbcOperator.executeUpdate(sql,orderDate.getOrderdate(),orderDate.getDowmpaymentdate(),orderDate.getFinalpaymentdate(),
-                orderDate.getShipmentdate(),orderDate.getAccomplishdate(),idorderdate);
+                orderDate.getShipmentdate(),orderDate.getAccomplishdate(),orderDate.getPlandate());
     }
 
     @Override

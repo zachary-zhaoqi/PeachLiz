@@ -57,4 +57,12 @@ public class Shoppingaddress {
     public void setContacttel(String contacttel) {
         this.contacttel = contacttel;
     }
+
+    public String getWechat() {
+        return wechat;
+    }
+
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
+    }
 }

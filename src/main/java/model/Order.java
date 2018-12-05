@@ -31,9 +31,9 @@ public class Order {
     private int idorderamount;
 
     //以下属性方便操作
-    Shoppingaddress shoppingaddress;
-    OrderDate orderDate;
-    OrderMoney orderMoney;
+    private Shoppingaddress shoppingaddress;
+    private OrderDate orderDate;
+    private OrderMoney orderMoney;
     private List<OrderCommodityGroup> orderCommodityGroupList;
 
     public int getIdorder() {
@@ -143,9 +143,7 @@ public class Order {
     }
 
     public void setOrderCommodityGroupList() throws Exception {
-
         OrderCommodityGroupDAO orderCommodityGroupDAO = new OrderCommodityGroupDAOImpl();
         this.orderCommodityGroupList = orderCommodityGroupDAO.getSqlidorderCommodityGroup(this.idorder);
-
     }
 }

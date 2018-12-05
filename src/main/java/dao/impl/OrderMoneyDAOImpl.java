@@ -20,12 +20,12 @@ public class OrderMoneyDAOImpl implements OrderMoneyDAO {
 //    /**实收额度*/
 //    private double officialreceipts ;
     @Override
-    public void setOrderMoney(OrderMoney orderMoney, int idorderamount) throws SQLException {
-        String sql = "update ordermoney set "+
-                "totalamount = ? ,taxes = ? ,downpayment = ? ,officialreceipts = ? "+
-                "where idorderamount = ?";
+    public void setOrderMoney(OrderMoney orderMoney) throws SQLException {
+        String sql = "insert into `ordermoney` (" +
+                "orderMoney,taxes,downpayment,officialreceipts)" +
+                "values (?,?,?,?);";
         jdbcOperator.executeUpdate(sql,orderMoney.getTotalamount(),orderMoney.getTaxes(),orderMoney.getDownpayment(),
-                orderMoney.getOfficialreceipts(),idorderamount);
+                orderMoney.getOfficialreceipts());
     }
 
     @Override
