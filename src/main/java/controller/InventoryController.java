@@ -1,6 +1,7 @@
 package controller;
 
 import dao.CommodityDAO;
+import dao.InventoryOperationDAO;
 import dao.InventorySpecificationDAO;
 import dao.PageModelDAO;
 import dao.impl.CommodityDAOImpl;
@@ -27,9 +28,8 @@ public class InventoryController {
      *                   再通过id查询全部库存数据
      * */
     @RequestMapping("queryInventory")
-    public ModelAndView queryInventory(String whereName,String whereValue){
-        // TODO: 2018/12/5 陈亮 与commodityController中的查询太像了，想着提取一下
-
+    public ModelAndView queryInventory(String whereName,String whereValue) throws Exception {
+        // TODO: 2018/12/5 与commodityController中的查询太像了，想着提取一下
         ModelAndView modelAndView=new ModelAndView();
         PageModel<InventorySpecification> pageModel;
 
@@ -44,13 +44,18 @@ public class InventoryController {
         if (null==whereValue||"".equals(whereValue)){
             whereValue="%";
         }
+
         InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl();
-        // TODO: 2018/12/5 陈亮 来问我下怎么写
+        CommodityDAO commodityDAO = new CommodityDAOImpl();
+
+        int idcommodity = commodityDAO.getId(whereName,whereValue);
+       String name = "idcommodity";
+
         try {
-            pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(whereName, whereValue), 8);
+            pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(name, idcommodity), 8);
             pageModel.setWhereName(whereName);
             pageModel.setWhereValue(whereValue);
-            pageModel.setList(inventorySpecificationDAO.getPageList(whereName,whereValue,pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(inventorySpecificationDAO.getPageList(name,idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("inventory/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
@@ -80,10 +85,16 @@ public class InventoryController {
      *                          自动生成库存id，填充相应的数据
      * */
     @RequestMapping("addInventorySpecification")
-    public ModelAndView addInventorySpecification(String commodityModel,String Specification,int number){
-        // TODO: 2018/12/5 陈亮，按上面说明写,保存到数据库就行了，剩下部分留个todo给我，这个删掉
+    public ModelAndView addInventorySpecification(String commodityModel,String Specification,int number) throws Exception {
 
 
+        CommodityDAO commodityDAO = new CommodityDAOImpl();
+        InventorySpecificationDAO inventorySpecificationDAO = new InventorySpecificationDaOImpl();
+        String name = "model";
+        int idcommodity = commodityDAO.getId(name,commodityModel);
+        inventorySpecificationDAO.addInventorySpecification(idcommodity,Specification,number);
+
+        // TODO: 剩下部分留个todo给我，赵奇
         return null;
     }
 }

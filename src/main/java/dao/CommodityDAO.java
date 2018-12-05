@@ -38,4 +38,5 @@ public interface CommodityDAO {
      * */
     Commodity getcommodity(int idcommodity) throws Exception;
 
+    int getId(String name, String value) throws Exception;
 }

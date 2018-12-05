@@ -12,7 +12,7 @@ public interface InventorySpecificationDAO {
      * @param whereName
      * @param whereValue
      */
-    int getTotalRecord(String whereName, String whereValue) throws SQLException;
+    int getTotalRecord(String whereName, int whereValue) throws SQLException;
 
     /**
      * @param whereName
@@ -20,7 +20,9 @@ public interface InventorySpecificationDAO {
      * @param index 当前索引  即从哪个数据开始查
      * @param pageSize 页面大小  即查多少条数据
      */
-    List<InventorySpecification> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception;
+    List<InventorySpecification> getPageList(String whereName, int whereValue, int index, int pageSize) throws Exception;
 
     InventorySpecification getSqlinventorySpecification(int idinventory) throws Exception;
+
+    void addInventorySpecification(int idcommodity, String specification, int number) throws SQLException;
 }

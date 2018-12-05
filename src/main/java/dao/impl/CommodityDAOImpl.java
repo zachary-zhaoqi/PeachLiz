@@ -171,6 +171,13 @@ public class CommodityDAOImpl implements CommodityDAO , PageModelDAO {
         return commodity;
     }
 
+    @Override
+    public int getId(String name, String value) throws Exception {
+        String sql = "select * from commodity where "+ name +" = ?";
+        Commodity commodity = (Commodity) jdbcOperator.queryForJavaBean(sql,Commodity.class,value);
+        return commodity.getIdcommodity();
+    }
+
     public String turnString(String s) throws UnsupportedEncodingException {
         s=new String(s.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
         return s;
