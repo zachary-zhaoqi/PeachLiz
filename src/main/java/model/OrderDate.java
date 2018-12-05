@@ -19,6 +19,8 @@ public class OrderDate {
     private String shipmentdate;
     /**交易完成时间*/
     private String accomplishdate;
+    /**预计提货时间*/
+    private  String plandate;
 
     public int getIdorderdate() {
         return idorderdate;

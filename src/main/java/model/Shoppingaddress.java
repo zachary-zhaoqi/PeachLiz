@@ -15,6 +15,8 @@ public class Shoppingaddress {
     private String contacttel;
     /**收货地址*/
     private String address;
+    /**微信*/
+    private String wechat;
 
     public int getIdshippingaddress() {
         return idshippingaddress;

@@ -47,13 +47,13 @@ public class InventoryController {
         CommodityDAO commodityDAO = new CommodityDAOImpl();
 
         int idcommodity = commodityDAO.getId(whereName,whereValue);
-        whereName = "idcommodity";
+       String name = "idcommodity";
 
         try {
-            pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(whereName, idcommodity), 8);
+            pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(name, idcommodity), 8);
             pageModel.setWhereName(whereName);
             pageModel.setWhereValue(whereValue);
-            pageModel.setList(inventorySpecificationDAO.getPageList(whereName,idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(inventorySpecificationDAO.getPageList(name,idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("inventory/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
