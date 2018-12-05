@@ -3,6 +3,7 @@ package dao;
 import model.Order;
 import model.OrderDate;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface OrderDAO {
@@ -10,5 +11,5 @@ public interface OrderDAO {
 
     List getOrderList(String status );
 
-    void addOrder(Order order);
+    void addOrder(Order order) throws SQLException;
 }

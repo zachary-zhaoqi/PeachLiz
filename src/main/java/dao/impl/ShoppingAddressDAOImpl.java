@@ -7,6 +7,7 @@ import model.OrderDate;
 import model.Shoppingaddress;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ShoppingAddressDAOImpl implements ShoppingAddressDAO {
@@ -46,5 +47,14 @@ public class ShoppingAddressDAOImpl implements ShoppingAddressDAO {
     public Shoppingaddress getSqlShoppingAddress(int idshippingaddress) throws Exception {
         String sql = "select * from shippingaddress where idshippingaddress=?;";
         return (Shoppingaddress) jdbcOperator.queryForJavaBean(sql,Shoppingaddress.class,idshippingaddress);
+    }
+
+    @Override
+    public int setShoppingAddressBackId(Shoppingaddress shoppingaddress, Connection connection) throws SQLException {
+        String sql = "insert into `shoppingaddress` (" +
+                "contactname,contactqq,contacttel,address,wechat)" +
+                "values (?,?,?,?,?);";
+       return jdbcOperator.executeUpdateBack(sql,connection,shoppingaddress.getContactname(),shoppingaddress.getContactqq(),shoppingaddress.getContacttel(),
+                shoppingaddress.getAddress(),shoppingaddress.getWechat());
     }
 }

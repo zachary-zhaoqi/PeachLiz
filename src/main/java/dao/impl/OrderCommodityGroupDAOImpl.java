@@ -4,6 +4,7 @@ import dao.OrderCommodityGroupDAO;
 import jdbc.JdbcOperator;
 import model.OrderCommodityGroup;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -26,5 +27,17 @@ public class OrderCommodityGroupDAOImpl implements OrderCommodityGroupDAO {
                     odeerCommodityGroup.getTotal(),odeerCommodityGroup.getPicture());
         }
 
+    }
+
+    @Override
+    public void setidorderCommodityGroupListBack(List<OrderCommodityGroup> orderCommodityGroupList, Connection connection) throws SQLException {
+        String sql = "insert into `ordercommoditygroup` (" +
+                "idorder,productname,remark,total,picture)" +
+                "values (?,?,?,?,?);";
+        for (OrderCommodityGroup  odeerCommodityGroup:orderCommodityGroupList
+        ) {
+            jdbcOperator.executeUpdateBack(sql,connection,odeerCommodityGroup.getIdorder(),odeerCommodityGroup.getProductname(),odeerCommodityGroup.getRemark(),
+                    odeerCommodityGroup.getTotal(),odeerCommodityGroup.getPicture());
+        }
     }
 }

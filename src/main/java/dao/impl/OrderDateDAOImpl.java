@@ -6,6 +6,7 @@ import jdbc.JdbcOperator;
 import model.OrderDate;
 import model.OrderMoney;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class OrderDateDAOImpl implements OrderDateDAO {
@@ -32,6 +33,16 @@ public class OrderDateDAOImpl implements OrderDateDAO {
                 "values (?,?,?,?,?,?);";
         jdbcOperator.executeUpdate(sql,orderDate.getOrderdate(),orderDate.getDowmpaymentdate(),orderDate.getFinalpaymentdate(),
                 orderDate.getShipmentdate(),orderDate.getAccomplishdate(),orderDate.getPlandate());
+    }
+
+    @Override
+    public int setOrderDateBackId(OrderDate orderDate, Connection connection) throws SQLException {
+        String sql = "insert into `orderdate` (" +
+                "orderdate,dowmpaymentdate,finalpaymentdate,shipmentdate,accomplishdate,plandate)" +
+                "values (?,?,?,?,?,?);";
+       return jdbcOperator.executeUpdateBackId(sql,connection,orderDate.getOrderdate(),orderDate.getDowmpaymentdate(),orderDate.getFinalpaymentdate(),
+                orderDate.getShipmentdate(),orderDate.getAccomplishdate(),orderDate.getPlandate());
+
     }
 
     @Override
