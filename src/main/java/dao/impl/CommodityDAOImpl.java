@@ -98,7 +98,7 @@ public class CommodityDAOImpl implements CommodityDAO {
                 turnString(commodity.getStatus()),
                 commodity.getCreterdate()
         );
-        // TODO: 2018/12/4 产品操作表
+        // TODO: 2018/12/4 产品操作记录表
     }
 
     @Override
