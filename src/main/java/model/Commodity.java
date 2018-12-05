@@ -8,8 +8,8 @@ public class Commodity {
     private String container;
     /**品类*/
     private String category;
-    /**型号*/
-    private String model;// TODO: 2018/12/5 数据库设为唯一值
+    /**型号，唯一值*/
+    private String model;
     /**图片*/
     private String picture;
     /**颜色，可以为null*/
