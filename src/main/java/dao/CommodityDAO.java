@@ -15,22 +15,6 @@ public interface CommodityDAO {
     void removeCommodity(int commodity) throws SQLException;
 
     /**
-     * @param commodityAttribute
-     * @param commodityAttributeDetails
-     * 获取数据库总记录数
-     */
-    int getTotalRecord(String commodityAttribute, String commodityAttributeDetails) throws SQLException;
-
-    /**
-     * @param commodityAttribute
-     * @param commodityAttributeDetails
-     * @param index 当前索引  即从哪个数据开始查
-     * @param pageSize 页面大小  即查多少条数据
-     */
-    List<Commodity> getCommityPageList(String commodityAttribute, String commodityAttributeDetails, int index, int pageSize) throws Exception;
-
-
-    /**
      *  把产品类所有属性添加入数据库。备注，颜色，三个型号这五个属性可以为null。creterdate若为null会自动获取当前时间
      * @param commodity 产品
      * @throws SQLException
@@ -54,5 +38,4 @@ public interface CommodityDAO {
      * */
     Commodity getcommodity(int idcommodity) throws Exception;
 
-    List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception;
 }

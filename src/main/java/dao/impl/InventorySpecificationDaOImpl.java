@@ -1,11 +1,12 @@
 package dao.impl;
 import dao.InventorySpecificationDAO;
+import dao.PageModelDAO;
 import jdbc.JdbcOperator;
 import model.InventorySpecification;
 import java.sql.SQLException;
 import java.util.List;
 
-public class InventorySpecificationDaOImpl implements InventorySpecificationDAO {
+public class InventorySpecificationDaOImpl implements InventorySpecificationDAO, PageModelDAO {
     JdbcOperator jdbcOperator = new JdbcOperator();
     @Override
     public int getTotalRecord(String whereName, String whereValue) throws SQLException {

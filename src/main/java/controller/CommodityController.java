@@ -1,6 +1,7 @@
 package controller;
 
 import dao.CommodityDAO;
+import dao.PageModelDAO;
 import dao.impl.CommodityDAOImpl;
 import model.Commodity;
 import model.PageModel;
@@ -37,14 +38,14 @@ public class CommodityController {
             whereValue="%";
         }
 
-        CommodityDAO commodityDAO=new CommodityDAOImpl();
+        PageModelDAO pageModelDAO=new CommodityDAOImpl();
 
 
         try {
-            pageModel= new PageModel<>(1, commodityDAO.getTotalRecord(whereName, whereValue), 8);
+            pageModel= new PageModel<>(1, pageModelDAO.getTotalRecord(whereName, whereValue), 8);
             pageModel.setWhereName(whereName);
             pageModel.setWhereValue(whereValue);
-            pageModel.setList(commodityDAO.getPageList(whereName,whereValue,pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(pageModelDAO.getPageList(whereName,whereValue,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
@@ -58,7 +59,7 @@ public class CommodityController {
 
     @RequestMapping("/updatePageList")
     public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
-        CommodityDAO commodityDAO = new CommodityDAOImpl();
+        PageModelDAO pageModelDAO = new CommodityDAOImpl();
         PageModel<Commodity> pageModel;
         ModelAndView modelAndView=new ModelAndView();
         if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
@@ -68,7 +69,7 @@ public class CommodityController {
             pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
             pageModel.setWhereName(commodityAttribute);
             pageModel.setWhereValue(commodityAttributeDetails);
-            pageModel.setList(commodityDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(pageModelDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.CommodityDAO;
+import dao.PageModelDAO;
 import jdbc.JdbcOperator;
 import model.Commodity;
 
@@ -11,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class CommodityDAOImpl implements CommodityDAO {
+public class CommodityDAOImpl implements CommodityDAO , PageModelDAO {
 
     private JdbcOperator jdbcOperator;
 
@@ -37,11 +38,6 @@ public class CommodityDAOImpl implements CommodityDAO {
     public int getTotalRecord(String whereName, String whereValue) throws SQLException {
         String sql="select count(*) from commodity where "+ whereName +" like ?";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
-    }
-
-    @Override
-    public List<Commodity> getCommityPageList(String commodityAttribute, String commodityAttributeDetails, int index, int pageSize) throws Exception {
-        return null;
     }
 
     @Override

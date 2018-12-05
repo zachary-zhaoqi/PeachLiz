@@ -2,6 +2,7 @@ package controller;
 
 import dao.CommodityDAO;
 import dao.InventorySpecificationDAO;
+import dao.PageModelDAO;
 import dao.impl.CommodityDAOImpl;
 import dao.impl.InventorySpecificationDaOImpl;
 import model.Commodity;
@@ -27,7 +28,7 @@ public class InventoryController {
      * */
     @RequestMapping("queryInventory")
     public ModelAndView queryInventory(String whereName,String whereValue){
-        // TODO: 2018/12/5 赵奇 与commodityController中的查询太像了，想着提取一下
+        // TODO: 2018/12/5 陈亮 与commodityController中的查询太像了，想着提取一下
 
         ModelAndView modelAndView=new ModelAndView();
         PageModel<InventorySpecification> pageModel;
@@ -59,6 +60,14 @@ public class InventoryController {
         }
 
         return modelAndView;
+    }
+
+    @RequestMapping("/updatePageList")
+    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
+        // TODO: 2018/12/5 陈亮   参考C:\Users\starr\workspace\PeachLiz\src\main\java\controller\CommodityController.java   updatePageList
+
+        return null;
+
     }
 
 
