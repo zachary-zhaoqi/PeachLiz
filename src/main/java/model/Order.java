@@ -1,5 +1,10 @@
 package model;
 
+import dao.*;
+import dao.impl.*;
+
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -107,31 +112,40 @@ public class Order {
         return shoppingaddress;
     }
 
-    public void setShoppingaddress(Shoppingaddress shoppingaddress) {
-        // TODO: 2018/12/5 陈亮 通过 this.idshippingaddress 查询数据库得到shoppingaddress对象
+    public void setShoppingaddress() throws Exception {
+
+        ShoppingAddressDAO shoppingAddressDAO = new ShoppingAddressDAOImpl();
+       this.shoppingaddress = shoppingAddressDAO.getSqlShoppingAddress(this.idshippingaddress);
+
     }
 
     public OrderDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(OrderDate orderDate) {
-        // TODO: 2018/12/5 陈亮 通过 this.idorderDate 查询数据库得到orderDate对象
+    public void setOrderDate() throws Exception {
+        OrderDateDAO orderDateDAO = new OrderDateDAOImpl();
+       this.orderDate = orderDateDAO.getSqlOrderDate(this.idorderdate);
     }
 
     public OrderMoney getOrderMoney() {
         return orderMoney;
     }
 
-    public void setOrderMoney(OrderMoney orderMoney) {
-        // TODO: 2018/12/5 陈亮 通过 this.idorderMoney 查询数据库得到orderMoney对象
+    public void setOrderMoney() throws Exception {
+        OrderMoneyDAO orderMoneyDAO = new OrderMoneyDAOImpl();
+        this.orderMoney=orderMoneyDAO.getSqlOrderMoney(this.idorderamount);
+
     }
 
     public List<OrderCommodityGroup> getOrderCommodityGroupList() {
         return orderCommodityGroupList;
     }
 
-    public void setOrderCommodityGroupList(List<OrderCommodityGroup> orderCommodityGroupList) {
-        // TODO: 2018/12/5 陈亮 通过 this.idorder 查询数据库得到orderCommodityGroup数组
+    public void setOrderCommodityGroupList() throws Exception {
+
+        OrderCommodityGroupDAO orderCommodityGroupDAO = new OrderCommodityGroupDAOImpl();
+        this.orderCommodityGroupList = orderCommodityGroupDAO.getSqlidorderCommodityGroup(this.idorder);
+
     }
 }

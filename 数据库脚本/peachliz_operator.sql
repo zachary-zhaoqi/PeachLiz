@@ -24,11 +24,12 @@ DROP TABLE IF EXISTS `operator`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `operator` (
   `idoperator` int(11) NOT NULL AUTO_INCREMENT COMMENT '操作员ID',
-  `account` varchar(45) DEFAULT NULL COMMENT '账户',
-  `pwd` varchar(45) DEFAULT NULL COMMENT '密码',
+  `account` varchar(45) NOT NULL COMMENT '账户',
+  `pwd` varchar(45) NOT NULL COMMENT '密码',
   `name` varchar(45) DEFAULT NULL COMMENT '姓名',
-  `status` varchar(45) DEFAULT NULL COMMENT '状态',
-  PRIMARY KEY (`idoperator`)
+  `status` varchar(45) NOT NULL DEFAULT '正常' COMMENT '状态',
+  PRIMARY KEY (`idoperator`),
+  UNIQUE KEY `account_UNIQUE` (`account`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='操作员';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-04 18:24:31
+-- Dump completed on 2018-12-05 10:47:33
