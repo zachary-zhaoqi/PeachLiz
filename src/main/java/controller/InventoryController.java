@@ -1,6 +1,7 @@
 package controller;
 
 import dao.CommodityDAO;
+import dao.InventoryOperationDAO;
 import dao.InventorySpecificationDAO;
 import dao.impl.CommodityDAOImpl;
 import dao.impl.InventorySpecificationDaOImpl;
@@ -28,7 +29,6 @@ public class InventoryController {
     @RequestMapping("queryInventory")
     public ModelAndView queryInventory(String whereName,String whereValue){
         // TODO: 2018/12/5 与commodityController中的查询太像了，想着提取一下
-        // TODO: 2018/12/5 陈亮 来问我下怎么写
         ModelAndView modelAndView=new ModelAndView();
         PageModel<InventorySpecification> pageModel;
         try {
@@ -70,10 +70,16 @@ public class InventoryController {
      *                          自动生成库存id，填充相应的数据
      * */
     @RequestMapping("addInventorySpecification")
-    public ModelAndView addInventorySpecification(String commodityModel,String Specification,int number){
-        // TODO: 2018/12/5 陈亮，按上面说明写,保存到数据库就行了，剩下部分留个todo给我，这个删掉
+    public ModelAndView addInventorySpecification(String commodityModel,String Specification,int number) throws Exception {
 
 
+        CommodityDAO commodityDAO = new CommodityDAOImpl();
+        InventorySpecificationDAO inventorySpecificationDAO = new InventorySpecificationDaOImpl();
+        String name = "model";
+        int idcommodity = commodityDAO.getId(name,commodityModel);
+        inventorySpecificationDAO.addInventorySpecification(idcommodity,Specification,number);
+
+        // TODO: 剩下部分留个todo给我，赵奇
         return null;
     }
 }

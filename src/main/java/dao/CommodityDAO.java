@@ -53,4 +53,6 @@ public interface CommodityDAO {
      *                    根据产品id获取数据库中的响应属性
      * */
     Commodity getcommodity(int idcommodity) throws Exception;
+
+    int getId(String name, String value) throws Exception;
 }

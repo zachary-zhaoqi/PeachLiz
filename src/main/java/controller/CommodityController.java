@@ -69,6 +69,7 @@ public class CommodityController {
             pageModel.setWhereName(commodityAttribute);
             pageModel.setWhereValue(commodityAttributeDetails);
             pageModel.setList(commodityDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
+
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {

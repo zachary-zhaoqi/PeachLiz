@@ -9,7 +9,19 @@ import java.util.List;
 
 public class InventorySpecificationDaOImpl implements InventorySpecificationDAO {
     JdbcOperator jdbcOperator = new JdbcOperator();
-
+//    private int idinventory;
+//    /**
+//     * 产品id
+//     */
+//    private int idcommodity;
+//    /**
+//     * 尺寸
+//     */
+//    private String size;
+//    /**
+//     * 数量
+//     */
+//    private int number;
     @Override
     public int getTotalRecord(String whereName, String whereValue) throws SQLException {
         String sql="select count(*) from inventoryspecification where "+ whereName +" like ?";
@@ -26,5 +38,13 @@ public class InventorySpecificationDaOImpl implements InventorySpecificationDAO 
     public InventorySpecification getSqlinventorySpecification(int idinventory) throws Exception {
         String sql = "select * from inventoryspecification where idinventory=?;";
         return (InventorySpecification) jdbcOperator.queryForJavaBean(sql,InventorySpecification.class,idinventory);
+    }
+
+    @Override
+    public void addInventorySpecification(int idcommodity, String specification, int number) throws SQLException {
+        String sql =  "insert into `inventoryspecification` (" +
+                "idcommodity,size,number)" +
+                "values (?,?,?);";
+        jdbcOperator.executeUpdate(sql,idcommodity,specification,number);
     }
 }

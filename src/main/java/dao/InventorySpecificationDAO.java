@@ -23,4 +23,6 @@ public interface InventorySpecificationDAO {
     List<InventorySpecification> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception;
 
     InventorySpecification getSqlinventorySpecification(int idinventory) throws Exception;
+
+    void addInventorySpecification(int idcommodity, String specification, int number) throws SQLException;
 }
