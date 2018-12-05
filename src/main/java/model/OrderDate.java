@@ -69,4 +69,12 @@ public class OrderDate {
     public void setAccomplishdate(String accomplishdate) {
         this.accomplishdate = accomplishdate;
     }
+
+    public String getPlandate() {
+        return plandate;
+    }
+
+    public void setPlandate(String plandate) {
+        this.plandate = plandate;
+    }
 }

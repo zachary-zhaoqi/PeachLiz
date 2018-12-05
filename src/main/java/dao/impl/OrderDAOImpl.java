@@ -22,5 +22,13 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     @Override
     public List getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception {
         return null;
+    public List getOrderList(String status) {
+        return null;
+    }
+
+    @Override
+    public void addOrder(Order order) {
+
+
     }
 }

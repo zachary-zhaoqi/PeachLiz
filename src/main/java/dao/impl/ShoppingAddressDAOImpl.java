@@ -13,10 +13,14 @@ public class ShoppingAddressDAOImpl implements ShoppingAddressDAO {
     JdbcOperator jdbcOperator = new JdbcOperator();
     Tool tool = new Tool();
     @Override
-    public Shoppingaddress setShoppingAddress(Shoppingaddress shoppingaddress) {
+    public void setShoppingAddress(Shoppingaddress shoppingaddress) throws SQLException {
 
-        String sql = "select * from shoppingaddress where idshoppingaddress";
-        return null;
+        String sql = "insert into `shoppingaddress` (" +
+                "contactname,contactqq,contacttel,address,wechat)" +
+                "values (?,?,?,?,?);";
+        jdbcOperator.executeUpdate(sql,shoppingaddress.getContactname(),shoppingaddress.getContactqq(),shoppingaddress.getContacttel(),
+                shoppingaddress.getAddress(),shoppingaddress.getWechat());
+
     }
 //    private int idshippingaddress;
 //    /**联系人姓名*/
@@ -27,8 +31,10 @@ public class ShoppingAddressDAOImpl implements ShoppingAddressDAO {
 //    private String contacttel;
 //    /**收货地址*/
 //    private String address;
+//    /**微信*/
+//    private String wechat;
     @Override
-    public void setShoppingAddress(Shoppingaddress shoppingaddress, int idshoppingaddress) throws UnsupportedEncodingException, SQLException {
+    public void updateShoppingAddress(Shoppingaddress shoppingaddress, int idshoppingaddress) throws UnsupportedEncodingException, SQLException {
         String sql = "update shoppingaddress set "+
                 "contactname = ? ,contactqq = ? ,contacttel = ? ,address = ? "+
                 "where idshoppingaddress = ?";
