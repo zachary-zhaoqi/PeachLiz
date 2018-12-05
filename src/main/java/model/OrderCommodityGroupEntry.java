@@ -95,7 +95,7 @@ public class OrderCommodityGroupEntry {
         return inventorySpecification;
     }
 
-    public void setInventorySpecification(InventorySpecification inventorySpecification) {
+    public void setInventorySpecification() {
         // TODO: 2018/12/5 陈亮 通过 this.idinventory 查询数据库得到inventorySpecification实体
 
     }

@@ -3,6 +3,7 @@ package dao.impl;
 import dao.ShoppingAddressDAO;
 import dao.Tool;
 import jdbc.JdbcOperator;
+import model.OrderDate;
 import model.Shoppingaddress;
 
 import java.io.UnsupportedEncodingException;
@@ -33,5 +34,11 @@ public class ShoppingAddressDAOImpl implements ShoppingAddressDAO {
                 "where idshoppingaddress = ?";
         jdbcOperator.executeUpdate(sql,shoppingaddress.getContactname(),shoppingaddress.getContactqq(),shoppingaddress.getContacttel(),
                shoppingaddress.getAddress(),idshoppingaddress);
+    }
+
+    @Override
+    public Shoppingaddress getSqlShoppingAddress(int idshippingaddress) throws Exception {
+        String sql = "select * from shippingaddress where idshippingaddress=?;";
+        return (Shoppingaddress) jdbcOperator.queryForJavaBean(sql,Shoppingaddress.class,idshippingaddress);
     }
 }
