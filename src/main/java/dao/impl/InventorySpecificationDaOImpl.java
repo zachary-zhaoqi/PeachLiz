@@ -23,14 +23,14 @@ public class InventorySpecificationDaOImpl implements InventorySpecificationDAO 
 //     */
 //    private int number;
     @Override
-    public int getTotalRecord(String whereName, String whereValue) throws SQLException {
-        String sql="select count(*) from inventoryspecification where "+ whereName +" like ?";
+    public int getTotalRecord(String whereName, int whereValue) throws SQLException {
+        String sql="select count(*) from inventoryspecification where "+ whereName +" = ?";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 
     @Override
-    public List<InventorySpecification> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception {
-        String sql="select * from inventoryspecification where "+ whereName +" like ? limit ?,? ";
+    public List<InventorySpecification> getPageList(String whereName, int whereValue, int index, int pageSize) throws Exception {
+        String sql="select * from inventoryspecification where "+ whereName +" = ? limit ?,? ";
         return jdbcOperator.queryForJavaBeanList(sql,InventorySpecification.class, whereValue,index,pageSize);
     }
 

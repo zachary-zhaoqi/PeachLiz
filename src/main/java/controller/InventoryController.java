@@ -27,7 +27,7 @@ public class InventoryController {
      *                   再通过id查询全部库存数据
      * */
     @RequestMapping("queryInventory")
-    public ModelAndView queryInventory(String whereName,String whereValue){
+    public ModelAndView queryInventory(String whereName,String whereValue) throws Exception {
         // TODO: 2018/12/5 与commodityController中的查询太像了，想着提取一下
         ModelAndView modelAndView=new ModelAndView();
         PageModel<InventorySpecification> pageModel;
@@ -42,13 +42,18 @@ public class InventoryController {
         if (null==whereValue||"".equals(whereValue)){
             whereValue="%";
         }
+
         InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl();
+        CommodityDAO commodityDAO = new CommodityDAOImpl();
+
+        int idcommodity = commodityDAO.getId(whereName,whereValue);
+        whereName = "idcommodity";
 
         try {
-            pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(whereName, whereValue), 8);
+            pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(whereName, idcommodity), 8);
             pageModel.setWhereName(whereName);
             pageModel.setWhereValue(whereValue);
-            pageModel.setList(inventorySpecificationDAO.getPageList(whereName,whereValue,pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(inventorySpecificationDAO.getPageList(whereName,idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("inventory/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
