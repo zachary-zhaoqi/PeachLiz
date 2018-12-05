@@ -54,5 +54,5 @@ public interface CommodityDAO {
      * */
     Commodity getcommodity(int idcommodity) throws Exception;
 
-    List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize);
+    List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception;
 }
