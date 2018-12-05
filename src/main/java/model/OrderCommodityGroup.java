@@ -1,7 +1,9 @@
 package model;
 
+import java.util.List;
+
 /**
- *订单商品组：订单商品组id,订单编号（外键约束），产品组编号，产品组名称，备注，合计。
+ *订单商品组
  * */
 public class OrderCommodityGroup {
 
@@ -11,12 +13,16 @@ public class OrderCommodityGroup {
     private int idgrop;
     /**订单编号*/
     private int idorder;
-    /**产品组名称*/
+    /**商品组名称*/
     private String productname;
     /**备注*/
     private String remark;
     /**合计*/
     private double total;
+
+
+    //以下属性方便操作
+    List<OrderCommodityGroupEntry> orderCommodityGroupEntryList;
 
     public int getIdgrop() {
         return idgrop;
@@ -57,4 +63,13 @@ public class OrderCommodityGroup {
     public void setTotal(double total) {
         this.total = total;
     }
+
+    public List<OrderCommodityGroupEntry> getOrderCommodityGroupEntryList() {
+        return orderCommodityGroupEntryList;
+    }
+
+    public void setOrderCommodityGroupEntryList(List<OrderCommodityGroupEntry> orderCommodityGroupEntryList) {
+        // TODO: 2018/12/5 陈亮 通过 this.idgrop 查询数据库得到orderCommodityGroupEntryList
+    }
+
 }

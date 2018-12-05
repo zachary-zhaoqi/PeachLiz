@@ -6,8 +6,11 @@ import model.InventorySpecification;
 import java.util.List;
 
 public class InventorySpecificationDaOImpl implements InventorySpecificationDAO {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 302396260513ca7fb1130ffe571fd798f623aed6
     @Override
     public int getTotalRecord(String whereName, String whereValue) {
         return 0;

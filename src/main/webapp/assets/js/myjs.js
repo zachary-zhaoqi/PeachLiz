@@ -26,3 +26,10 @@ function getRootPath(){
     var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
     return(localhostPaht+projectName);
 }
+
+/**
+ * 更新产品的库存
+ * */
+function updateInventory() {
+    
+}

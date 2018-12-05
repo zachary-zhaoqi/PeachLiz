@@ -1,11 +1,10 @@
 package model;
-//产品组条目：产品组编号,订单商品组id，库存id，零售价，数量，工艺细节，备注。
 
 public class OrderCommodityGroupEntry {
 
 
     /**
-     * 产品组编号
+     * 产品条目编号
      */
     private int idproductteam;
     /**
@@ -32,6 +31,9 @@ public class OrderCommodityGroupEntry {
      * 备注
      */
     private String remark;
+
+    //以下属性方便操作
+    InventorySpecification inventorySpecification;
 
     public int getIdgrop() {
         return idgrop;
@@ -87,5 +89,14 @@ public class OrderCommodityGroupEntry {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public InventorySpecification getInventorySpecification() {
+        return inventorySpecification;
+    }
+
+    public void setInventorySpecification(InventorySpecification inventorySpecification) {
+        // TODO: 2018/12/5 陈亮 通过 this.idinventory 查询数据库得到inventorySpecification实体
+
     }
 }

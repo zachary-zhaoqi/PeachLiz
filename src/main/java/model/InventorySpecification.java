@@ -24,7 +24,7 @@ public class InventorySpecification {
     private int number;
 
     //以下属性为了方便操作。
-    private Commodity commodity;//库存
+    private Commodity commodity;//库存对应的产品
 
     public int getNumber() {
         return number;

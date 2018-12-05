@@ -30,7 +30,7 @@
         </select>
         <input type="text" name="whereValue" class="abc input-default" value="">&nbsp;&nbsp;
         <button type="submit" class="btn btn-primary">查询库存</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-success" id="addnewCommodity">新增产品</button>
+        <button type="button" class="btn btn-success" id="addnewSpecification">新增产品尺寸</button>
     </form>
 
     <table class="table table-bordered table-hover definewidth m10">
@@ -42,7 +42,7 @@
             <th>照片</th>
             <th>备注</th>
             <th>库存数</th>
-            <th>操作</th>
+            <th>修改库存数</th>
         </tr>
         </thead>
 
@@ -62,7 +62,9 @@
                                         "        <td>"+commodity.getRemark()+"</td>\n" +
                                         "        <td>"+inventorySpecification.getNumber()+"</td>\n" +
                                         "        <td>\n" +
-                                        "            <span hidden>"+commodity.getIdcommodity()+"</span>\n" +
+                                        "            <input type=\"number\" name=\"newnumber\" id=\"\"/>\n" +
+                                        "            <button onclick=\"updateInventory()\">保存</button>" +
+                                        "            <span hidden>"+inventorySpecification.getIdinventory()+"</span>\n" +
                                         "        </td>\n" +
                                         "    </tr>"
                         );
@@ -97,6 +99,15 @@
         }
     %>
 
+
+    <script>
+        $(function () {
+            $('#addnewSpecification').click(function(){
+                window.location.href="${pageContext.request.contextPath}/jsp/inventory/add.jsp";
+            });
+        });
+
+    </script>
 
 </body>
 </html>
