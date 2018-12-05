@@ -4,6 +4,7 @@ import dao.OrderMoneyDAO;
 import jdbc.JdbcOperator;
 import model.OrderMoney;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class OrderMoneyDAOImpl implements OrderMoneyDAO {
@@ -25,6 +26,15 @@ public class OrderMoneyDAOImpl implements OrderMoneyDAO {
                 "orderMoney,taxes,downpayment,officialreceipts)" +
                 "values (?,?,?,?);";
         jdbcOperator.executeUpdate(sql,orderMoney.getTotalamount(),orderMoney.getTaxes(),orderMoney.getDownpayment(),
+                orderMoney.getOfficialreceipts());
+    }
+
+    @Override
+    public int setOrderMoneyBackId(OrderMoney orderMoney, Connection connection) throws SQLException {
+        String sql = "insert into `ordermoney` (" +
+                "orderMoney,taxes,downpayment,officialreceipts)" +
+                "values (?,?,?,?);";
+        return jdbcOperator.executeUpdateBack(sql,connection,orderMoney.getTotalamount(),orderMoney.getTaxes(),orderMoney.getDownpayment(),
                 orderMoney.getOfficialreceipts());
     }
 

@@ -42,7 +42,33 @@ public class JdbcOperator {
         }
         return result;
     }
+    public int executeUpdateBackId(String sql, Connection connection,Object... params ) throws SQLException {
+        PreparedStatement preparedStatement = null;
 
+        ResultSet result;
+
+        int id = 0;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < params.length; i++) {
+                preparedStatement.setObject(i + 1, params[i]);
+            }
+            preparedStatement.executeUpdate();
+            result = preparedStatement.getGeneratedKeys();
+            while (result.next()){
+                id = result.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw e;
+        }finally {
+            if (preparedStatement != null) {
+                closePreparedStatement(preparedStatement);
+            }
+        }
+        return id;
+    }
     public int executeUpdate(String sql, Object... params) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
