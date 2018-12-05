@@ -1,12 +1,10 @@
 package controller;
 
 import dao.CommodityDAO;
-import dao.InventoryOperationDAO;
 import dao.InventorySpecificationDAO;
 import dao.PageModelDAO;
 import dao.impl.CommodityDAOImpl;
 import dao.impl.InventorySpecificationDaOImpl;
-import model.Commodity;
 import model.InventorySpecification;
 import model.PageModel;
 import org.springframework.stereotype.Controller;
@@ -45,17 +43,17 @@ public class InventoryController {
             whereValue="%";
         }
 
-        InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl();
+        PageModelDAO pageModelDAO=new InventorySpecificationDaOImpl();
         CommodityDAO commodityDAO = new CommodityDAOImpl();
 
         int idcommodity = commodityDAO.getId(whereName,whereValue);
        String name = "idcommodity";
 
         try {
-            pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(name, idcommodity), 8);
+            pageModel= new PageModel<>(1, pageModelDAO.getTotalRecord(name, idcommodity), 8);
             pageModel.setWhereName(whereName);
             pageModel.setWhereValue(whereValue);
-            pageModel.setList(inventorySpecificationDAO.getPageList(name,idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(pageModelDAO.getPageList(name,idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("inventory/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
@@ -67,7 +65,7 @@ public class InventoryController {
         return modelAndView;
     }
 
-    @RequestMapping("/updatePageList")
+    @RequestMapping("/updateInventoryPageList")
     public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
         // TODO: 2018/12/5 陈亮   参考C:\Users\starr\workspace\PeachLiz\src\main\java\controller\CommodityController.java   updatePageList
 

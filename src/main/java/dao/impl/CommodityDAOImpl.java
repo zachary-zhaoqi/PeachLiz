@@ -35,13 +35,13 @@ public class CommodityDAOImpl implements CommodityDAO , PageModelDAO {
     }
 
     @Override
-    public int getTotalRecord(String whereName, String whereValue) throws SQLException {
+    public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
         String sql="select count(*) from commodity where "+ whereName +" like ?";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 
     @Override
-    public List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception {
+    public List<Commodity> getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
         String sql="select * from commodity where "+ whereName +" like ? limit ?,? ";
         return jdbcOperator.queryForJavaBeanList(sql,Commodity.class, whereValue,index,pageSize);
     }

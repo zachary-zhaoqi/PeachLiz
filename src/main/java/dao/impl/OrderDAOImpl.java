@@ -18,16 +18,14 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     }
 
     @Override
-    public int getTotalRecord(String whereName, String whereValue) throws SQLException {
+    public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
         return 0;
     }
 
     @Override
-    public List getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception {
+    public List getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
         return null;
-
     }
-
 
     @Override
     public void addOrder(Order order) throws SQLException {

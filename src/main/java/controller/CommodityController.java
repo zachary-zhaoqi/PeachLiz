@@ -57,7 +57,7 @@ public class CommodityController {
         return modelAndView;
     }
 
-    @RequestMapping("/updatePageList")
+    @RequestMapping("/updateCommodityPageList")
     public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
         PageModelDAO pageModelDAO = new CommodityDAOImpl();
         PageModel<Commodity> pageModel;

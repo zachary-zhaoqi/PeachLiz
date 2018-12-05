@@ -9,30 +9,6 @@ import java.util.List;
 public class InventorySpecificationDaOImpl implements InventorySpecificationDAO, PageModelDAO {
     
     JdbcOperator jdbcOperator = new JdbcOperator();
-//    private int idinventory;
-//    /**
-//     * 产品id
-//     */
-//    private int idcommodity;
-//    /**
-//     * 尺寸
-//     */
-//    private String size;
-//    /**
-//     * 数量
-//     */
-//    private int number;
-    @Override
-    public int getTotalRecord(String whereName, int whereValue) throws SQLException {
-        String sql="select count(*) from inventoryspecification where "+ whereName +" = ?";
-        return jdbcOperator.queryForIntOnly(sql, whereValue);
-    }
-
-    @Override
-    public List<InventorySpecification> getPageList(String whereName, int whereValue, int index, int pageSize) throws Exception {
-        String sql="select * from inventoryspecification where "+ whereName +" = ? limit ?,? ";
-        return jdbcOperator.queryForJavaBeanList(sql,InventorySpecification.class, whereValue,index,pageSize);
-    }
 
     @Override
     public InventorySpecification getSqlinventorySpecification(int idinventory) throws Exception {
@@ -46,5 +22,21 @@ public class InventorySpecificationDaOImpl implements InventorySpecificationDAO,
                 "idcommodity,size,number)" +
                 "values (?,?,?);";
         jdbcOperator.executeUpdate(sql,idcommodity,specification,number);
+    }
+
+    @Override
+    public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
+        String sql="select count(*) from inventoryspecification where "+ whereName +" = ?";
+        return jdbcOperator.queryForIntOnly(sql, whereValue);
+    }
+
+    @Override
+    public List getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
+        String sql="select * from inventoryspecification where "+ whereName +" = ? limit ?,? ";
+        List<InventorySpecification> list = jdbcOperator.queryForJavaBeanList(sql, InventorySpecification.class, whereValue, index, pageSize);
+        for (InventorySpecification i :list) {
+            i.setCommodity();
+        }
+        return list;
     }
 }
