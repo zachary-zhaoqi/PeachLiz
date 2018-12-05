@@ -21,8 +21,8 @@ public class InventoryController {
     /**
      * @param whereName 属性名
      * @param whereValue 属性值
-     * 通过某一个商品的型号来查询产品，若值为空则查询全部库存.
-     *                   得到为此型号的全部id
+     *                   通过某一个商品的型号来查询产品，若值为空则查询全部库存.
+     *                   得到为此型号的id（应该是只有一个）
      *                   再通过id查询全部库存数据
      * */
     @RequestMapping("queryInventory")

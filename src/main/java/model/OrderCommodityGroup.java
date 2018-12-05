@@ -18,6 +18,9 @@ public class OrderCommodityGroup {
     /**合计*/
     private double total;
 
+    //以下属性方便操作
+    OrderCommodityGroupEntry[] orderCommodityGroupEntries;
+
     public int getIdgrop() {
         return idgrop;
     }

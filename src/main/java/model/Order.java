@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 /**
  * 订单实体
  * */
@@ -27,7 +29,7 @@ public class Order {
     Shoppingaddress shoppingaddress;
     OrderDate orderDate;
     OrderMoney orderMoney;
-    private OrderCommodityGroupEntry[] orderentries;
+    private List<OrderCommodityGroup> orderCommodityGroupList;
 
     public int getIdorder() {
         return idorder;
@@ -99,5 +101,37 @@ public class Order {
 
     public void setIdordermoney(int idordermoney) {
         this.idordermoney = idordermoney;
+    }
+
+    public Shoppingaddress getShoppingaddress() {
+        return shoppingaddress;
+    }
+
+    public void setShoppingaddress(Shoppingaddress shoppingaddress) {
+        // TODO: 2018/12/5 陈亮 通过 this.idshippingaddress 查询数据库得到shoppingaddress对象
+    }
+
+    public OrderDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(OrderDate orderDate) {
+        // TODO: 2018/12/5 陈亮 通过 this.idorderDate 查询数据库得到orderDate对象
+    }
+
+    public OrderMoney getOrderMoney() {
+        return orderMoney;
+    }
+
+    public void setOrderMoney(OrderMoney orderMoney) {
+        // TODO: 2018/12/5 陈亮 通过 this.idorderMoney 查询数据库得到orderMoney对象
+    }
+
+    public List<OrderCommodityGroup> getOrderCommodityGroupList() {
+        return orderCommodityGroupList;
+    }
+
+    public void setOrderCommodityGroupList(List<OrderCommodityGroup> orderCommodityGroupList) {
+        // TODO: 2018/12/5 陈亮 通过 this.idorder 查询数据库得到orderCommodityGroup数组
     }
 }
