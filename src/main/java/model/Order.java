@@ -1,5 +1,14 @@
 package model;
 
+import dao.OrderDAO;
+import dao.OrderDateDAO;
+import dao.ShoppingAddressDAO;
+import dao.impl.OrderDAOImpl;
+import dao.impl.OrderDateDAOImpl;
+import dao.impl.ShoppingAddressDAOImpl;
+
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -107,8 +116,11 @@ public class Order {
         return shoppingaddress;
     }
 
-    public void setShoppingaddress(Shoppingaddress shoppingaddress) {
-        // TODO: 2018/12/5 陈亮 通过 this.idshippingaddress 查询数据库得到shoppingaddress对象
+    public void setShoppingaddress(Shoppingaddress shoppingaddress) throws UnsupportedEncodingException, SQLException {
+
+        ShoppingAddressDAO shoppingAddressDAO = new ShoppingAddressDAOImpl();
+        shoppingAddressDAO.setShoppingAddress(shoppingaddress,this.idshippingaddress);
+
     }
 
     public OrderDate getOrderDate() {
@@ -117,6 +129,8 @@ public class Order {
 
     public void setOrderDate(OrderDate orderDate) {
         // TODO: 2018/12/5 陈亮 通过 this.idorderDate 查询数据库得到orderDate对象
+        OrderDateDAO orderDateDAO = new OrderDateDAOImpl();
+        orderDateDAO.setOrderDate(orderDate,this.idorderdate);
     }
 
     public OrderMoney getOrderMoney() {
@@ -125,6 +139,8 @@ public class Order {
 
     public void setOrderMoney(OrderMoney orderMoney) {
         // TODO: 2018/12/5 陈亮 通过 this.idorderMoney 查询数据库得到orderMoney对象
+
+
     }
 
     public List<OrderCommodityGroup> getOrderCommodityGroupList() {
