@@ -12,18 +12,16 @@ import java.sql.Connection;
 
 public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     JdbcOperator jdbcOperator = new JdbcOperator();
-    @Override
-    public void setOrder(OrderDate orderDate, int idorderdate) {
-
-    }
 
     @Override
     public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
+        // TODO: 2018/12/6 陈亮
         return 0;
     }
 
     @Override
     public List getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
+        // TODO: 2018/12/6 陈亮 记得订单实体要装配完整
         return null;
     }
 
@@ -60,5 +58,10 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
             e.printStackTrace();
             connection.close();
         }
+    }
+
+    @Override
+    public Order getOrder(String whereName, String whereValue) {
+        return null;
     }
 }

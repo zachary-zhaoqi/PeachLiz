@@ -21,6 +21,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/ckform.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/myjs.js"></script>
 
 </head>
 <body>
@@ -41,21 +42,19 @@
 
 <hr/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-primary">全部订单</button>
+<button type="button" class="btn btn-primary" value="" onclick="queryOrderForStatus(this)">全部订单</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>|</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-primary" onclick="function queryforsttusdaifudingjin() {
-  window.location.href= '${pageContext.request.contextPath}/queryOrder';
-}">待付定价</button>
+<button type="button" class="btn btn-primary" value="待付订金" onclick="queryOrderForStatus(this)">待付定价</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-primary">待付尾款</button>
+<button type="button" class="btn btn-primary" value="待付尾款" onclick="queryOrderForStatus(this)">待付尾款</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-primary">待 发 货</button>
+<button type="button" class="btn btn-primary" value="待发货" onclick="queryOrderForStatus(this)">待 发 货</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-primary">待 收 货</button>
+<button type="button" class="btn btn-primary" value="待收货" onclick="queryOrderForStatus(this)">待 收 货</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-primary">完成交易</button>
+<button type="button" class="btn btn-primary" value="完成交易" onclick="queryOrderForStatus(this)">完成交易</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>|</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-primary"> 退  货 </button>
+<button type="button" class="btn btn-primary" value="退货" onclick="queryOrderForStatus(this)"> 退  货 </button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br/>
 
@@ -129,7 +128,6 @@
                 window.location.href="${pageContext.request.contextPath}/jsp/order/add.jsp";
             });
         });
-
     </script>
 </body>
 </html>
