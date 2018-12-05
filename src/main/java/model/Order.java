@@ -21,7 +21,7 @@ public class Order {
     /**订单时间id*/
     private int idorderdate;
     /**订单金额id*/
-    private int idordermoney;
+    private int idorderamount;
 
     //以下属性方便操作
     Shoppingaddress shoppingaddress;
@@ -93,11 +93,11 @@ public class Order {
         this.idorderdate = idorderdate;
     }
 
-    public int getIdordermoney() {
-        return idordermoney;
+    public int getIdorderamount() {
+        return idorderamount;
     }
 
-    public void setIdordermoney(int idordermoney) {
-        this.idordermoney = idordermoney;
+    public void setIdorderamount(int idorderamount) {
+        this.idorderamount = idorderamount;
     }
 }

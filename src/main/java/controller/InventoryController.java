@@ -40,7 +40,7 @@ public class InventoryController {
         if (null==whereValue||"".equals(whereValue)){
             whereValue="%";
         }
-        InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl()
+        InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl();
 
         try {
             pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(whereName, whereValue), 8);

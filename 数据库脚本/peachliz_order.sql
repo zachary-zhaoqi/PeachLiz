@@ -31,7 +31,7 @@ CREATE TABLE `order` (
   `expressnumber` varchar(45) DEFAULT NULL COMMENT '快递单号',
   `idshippingaddress` int(11) DEFAULT NULL COMMENT '收货地址id',
   `idorderdate` int(11) DEFAULT NULL COMMENT '订单时间id',
-  `idordermoney` int(11) DEFAULT NULL COMMENT '订单金额id',
+  `idorderamount` int(11) DEFAULT NULL COMMENT '订单金额id',
   PRIMARY KEY (`idorder`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单';
 /*!40101 SET character_set_client = @saved_cs_client */;
