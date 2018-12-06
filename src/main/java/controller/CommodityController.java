@@ -146,7 +146,6 @@ public class CommodityController {
      * */
     @RequestMapping("/removeCommodity")
     public void removeCommodity(int idcommodity) throws SQLException {
-        ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO = new CommodityDAOImpl();
         commodityDAO.removeCommodity(idcommodity);
     }
