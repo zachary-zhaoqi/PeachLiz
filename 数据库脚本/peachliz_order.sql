@@ -29,10 +29,14 @@ CREATE TABLE `order` (
   `notes` varchar(45) DEFAULT NULL COMMENT '订单备注',
   `orderstatus` varchar(45) DEFAULT NULL COMMENT '订单状态',
   `expressnumber` varchar(45) DEFAULT NULL COMMENT '快递单号',
-  `idshippingaddress` int(11) DEFAULT NULL COMMENT '收货地址id',
-  `idorderdate` int(11) DEFAULT NULL COMMENT '订单时间id',
-  `idorderamount` int(11) DEFAULT NULL COMMENT '订单金额id',
-  PRIMARY KEY (`idorder`)
+  `idshippingaddress` int(11) NOT NULL COMMENT '收货地址id',
+  `idorderdate` int(11) NOT NULL COMMENT '订单时间id',
+  `idorderamount` int(11) NOT NULL COMMENT '订单金额id',
+  `ordertype` varchar(45) NOT NULL DEFAULT '普通' COMMENT '订单类型',
+  PRIMARY KEY (`idorder`),
+  UNIQUE KEY `idshippingaddress_UNIQUE` (`idshippingaddress`),
+  UNIQUE KEY `idorderdate_UNIQUE` (`idorderdate`),
+  UNIQUE KEY `idorderamount_UNIQUE` (`idorderamount`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -42,7 +46,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,'项目一','买家一','','正常','10',1,1,1),(2,'项目二','买家二','','正常','11',2,2,2),(3,'项目三','买家三','','正常','12',3,3,3),(4,'项目四','买家四','','正常','13',4,4,4),(5,'项目五','买家五','','正常','14',5,5,5),(6,'项目六','买家六','','正常','15',6,6,6),(7,'项目七','买家七','','正常','16',7,7,7),(8,'项目八','买家八','','正常','17',8,8,8),(9,'项目九','买家九','','正常','18',9,9,9),(10,'项目十','买家十','','正常','19',10,10,10),(11,NULL,NULL,'测试',NULL,NULL,NULL,NULL,NULL),(12,NULL,NULL,'测试',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `order` VALUES (1,'项目一','买家一','','正常','10',1,1,1,'1'),(2,'项目二','买家二','','正常','11',2,2,2,'1'),(3,'项目三','买家三','','正常','12',3,3,3,'1'),(4,'项目四','买家四','','正常','13',4,4,4,'1'),(5,'项目五','买家五','','正常','14',5,5,5,'1'),(6,'项目六','买家六','','正常','15',6,6,6,'1'),(7,'项目七','买家七','','正常','16',7,7,7,'1'),(8,'项目八','买家八','','正常','17',8,8,8,'1'),(9,'项目九','买家九','','正常','18',9,9,9,'1'),(10,'项目十','买家十','','正常','19',10,10,10,'1');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-06 10:02:25
+-- Dump completed on 2018-12-06 13:48:45

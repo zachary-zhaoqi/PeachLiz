@@ -10,5 +10,5 @@ public interface InventorySpecificationDAO {
 
     void addInventorySpecification(int idcommodity, String specification, int number) throws SQLException;
 
-    void updateInventorySpecification(int idinventory,int number);
+    void updateInventorySpecification(int idinventory,int number) throws SQLException;
 }

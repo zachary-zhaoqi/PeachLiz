@@ -25,7 +25,12 @@ public class InventorySpecificationDaOImpl implements InventorySpecificationDAO,
     }
 
     @Override
-    public void updateInventorySpecification(int idinventory, int number) {
+    public void updateInventorySpecification(int idinventory, int number) throws SQLException {
+        String sql = "UPDATE inventoryspecification SET " +
+                "number = ? " +
+                "where idinventory = ?;";
+
+        jdbcOperator.executeUpdate(sql, number,idinventory);
 
     }
 
