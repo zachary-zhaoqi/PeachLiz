@@ -71,7 +71,7 @@ public class InventoryController {
 
     // TODO: 2018/12/6 不确定 
     @RequestMapping("/updateInventoryPageList")
-    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
+    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails) throws Exception {
         PageModelDAO pageModelDAO = new InventorySpecificationDaOImpl();
         PageModel<InventorySpecification> pageModel;
         ModelAndView modelAndView=new ModelAndView();
@@ -79,15 +79,16 @@ public class InventoryController {
             commodityAttributeDetails="%";
         }
 
-        // TODO: 2018/12/6 跟上面一样，先获取idcommodity再查询list
-
+        CommodityDAO commodityDAO = new CommodityDAOImpl();
+        int idcommodity = commodityDAO.getId(commodityAttribute,commodityAttributeDetails);
+        String name = "idcommodity";
 //        getWhereName=model  getWhereValue=值
 
         try {
             pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
             pageModel.setWhereName(commodityAttribute);
             pageModel.setWhereValue(commodityAttributeDetails);
-            pageModel.setList(pageModelDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(pageModelDAO.getPageList(name, idcommodity, pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
