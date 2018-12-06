@@ -30,8 +30,20 @@ function getRootPath(){
 /**
  * 更新产品的库存
  * */
-function updateInventory() {
-    
+function updateInventory(obj) {
+    var inputnumber=obj.previousElementSibling.value;
+
+    $.post(getRootPath()+"/queryOrder",
+        {
+            name:"菜鸟教程",
+            url:"http://www.runoob.com"
+        },
+        function(data,status){
+            alert("数据: \n" + data + "\n状态: " + status);
+        });
+
+    obj.parentElement.previousElementSibling.innerText=inputnumber;
+    alert("asdxf");
 }
 
 /**
@@ -39,5 +51,5 @@ function updateInventory() {
  * */
 function queryOrderForStatus(obj) {
     var value=obj.value;
-    window.location.href=   getRootPath()+"/queryOrder?whereName=orderstatus&whereValue="+value;
+    window.location.href=getRootPath()+"/queryOrder?whereName=orderstatus&whereValue="+value;
 }
