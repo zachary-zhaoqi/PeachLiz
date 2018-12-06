@@ -160,7 +160,11 @@ public class InventoryController {
      *               更新数据库中的库存数量
      */
     public ModelAndView updateInventorySpecification(int idinventory,int number){
-        // TODO: 2018/12/6 陈亮  更新完留个todo给我 
+        // TODO: 2018/12/6 陈亮  更新完留个todo给我
+        InventorySpecificationDAO inventorySpecificationDAO = new InventorySpecificationDaOImpl();
+        inventorySpecificationDAO.updateInventorySpecification(idinventory,number);
+
+
         return null;
     }
 }
