@@ -25,6 +25,11 @@ public class InventorySpecificationDaOImpl implements InventorySpecificationDAO,
     }
 
     @Override
+    public void updateInventorySpecification(int idinventory, int number) {
+
+    }
+
+    @Override
     public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
         String sql="select count(*) from inventoryspecification where "+ whereName +" = ?";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
