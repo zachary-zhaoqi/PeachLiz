@@ -40,6 +40,7 @@
             <th>箱号</th>
             <th>型号</th>
             <th>照片</th>
+            <th>尺寸</th>
             <th>备注</th>
             <th>库存数</th>
             <th>修改库存数</th>
@@ -59,6 +60,7 @@
                                         "        <td>"+commodity.getContainer()+"</td>\n" +
                                         "        <td>"+commodity.getModel()+"</td>\n" +
                                         "        <td><img src=\""+request.getContextPath()+"/assets"+commodity.getPicture()+"\" width=\"150px\"></td>\n" +
+                                        "        <td>"+inventorySpecification.getSize()+"</td>\n" +
                                         "        <td>"+commodity.getRemark()+"</td>\n" +
                                         "        <td>"+inventorySpecification.getNumber()+"</td>\n" +
                                         "        <td>\n" +
@@ -82,19 +84,19 @@
             }
             String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord()+"&commodityAttribute="+pageModel.getWhereName()+"&commodityAttributeDetails="+pageModel.getWhereValue();
             out.println(
-                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
-                            "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"
+                    "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
+                            "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"
             );
             for (int i = 0; i < pageModel.getTotalPage(); i++) {
                 if ((i+1)!=pageModel.getPageNumber()){
-                    out.println("<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(i+1)+pageParmeStr+"\">"+Integer.toString(i+1)+"</a>");
+                    out.println("<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+Integer.toString(i+1)+pageParmeStr+"\">"+Integer.toString(i+1)+"</a>");
                 }else {
                     out.println("<span>"+Integer.toString(i+1)+"</span>");
                 }
             }
             out.println(
-                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()+1)+pageParmeStr+"\">下一页</a>" +
-                            "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+pageModel.getTotalPage()+pageParmeStr+"\">尾页</a>"
+                    "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+Integer.toString(pageModel.getPageNumber()+1)+pageParmeStr+"\">下一页</a>" +
+                            "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+pageModel.getTotalPage()+pageParmeStr+"\">尾页</a>"
             );
         }
     %>

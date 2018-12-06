@@ -1,16 +1,13 @@
 package dao.impl;
-import model.Order;
-
-import java.sql.SQLException;
-import java.util.List;
 import dao.*;
 import jdbc.DataSourceConfig;
 import jdbc.JdbcOperator;
-import model.OrderCommodityGroup;
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
+import model.Order;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     JdbcOperator jdbcOperator = new JdbcOperator();
