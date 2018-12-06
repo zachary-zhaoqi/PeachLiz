@@ -15,4 +15,17 @@ public interface OrderDAO {
      * */
     Order getOrder(String whereName, String whereValue) throws Exception;
 
+    /**
+     * 下一个状态，不能前进，返回错误
+     * @param idorder 订单ID
+     * @throws Exception
+     */
+    void nextStatus(int idorder) throws Exception;
+
+    /**
+     * 前一个状态，不能后退，返回错误
+     * @param idorder 订单ID
+     */
+    void frontStatus(int idorder) throws Exception;
+
 }

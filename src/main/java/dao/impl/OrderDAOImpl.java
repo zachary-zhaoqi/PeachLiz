@@ -79,5 +79,65 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
         return order;
 
     }
+    //状态
+    String[] statusList = {"待付订金","待付全款","待发货","待确认完成交易","已完成交易"};
+
+    @Override
+    public void nextStatus(int idorder) throws Exception {
+        String orderSql = "select * from `order` where idorder = ?";
+
+        Order order = (Order) jdbcOperator.queryForJavaBean(orderSql,Order.class,idorder);
+
+        int statusNum = -1;
+        int falsenum = 0;
+        for (String status : statusList
+        ) {
+            statusNum++;
+            if (order.getOrderstatus().equals(status))
+            {
+                break;
+            }
+            falsenum++;
+        }
+        if (falsenum == 5)
+        {
+            throw new Exception("状态错误");
+        }
+        if (statusNum == 4) {
+            throw new Exception("当前状态不能前进");
+        }else {
+            String statusUpdate = "UPDATE `order` SET orderstatus = ? WHERE idorder = ? ";
+            int result = jdbcOperator.executeUpdate(statusUpdate,statusList[statusNum+1],order.getIdorder());
+        }
+    }
+
+    @Override
+    public void frontStatus(int idorder) throws Exception {
+        String orderSql = "select * from `order` where idorder = ?";
+
+        Order order = (Order) jdbcOperator.queryForJavaBean(orderSql,Order.class,idorder);
+
+        int statusNum = -1;
+        int falsenum = 0;
+        for (String status : statusList
+        ) {
+            statusNum++;
+            if (order.getOrderstatus().equals(status))
+            {
+                break;
+            }
+            falsenum++;
+        }
+        if (falsenum == 5)
+        {
+            throw new Exception("状态错误");
+        }
+        if (statusNum == 0) {
+            throw new Exception("当前状态不能后退");
+        }else {
+            String statusUpdate = "UPDATE `order` SET orderstatus = ? WHERE idorder = ? ";
+            int result = jdbcOperator.executeUpdate(statusUpdate,statusList[statusNum+1],order.getIdorder());
+        }
+    }
 
 }
