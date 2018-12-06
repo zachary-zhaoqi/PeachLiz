@@ -83,7 +83,7 @@
             if ("%"==pageModel.getWhereValue()){
                 pageModel.setWhereValue("");
             }
-            String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord()+"&commodityAttribute="+pageModel.getWhereName()+"&commodityAttributeDetails="+pageModel.getWhereValue();
+            String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord()+"&whereName="+pageModel.getWhereName()+"&whereValue="+pageModel.getWhereValue();
             out.println(
                     "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
                             "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"

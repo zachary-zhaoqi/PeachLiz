@@ -12,7 +12,7 @@
 </head>
 <body>
 <p>如果看不懂记得联系技术支持人员，并提供这个信息与你是怎么操作的，18760338358。</p>
-<h2>错误信息：</h2><br/>
-<h5><%=request.getAttribute("errormessage")%></h5><br/>
+<h3>错误信息：</h3><br/>
+<h1 style="color: #9d261d"><%=request.getAttribute("errormessage")%></h1><br/>
 </body>
 </html>

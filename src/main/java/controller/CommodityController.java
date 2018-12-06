@@ -33,13 +33,11 @@ public class CommodityController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
         if (null==whereValue||"".equals(whereValue)){
             whereValue="%";
         }
 
         PageModelDAO pageModelDAO=new CommodityDAOImpl();
-
 
         try {
             pageModel= new PageModel<>(1, pageModelDAO.getTotalRecord(whereName, whereValue), 8);

@@ -29,6 +29,10 @@ public class Order {
     private int idorderdate;
     /**订单金额id*/
     private int idorderamount;
+    /**
+     * 订单类型
+     * */
+    // TODO: 2018/12/6 陈亮
 
     //以下属性方便操作
     private Shoppingaddress shoppingaddress;

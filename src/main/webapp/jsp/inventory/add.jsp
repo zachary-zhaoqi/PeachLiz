@@ -46,7 +46,7 @@
                 <input type="submit" value="保存"/>
             </td>
             <td>
-                <<input type="reset" value="重置"/>
+                <input type="reset" value="重置"/>
             </td>
         </tr>
     </table>
