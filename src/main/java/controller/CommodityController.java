@@ -145,18 +145,10 @@ public class CommodityController {
      * 将该商品设置为冻结状态。
      * */
     @RequestMapping("/removeCommodity")
-    public ModelAndView removeCommodity(int idcommodity) throws SQLException {
-        //todo：赵奇
+    public void removeCommodity(int idcommodity) throws SQLException {
         ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO = new CommodityDAOImpl();
-        try {
-            commodityDAO.removeCommodity(idcommodity);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            modelAndView.setViewName("error");
-            modelAndView.addObject("errormessage",e.getMessage());
-        }
-        return new ModelAndView("commodity/manage");
+        commodityDAO.removeCommodity(idcommodity);
     }
 
 }

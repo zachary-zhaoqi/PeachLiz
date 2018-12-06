@@ -157,7 +157,8 @@ public class InventoryController {
      * @param number 新的库存数量
      *               更新数据库中的库存数量
      */
-    public ModelAndView updateInventorySpecification(int idinventory,int number) throws SQLException {
+    @RequestMapping("/updateInventorySpecification")
+    public void updateInventorySpecification(int idinventory,int number) throws SQLException {
         //更新库存数据
         InventorySpecificationDAO inventorySpecificationDAO = new InventorySpecificationDaOImpl();
         inventorySpecificationDAO.updateInventorySpecification(idinventory,number);
@@ -165,8 +166,5 @@ public class InventoryController {
         InventoryOperationDAO inventoryOperationDAO = new InventoryOperationDAOImpl();
         inventoryOperationDAO.addOperation(idinventory,1,number);
 
-        // TODO: 2018/12/6 赵奇
-
-        return null;
     }
 }

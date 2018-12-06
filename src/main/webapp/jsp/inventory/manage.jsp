@@ -18,7 +18,6 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/mycss.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery.sorted.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/ckform.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/common.js"></script>
