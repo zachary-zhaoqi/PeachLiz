@@ -27,7 +27,8 @@ CREATE TABLE `inventoryspecification` (
   `idcommodity` int(11) DEFAULT NULL COMMENT '产品id',
   `size` varchar(45) DEFAULT NULL COMMENT '尺寸',
   `number` int(11) DEFAULT NULL COMMENT '数量',
-  PRIMARY KEY (`idinventory`)
+  PRIMARY KEY (`idinventory`),
+  UNIQUE KEY `size_UNIQUE` (`size`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='库存';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-05 22:47:46
+-- Dump completed on 2018-12-06 10:02:26

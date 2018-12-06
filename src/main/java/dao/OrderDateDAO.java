@@ -8,14 +8,14 @@ import java.sql.SQLException;
 public interface OrderDateDAO {
 
     /**
-     *  todo 陈亮 写写文档注释，改个名字
+     *  添加订单日期表
      */
-    void setOrderDate(OrderDate orderDate) throws SQLException;
+    void addOrderDate(OrderDate orderDate) throws SQLException;
 
     /**
-     * todo 陈亮 写写文档注释，改个名字
+     * 事务，添加订单日期表，并返回ID
      * */
-    int setOrderDateBackId(OrderDate orderDate , Connection connection) throws SQLException;
+    int addOrderDateBackId(OrderDate orderDate , Connection connection) throws SQLException;
 
     OrderDate getSqlOrderDate(int idorderdate) throws Exception;
 }

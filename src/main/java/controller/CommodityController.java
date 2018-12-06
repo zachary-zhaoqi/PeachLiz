@@ -84,14 +84,23 @@ public class CommodityController {
     @RequestMapping("/addCommodity")
     public ModelAndView addCommodity(Commodity commodity) throws SQLException {
         //todo：上传图片的问题
-        //todo：陈亮 在这里处理中文乱码问题 例子如下
-//        try {
-//            //处理字符串乱码问题
-//            whereName= new String(whereName.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
-//            whereValue= new String(whereValue.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            //处理字符串乱码问题
+            commodity.setColor(new String(commodity.getColor().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setStatus(new String(commodity.getStatus().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setModel(new String(commodity.getModel().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setContainer(new String(commodity.getContainer().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setCreterdate(new String(commodity.getCreterdate().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setAccessoriesfabric(new String(commodity.getAccessoriesfabric().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setUnderfabric(new String(commodity.getUnderfabric().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setTopfabric(new String(commodity.getTopfabric().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setRemark(new String(commodity.getRemark().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setPicture(new String(commodity.getPicture().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
 
         ModelAndView modelAndView=new ModelAndView();

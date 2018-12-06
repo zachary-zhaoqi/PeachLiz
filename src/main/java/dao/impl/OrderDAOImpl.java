@@ -1,12 +1,14 @@
 package dao.impl;
 import model.Order;
-import model.OrderDate;
 
 import java.sql.SQLException;
 import java.util.List;
 import dao.*;
 import jdbc.DataSourceConfig;
 import jdbc.JdbcOperator;
+import model.OrderCommodityGroup;
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 
@@ -15,14 +17,22 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
 
     @Override
     public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
-        // TODO: 2018/12/6 陈亮
-        return 0;
+        String sql="select count(*) from order where "+ whereName +" like ?";
+        return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 
     @Override
     public List getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
-        // TODO: 2018/12/6 陈亮 记得订单实体要装配完整
-        return null;
+        String sql="select * from `order` where "+ whereName +" like ? limit ?,? ";
+        List<Order> orderList = jdbcOperator.queryForJavaBeanList(sql,Order.class, whereValue,index,pageSize);
+        for (Order od:orderList
+             ) {
+            od.getOrderCommodityGroupList();
+            od.getOrderMoney();
+            od.getOrderDate();
+            od.getShoppingaddress();
+        }
+        return orderList;
     }
 
     @Override
@@ -38,7 +48,7 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
             connection =dataSource.getConnection();
             connection.setAutoCommit(false);
 
-            order.setIdorderdate(orderDateDAO.setOrderDateBackId(order.getOrderDate(),connection)+1);
+            order.setIdorderdate(orderDateDAO.addOrderDateBackId(order.getOrderDate(),connection)+1);
             order.setIdorderamount(orderMoneyDAO.setOrderMoneyBackId(order.getOrderMoney(),connection)+1);
             order.setIdshippingaddress(shoppingAddressDAO.setShoppingAddressBackId(order.getShoppingaddress(),connection)+1);
 
@@ -61,7 +71,15 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     }
 
     @Override
-    public Order getOrder(String whereName, String whereValue) {
-        return null;
+    public Order getOrder(String whereName, String whereValue) throws Exception {
+        String sql = "select * from order where "+whereName+" = ?";
+        Order order = (Order) jdbcOperator.queryForJavaBean(sql,Order.class,whereValue);
+        order.getShoppingaddress();
+        order.getOrderDate();
+        order.getOrderMoney();
+        order.getOrderCommodityGroupList();
+        return order;
+
     }
+
 }
