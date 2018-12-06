@@ -16,7 +16,7 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
 
     @Override
     public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
-        String sql="select count(*) from peachliz.`order` where "+ whereName+ " like ?;";
+        String sql="select count(*) from peachliz.`order` where "+ whereName+" like ?;";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 

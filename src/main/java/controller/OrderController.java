@@ -44,4 +44,14 @@ public class OrderController {
 
         return modelAndView;
     }
+
+    /**
+     * @param whereName 属性名
+     * @param whereValue 属性值
+     * */
+    @RequestMapping("/updateOrderPageList")
+    public ModelAndView updateOrderPageList(int pageNumber,int totalRecord,int pageSize,String whereName,String whereValue){
+        // TODO: 2018/12/6 陈亮  同上面与以前的一样
+        return null;
+    }
 }
