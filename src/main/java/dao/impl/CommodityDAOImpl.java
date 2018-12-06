@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.CommodityDAO;
+import dao.CommodityOperationDAO;
 import dao.PageModelDAO;
 import jdbc.JdbcOperator;
 import model.Commodity;
@@ -98,7 +99,6 @@ public class CommodityDAOImpl implements CommodityDAO , PageModelDAO {
                 commodity.getStatus(),
                 commodity.getCreterdate()
         );
-        // TODO: 2018/12/4 产品操作记录表
     }
 
     @Override

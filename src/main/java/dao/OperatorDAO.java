@@ -2,6 +2,8 @@ package dao;
 
 import model.Operator;
 
+import java.sql.SQLException;
+
 public interface OperatorDAO {
 
     /**
@@ -19,4 +21,11 @@ public interface OperatorDAO {
      *               如果更改失败则抛出错误。
      * */
     void changePwd(String account,String pwd,String newPwd) throws Exception;
+
+    /**
+     * 通过账户进行账户冻结
+     * @param account 账号
+     * @throws SQLException
+     */
+    void freeOperator(String account) throws SQLException;
 }

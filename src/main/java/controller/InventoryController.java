@@ -1,9 +1,11 @@
 package controller;
 
 import dao.CommodityDAO;
+import dao.InventoryOperationDAO;
 import dao.InventorySpecificationDAO;
 import dao.PageModelDAO;
 import dao.impl.CommodityDAOImpl;
+import dao.impl.InventoryOperationDAOImpl;
 import dao.impl.InventorySpecificationDaOImpl;
 import model.InventorySpecification;
 import model.PageModel;
@@ -155,11 +157,15 @@ public class InventoryController {
      * @param number 新的库存数量
      *               更新数据库中的库存数量
      */
-    public ModelAndView updateInventorySpecification(int idinventory,int number){
-        // TODO: 2018/12/6 陈亮  更新完留个todo给我
+    public ModelAndView updateInventorySpecification(int idinventory,int number) throws SQLException {
+        //更新库存数据
         InventorySpecificationDAO inventorySpecificationDAO = new InventorySpecificationDaOImpl();
         inventorySpecificationDAO.updateInventorySpecification(idinventory,number);
+        //添加库存操作，现在默认idoperator = 1;
+        InventoryOperationDAO inventoryOperationDAO = new InventoryOperationDAOImpl();
+        inventoryOperationDAO.addOperation(idinventory,1,number);
 
+        // TODO: 2018/12/6 赵奇
 
         return null;
     }
