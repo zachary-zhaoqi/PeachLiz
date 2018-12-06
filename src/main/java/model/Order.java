@@ -149,8 +149,10 @@ public class Order {
     public void setOrderCommodityGroupList() throws Exception {
         OrderCommodityGroupDAO orderCommodityGroupDAO = new OrderCommodityGroupDAOImpl();
         this.orderCommodityGroupList = orderCommodityGroupDAO.getSqlidorderCommodityGroup(this.idorder);
-        for (OrderCommodityGroup orderCommodityGroup: this.getOrderCommodityGroupList()) {
-            orderCommodityGroup.setOrderCommodityGroupEntryList();
+        if(null!=this.orderCommodityGroupList) {
+            for (OrderCommodityGroup orderCommodityGroup : this.getOrderCommodityGroupList()) {
+                orderCommodityGroup.setOrderCommodityGroupEntryList();
+            }
         }
     }
 

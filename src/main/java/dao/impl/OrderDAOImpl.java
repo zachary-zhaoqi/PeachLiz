@@ -16,7 +16,7 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
 
     @Override
     public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
-        String sql="select count(*) from peachliz.`order` where"+ whereName+ "like ?;";
+        String sql="select count(*) from peachliz.`order` where "+ whereName+" like ?;";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 
@@ -24,11 +24,13 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     public List getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
         String sql="select * from peachliz.`order` where "+ whereName +" like ? limit ?,? ";
         List<Order> orderList = jdbcOperator.queryForJavaBeanList(sql,Order.class, whereValue,index,pageSize);
-        for (Order od:orderList) {
-            od.setOrderCommodityGroupList();
-            od.setOrderMoney();
-            od.setOrderDate();
-            od.setShoppingaddress();
+        if(null!=orderList) {
+            for (Order od : orderList) {
+                od.setOrderCommodityGroupList();
+                od.setOrderMoney();
+                od.setOrderDate();
+                od.setShoppingaddress();
+            }
         }
         return orderList;
     }

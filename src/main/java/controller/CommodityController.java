@@ -56,17 +56,17 @@ public class CommodityController {
     }
 
     @RequestMapping("/updateCommodityPageList")
-    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
+    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String whereName,String whereValue){
         PageModelDAO pageModelDAO = new CommodityDAOImpl();
         PageModel<Commodity> pageModel;
         ModelAndView modelAndView=new ModelAndView();
-        if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
-            commodityAttributeDetails="%";
+        if (null==whereValue||"".equals(whereValue)){
+            whereValue="%";
         }
         try {
             pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
-            pageModel.setWhereName(commodityAttribute);
-            pageModel.setWhereValue(commodityAttributeDetails);
+            pageModel.setWhereName(whereName);
+            pageModel.setWhereValue(whereValue);
             pageModel.setList(pageModelDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
