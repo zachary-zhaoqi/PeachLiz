@@ -127,7 +127,7 @@
                 window.location.href="${pageContext.request.contextPath}/jsp/commodity/add.jsp";
             });
             $('#editCommodity').click(function(){
-                window.location.href="${pageContext.request.contextPath}/jsp/commodity/edit.jsp";
+                window.location.href="${pageContext.request.contextPath}/jsp/commodity/edit.jsp";//todo 陈亮 完成此按钮功能
             });
             $('#removeCommodity').click(function(){
                 var idcommodity=$('#removeCommodity').siblings("span").text();
