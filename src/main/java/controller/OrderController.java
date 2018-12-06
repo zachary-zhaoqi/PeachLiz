@@ -51,7 +51,27 @@ public class OrderController {
      * */
     @RequestMapping("/updateOrderPageList")
     public ModelAndView updateOrderPageList(int pageNumber,int totalRecord,int pageSize,String whereName,String whereValue){
-        // TODO: 2018/12/6 陈亮  同上面与以前的一样
-        return null;
+        // TODO: 2018/12/6 陈亮  同上面与以前的一样    ·
+
+        PageModelDAO pageModelDAO = new OrderDAOImpl();
+        PageModel<Order> pageModel;
+        ModelAndView modelAndView=new ModelAndView();
+        if (null==whereValue||"".equals(whereValue)){
+            whereValue="%";
+        }
+        try {
+            pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
+            pageModel.setWhereName(whereName);
+            pageModel.setWhereValue(whereValue);
+            pageModel.setList(pageModelDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
+            modelAndView.setViewName("commodity/manage");
+            modelAndView.addObject("PageModel",pageModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
+
+        return modelAndView;
     }
 }

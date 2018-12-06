@@ -4,6 +4,7 @@ import dao.OperatorDAO;
 import dao.PageModelDAO;
 import jdbc.JdbcOperator;
 import model.Operator;
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -30,6 +31,9 @@ public class OperatorDAOImpl implements OperatorDAO , PageModelDAO {
                 "where account = ? ;";
         jdbcOperator.executeUpdate(sql, account);
     }
+
+
+
 
     @Override
     public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
