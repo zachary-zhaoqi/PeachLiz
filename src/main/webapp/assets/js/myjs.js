@@ -53,7 +53,7 @@ function removeCommodity(obj) {
     var idcommodity=$(obj).siblings("span").text();
 
     obj.parentElement.previousElementSibling.innerText="冻结";
-    $.post(getRootPath()+"/updateInventorySpecification",
+    $.post(getRootPath()+"/removeCommodity",
         {
             idcommodity:idcommodity,
         });
