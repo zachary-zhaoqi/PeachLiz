@@ -10,7 +10,7 @@ public class OrderCommodityGroupEntryDAOImpl implements OrderCommodityGroupEntry
     JdbcOperator jdbcOperator = new JdbcOperator();
     @Override
     public List<OrderCommodityGroupEntry> getSqlorderCommodityGroupEntryList(int idgrop) throws Exception {
-        String sql = "select * from shippingaddress where idshippingaddress=?;";
+        String sql = "select * from peachliz.shoppingaddress where idshippingaddress=?;";
         return  jdbcOperator.queryForJavaBeanList(sql,OrderCommodityGroupEntry.class,idgrop);
     }
 }

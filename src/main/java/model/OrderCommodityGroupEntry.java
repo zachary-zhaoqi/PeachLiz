@@ -101,6 +101,9 @@ public class OrderCommodityGroupEntry {
     public void setInventorySpecification() throws Exception {
         InventorySpecificationDAO inventorySpecificationDAO = new InventorySpecificationDaOImpl();
         this.inventorySpecification = inventorySpecificationDAO.getSqlinventorySpecification(this.idinventory);
-        this.inventorySpecification.setCommodity();
+        if (null!=inventorySpecification){
+            this.inventorySpecification.setCommodity();
+        }
+
     }
 }
