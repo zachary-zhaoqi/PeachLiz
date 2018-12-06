@@ -3,6 +3,8 @@ import dao.*;
 import jdbc.DataSourceConfig;
 import jdbc.JdbcOperator;
 import model.Order;
+import model.OrderCommodityGroup;
+import model.OrderCommodityGroupEntry;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -24,10 +26,17 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
         List<Order> orderList = jdbcOperator.queryForJavaBeanList(sql,Order.class, whereValue,index,pageSize);
         for (Order od:orderList
              ) {
-            od.getOrderCommodityGroupList();
-            od.getOrderMoney();
-            od.getOrderDate();
-            od.getShoppingaddress();
+            od.setOrderCommodityGroupList();
+            for (OrderCommodityGroup orderCommodityGroup:od.getOrderCommodityGroupList()) {
+                orderCommodityGroup.setOrderCommodityGroupEntryList();
+                for (OrderCommodityGroupEntry orderCommodityGroupEntry:orderCommodityGroup.getOrderCommodityGroupEntryList()) {
+                    orderCommodityGroupEntry.setInventorySpecification();
+                    orderCommodityGroupEntry.getInventorySpecification().setCommodity();
+                }
+            }
+            od.setOrderMoney();
+            od.setOrderDate();
+            od.setShoppingaddress();
         }
         return orderList;
     }
