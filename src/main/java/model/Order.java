@@ -32,7 +32,7 @@ public class Order {
     /**
      * 订单类型
      * */
-    // TODO: 2018/12/6 陈亮
+    private String ordertype;
 
     //以下属性方便操作
     private Shoppingaddress shoppingaddress;
@@ -154,5 +154,13 @@ public class Order {
                 orderCommodityGroup.setOrderCommodityGroupEntryList();
             }
         }
+    }
+
+    public String getOrdertype() {
+        return ordertype;
+    }
+
+    public void setOrdertype(String ordertype) {
+        this.ordertype = ordertype;
     }
 }

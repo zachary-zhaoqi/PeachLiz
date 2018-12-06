@@ -1,5 +1,7 @@
 package dao;
 
+import java.sql.SQLException;
+
 public interface InventoryOperationDAO {
 
 //    /**操作id*/
@@ -13,5 +15,5 @@ public interface InventoryOperationDAO {
 //    /**改动数量*/
 //    private int change;
 
-    void addOperation( int idinventory,int idoperator,int change);
+    void addOperation( int idinventory,int idoperator,int change) throws SQLException;
 }
