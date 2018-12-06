@@ -13,5 +13,6 @@ public interface OrderDAO {
      * @param whereValue 条件值
      *                   通过条件查询得到订单实体，记得装配完整。
      * */
-    Order getOrder(String whereName, String whereValue);// TODO: 2018/12/6 陈亮
+    Order getOrder(String whereName, String whereValue) throws Exception;
+
 }

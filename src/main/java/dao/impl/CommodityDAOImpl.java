@@ -81,22 +81,21 @@ public class CommodityDAOImpl implements CommodityDAO , PageModelDAO {
                 "values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
 
-        //todo：陈亮 DAO里不要有编码处理
         jdbcOperator.executeUpdate(sql,
-                turnString(commodity.getContainer()),
-                turnString(commodity.getCategory()),
-                turnString(commodity.getModel()),
-                turnString(commodity.getPicture()),
-                turnString(commodity.getColor()),
+                commodity.getContainer(),
+                commodity.getCategory(),
+                commodity.getModel(),
+                commodity.getPicture(),
+                commodity.getColor(),
 
-                turnString(commodity.getTopfabric()),
-                turnString(commodity.getUnderfabric()),
-                turnString(commodity.getAccessoriesfabric()),
+                commodity.getTopfabric(),
+                commodity.getUnderfabric(),
+                commodity.getAccessoriesfabric(),
                 commodity.getFactoryprice(),
                 commodity.getRetailprice(),
 
-                turnString(commodity.getRemark()),
-                turnString(commodity.getStatus()),
+                commodity.getRemark(),
+                commodity.getStatus(),
                 commodity.getCreterdate()
         );
         // TODO: 2018/12/4 产品操作记录表

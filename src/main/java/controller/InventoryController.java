@@ -65,11 +65,29 @@ public class InventoryController {
         return modelAndView;
     }
 
+    // TODO: 2018/12/6 不确定 
     @RequestMapping("/updateInventoryPageList")
     public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
-        // TODO: 2018/12/5 陈亮   参考C:\Users\starr\workspace\PeachLiz\src\main\java\controller\CommodityController.java   updatePageList
+        PageModelDAO pageModelDAO = new InventorySpecificationDaOImpl();
+        PageModel<InventorySpecification> pageModel;
+        ModelAndView modelAndView=new ModelAndView();
+        if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
+            commodityAttributeDetails="%";
+        }
+        try {
+            pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
+            pageModel.setWhereName(commodityAttribute);
+            pageModel.setWhereValue(commodityAttributeDetails);
+            pageModel.setList(pageModelDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
+            modelAndView.setViewName("commodity/manage");
+            modelAndView.addObject("PageModel",pageModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
 
-        return null;
+        return modelAndView;
 
     }
 
