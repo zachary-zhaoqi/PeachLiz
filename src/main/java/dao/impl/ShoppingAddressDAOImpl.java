@@ -36,7 +36,7 @@ public class ShoppingAddressDAOImpl implements ShoppingAddressDAO {
 //    private String wechat;
     @Override
     public void updateShoppingAddress(Shoppingaddress shoppingaddress, int idshoppingaddress) throws UnsupportedEncodingException, SQLException {
-        String sql = "update shoppingaddress set "+
+        String sql = "update peachliz.shoppingaddress set "+
                 "contactname = ? ,contactqq = ? ,contacttel = ? ,address = ? "+
                 "where idshoppingaddress = ?";
         jdbcOperator.executeUpdate(sql,shoppingaddress.getContactname(),shoppingaddress.getContactqq(),shoppingaddress.getContacttel(),
@@ -45,13 +45,13 @@ public class ShoppingAddressDAOImpl implements ShoppingAddressDAO {
 
     @Override
     public Shoppingaddress getSqlShoppingAddress(int idshippingaddress) throws Exception {
-        String sql = "select * from shippingaddress where idshippingaddress=?;";
+        String sql = "select * from peachliz.shoppingaddress where idshippingaddress=?;";
         return (Shoppingaddress) jdbcOperator.queryForJavaBean(sql,Shoppingaddress.class,idshippingaddress);
     }
 
     @Override
     public int setShoppingAddressBackId(Shoppingaddress shoppingaddress, Connection connection) throws SQLException {
-        String sql = "insert into `shoppingaddress` (" +
+        String sql = "insert into peachliz.shoppingaddress (" +
                 "contactname,contactqq,contacttel,address,wechat)" +
                 "values (?,?,?,?,?);";
        return jdbcOperator.executeUpdateBack(sql,connection,shoppingaddress.getContactname(),shoppingaddress.getContactqq(),shoppingaddress.getContacttel(),

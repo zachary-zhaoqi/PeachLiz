@@ -83,8 +83,10 @@ public class OrderCommodityGroup {
     public void setOrderCommodityGroupEntryList() throws Exception {
         OrderCommodityGroupEntryDAO orderCommodityGroupEntryDAO = new OrderCommodityGroupEntryDAOImpl();
         this.orderCommodityGroupEntryList =  orderCommodityGroupEntryDAO.getSqlorderCommodityGroupEntryList(this.idgrop);
-        for (OrderCommodityGroupEntry orderCommodityGroupEntry: this.getOrderCommodityGroupEntryList()) {
-            orderCommodityGroupEntry.setInventorySpecification();
+        if(null!=this.orderCommodityGroupEntryList){
+            for (OrderCommodityGroupEntry orderCommodityGroupEntry: this.getOrderCommodityGroupEntryList()) {
+                orderCommodityGroupEntry.setInventorySpecification();
+            }
         }
     }
 
