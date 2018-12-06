@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 
 @Controller
 public class InventoryController {
@@ -29,7 +30,7 @@ public class InventoryController {
     public ModelAndView queryInventory(String whereName,String whereValue) throws Exception {
         // TODO: 2018/12/5 与commodityController中的查询太像了，想着提取一下
         ModelAndView modelAndView=new ModelAndView();
-        PageModel<InventorySpecification> pageModel;
+
 
         try {
             //处理字符串乱码问题
@@ -40,14 +41,17 @@ public class InventoryController {
         }
 
         if (null==whereValue||"".equals(whereValue)){
-            whereValue="%";
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",new Exception("请输入产品型号，不能为空哦！").getMessage());
+            return modelAndView;
         }
 
+        PageModel<InventorySpecification> pageModel;
         PageModelDAO pageModelDAO=new InventorySpecificationDaOImpl();
         CommodityDAO commodityDAO = new CommodityDAOImpl();
 
         int idcommodity = commodityDAO.getId(whereName,whereValue);
-       String name = "idcommodity";
+        String name = "idcommodity";
 
         try {
             pageModel= new PageModel<>(1, pageModelDAO.getTotalRecord(name, idcommodity), 8);
@@ -83,16 +87,46 @@ public class InventoryController {
      *                          自动生成库存id，填充相应的数据
      * */
     @RequestMapping("addInventorySpecification")
-    public ModelAndView addInventorySpecification(String commodityModel,String Specification,int number) throws Exception {
-
+    public ModelAndView addInventorySpecification(String commodityModel,String Specification,int number) {
+        ModelAndView modelAndView=new ModelAndView();
 
         CommodityDAO commodityDAO = new CommodityDAOImpl();
         InventorySpecificationDAO inventorySpecificationDAO = new InventorySpecificationDaOImpl();
         String name = "model";
-        int idcommodity = commodityDAO.getId(name,commodityModel);
-        inventorySpecificationDAO.addInventorySpecification(idcommodity,Specification,number);
+        int idcommodity = 0;
+        try {
+            idcommodity = commodityDAO.getId(name,commodityModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage","产品型号输入错误");
+        }
 
-        // TODO: 剩下部分留个todo给我，赵奇
-        return null;
+        try {
+            inventorySpecificationDAO.addInventorySpecification(idcommodity,Specification,number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage","尺寸输入错误，可能已存在相同尺寸");
+        }
+
+        PageModel<InventorySpecification> pageModel;
+        PageModelDAO pageModelDAO=new InventorySpecificationDaOImpl();
+
+        try {
+            pageModel= new PageModel<>(1, pageModelDAO.getTotalRecord("idcommodity", idcommodity), 8);
+            pageModel.setWhereName("model");
+            pageModel.setWhereValue(commodityModel);
+            pageModel.setList(pageModelDAO.getPageList("idcommodity",idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
+            modelAndView.setViewName("inventory/manage");
+            modelAndView.addObject("PageModel",pageModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
+
+
+        return modelAndView;
     }
 }

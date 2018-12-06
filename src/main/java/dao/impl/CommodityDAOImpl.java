@@ -173,7 +173,7 @@ public class CommodityDAOImpl implements CommodityDAO , PageModelDAO {
 
     @Override
     public int getId(String name, String value) throws Exception {
-        String sql = "select * from commodity where "+ name +" = ?";
+        String sql = "select * from commodity where "+ name +" like ?";
         Commodity commodity = (Commodity) jdbcOperator.queryForJavaBean(sql,Commodity.class,value);
         return commodity.getIdcommodity();
     }
