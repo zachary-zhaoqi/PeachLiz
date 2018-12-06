@@ -33,3 +33,11 @@ function getRootPath(){
 function updateInventory() {
     
 }
+
+/**
+ * 
+ * */
+function queryOrderForStatus(obj) {
+    var value=obj.value;
+    window.location.href=   getRootPath()+"/queryOrder?whereName=orderstatus&whereValue="+value;
+}

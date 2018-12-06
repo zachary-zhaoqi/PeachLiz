@@ -15,22 +15,6 @@ public interface CommodityDAO {
     void removeCommodity(int commodity) throws SQLException;
 
     /**
-     * 获取数据库总记录数
-     * @param whereName
-     * @param whereValue
-     */
-    int getTotalRecord(String whereName, String whereValue) throws SQLException;
-
-    /**
-     * @param whereName
-     * @param whereValue
-     * @param index 当前索引  即从哪个数据开始查
-     * @param pageSize 页面大小  即查多少条数据
-     */
-    List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception;
-
-
-    /**
      *  把产品类所有属性添加入数据库。备注，颜色，三个型号这五个属性可以为null。creterdate若为null会自动获取当前时间
      * @param commodity 产品
      * @throws SQLException

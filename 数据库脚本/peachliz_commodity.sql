@@ -37,7 +37,8 @@ CREATE TABLE `commodity` (
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `status` varchar(45) DEFAULT NULL COMMENT '产品状态',
   `creterdate` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idcommodity`)
+  PRIMARY KEY (`idcommodity`),
+  UNIQUE KEY `model_UNIQUE` (`model`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='产品';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -60,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-05 10:47:29
+-- Dump completed on 2018-12-05 22:47:42

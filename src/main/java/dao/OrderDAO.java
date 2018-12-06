@@ -1,15 +1,18 @@
 package dao;
 
 import model.Order;
-import model.OrderDate;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public interface OrderDAO {
-    void setOrder(OrderDate orderDate, int idorderdate);
-
-    List getOrderList(String status );
-
     void addOrder(Order order) throws SQLException;
+
+
+    /**
+     * @param whereName 条件名
+     * @param whereValue 条件值
+     *                   通过条件查询得到订单实体，记得装配完整。
+     * */
+    Order getOrder(String whereName, String whereValue) throws Exception;
+
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import dao.CommodityDAO;
+import dao.PageModelDAO;
 import dao.impl.CommodityDAOImpl;
 import model.Commodity;
 import model.PageModel;
@@ -37,14 +38,14 @@ public class CommodityController {
             whereValue="%";
         }
 
-        CommodityDAO commodityDAO=new CommodityDAOImpl();
+        PageModelDAO pageModelDAO=new CommodityDAOImpl();
 
 
         try {
-            pageModel= new PageModel<>(1, commodityDAO.getTotalRecord(whereName, whereValue), 8);
+            pageModel= new PageModel<>(1, pageModelDAO.getTotalRecord(whereName, whereValue), 8);
             pageModel.setWhereName(whereName);
             pageModel.setWhereValue(whereValue);
-            pageModel.setList(commodityDAO.getPageList(whereName,whereValue,pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(pageModelDAO.getPageList(whereName,whereValue,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
@@ -56,9 +57,9 @@ public class CommodityController {
         return modelAndView;
     }
 
-    @RequestMapping("/updatePageList")
+    @RequestMapping("/updateCommodityPageList")
     public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
-        CommodityDAO commodityDAO = new CommodityDAOImpl();
+        PageModelDAO pageModelDAO = new CommodityDAOImpl();
         PageModel<Commodity> pageModel;
         ModelAndView modelAndView=new ModelAndView();
         if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
@@ -68,8 +69,7 @@ public class CommodityController {
             pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
             pageModel.setWhereName(commodityAttribute);
             pageModel.setWhereValue(commodityAttributeDetails);
-            pageModel.setList(commodityDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
-
+            pageModel.setList(pageModelDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("commodity/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
@@ -84,7 +84,24 @@ public class CommodityController {
     @RequestMapping("/addCommodity")
     public ModelAndView addCommodity(Commodity commodity) throws SQLException {
         //todo：上传图片的问题
-        //todo:添加数据
+        try {
+            //处理字符串乱码问题
+            commodity.setColor(new String(commodity.getColor().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setStatus(new String(commodity.getStatus().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setModel(new String(commodity.getModel().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setCategory(new String(commodity.getCategory().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setContainer(new String(commodity.getContainer().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setCreterdate(new String(commodity.getCreterdate().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setAccessoriesfabric(new String(commodity.getAccessoriesfabric().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setUnderfabric(new String(commodity.getUnderfabric().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setTopfabric(new String(commodity.getTopfabric().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setRemark(new String(commodity.getRemark().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+            commodity.setPicture(new String(commodity.getPicture().getBytes("ISO8859-1"), StandardCharsets.UTF_8));
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
 
         ModelAndView modelAndView=new ModelAndView();
         CommodityDAO commodityDAO=new CommodityDAOImpl();

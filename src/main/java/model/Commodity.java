@@ -8,7 +8,7 @@ public class Commodity {
     private String container;
     /**品类*/
     private String category;
-    /**型号*/
+    /**型号，唯一值*/
     private String model;
     /**图片*/
     private String picture;

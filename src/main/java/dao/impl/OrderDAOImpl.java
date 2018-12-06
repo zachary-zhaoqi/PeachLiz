@@ -1,26 +1,38 @@
 package dao.impl;
+import model.Order;
 
+import java.sql.SQLException;
+import java.util.List;
 import dao.*;
 import jdbc.DataSourceConfig;
 import jdbc.JdbcOperator;
-import model.Order;
-import model.OrderDate;
+import model.OrderCommodityGroup;
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
 
-public class OrderDAOImpl implements OrderDAO {
+public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     JdbcOperator jdbcOperator = new JdbcOperator();
-    @Override
-    public void setOrder(OrderDate orderDate, int idorderdate) {
 
+    @Override
+    public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
+        String sql="select count(*) from order where "+ whereName +" like ?";
+        return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 
     @Override
-    public List getOrderList(String status) {
-        return null;
+    public List getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
+        String sql="select * from `order` where "+ whereName +" like ? limit ?,? ";
+        List<Order> orderList = jdbcOperator.queryForJavaBeanList(sql,Order.class, whereValue,index,pageSize);
+        for (Order od:orderList
+             ) {
+            od.getOrderCommodityGroupList();
+            od.getOrderMoney();
+            od.getOrderDate();
+            od.getShoppingaddress();
+        }
+        return orderList;
     }
 
     @Override
@@ -36,7 +48,7 @@ public class OrderDAOImpl implements OrderDAO {
             connection =dataSource.getConnection();
             connection.setAutoCommit(false);
 
-            order.setIdorderdate(orderDateDAO.setOrderDateBackId(order.getOrderDate(),connection)+1);
+            order.setIdorderdate(orderDateDAO.addOrderDateBackId(order.getOrderDate(),connection)+1);
             order.setIdorderamount(orderMoneyDAO.setOrderMoneyBackId(order.getOrderMoney(),connection)+1);
             order.setIdshippingaddress(shoppingAddressDAO.setShoppingAddressBackId(order.getShoppingaddress(),connection)+1);
 
@@ -57,4 +69,17 @@ public class OrderDAOImpl implements OrderDAO {
             connection.close();
         }
     }
+
+    @Override
+    public Order getOrder(String whereName, String whereValue) throws Exception {
+        String sql = "select * from order where "+whereName+" = ?";
+        Order order = (Order) jdbcOperator.queryForJavaBean(sql,Order.class,whereValue);
+        order.getShoppingaddress();
+        order.getOrderDate();
+        order.getOrderMoney();
+        order.getOrderCommodityGroupList();
+        return order;
+
+    }
+
 }

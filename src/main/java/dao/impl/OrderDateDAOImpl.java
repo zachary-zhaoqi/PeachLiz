@@ -27,7 +27,7 @@ public class OrderDateDAOImpl implements OrderDateDAO {
     Tool tool = new Tool();
     JdbcOperator jdbcOperator = new JdbcOperator();
     @Override
-    public void setOrderDate(OrderDate orderDate) throws SQLException {
+    public void addOrderDate(OrderDate orderDate) throws SQLException {
         String sql = "insert into `orderdate` (" +
                 "orderdate,dowmpaymentdate,finalpaymentdate,shipmentdate,accomplishdate,plandate)" +
                 "values (?,?,?,?,?,?);";
@@ -36,7 +36,7 @@ public class OrderDateDAOImpl implements OrderDateDAO {
     }
 
     @Override
-    public int setOrderDateBackId(OrderDate orderDate, Connection connection) throws SQLException {
+    public int addOrderDateBackId(OrderDate orderDate, Connection connection) throws SQLException {
         String sql = "insert into `orderdate` (" +
                 "orderdate,dowmpaymentdate,finalpaymentdate,shipmentdate,accomplishdate,plandate)" +
                 "values (?,?,?,?,?,?);";

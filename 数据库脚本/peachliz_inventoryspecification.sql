@@ -37,7 +37,7 @@ CREATE TABLE `inventoryspecification` (
 
 LOCK TABLES `inventoryspecification` WRITE;
 /*!40000 ALTER TABLE `inventoryspecification` DISABLE KEYS */;
-INSERT INTO `inventoryspecification` VALUES (1,1,'101',1000),(2,2,'102',1001),(3,3,'103',1002),(4,4,'104',1003),(5,5,'105',1004),(6,6,'106',1005),(7,7,'107',1006),(8,8,'108',1007),(9,9,'109',1008),(10,10,'110',1009);
+INSERT INTO `inventoryspecification` VALUES (1,1,'101',1000),(2,2,'102',1001),(3,1,'103',1002),(4,4,'104',1003),(5,1,'105',1004),(6,6,'106',1005),(7,7,'107',1006),(8,1,'108',1007),(9,9,'109',1008),(10,1,'110',1009);
 /*!40000 ALTER TABLE `inventoryspecification` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-05 10:47:32
+-- Dump completed on 2018-12-05 22:47:46

@@ -1,11 +1,10 @@
 package controller;
 
 import dao.CommodityDAO;
-import dao.InventoryOperationDAO;
 import dao.InventorySpecificationDAO;
+import dao.PageModelDAO;
 import dao.impl.CommodityDAOImpl;
 import dao.impl.InventorySpecificationDaOImpl;
-import model.Commodity;
 import model.InventorySpecification;
 import model.PageModel;
 import org.springframework.stereotype.Controller;
@@ -31,6 +30,7 @@ public class InventoryController {
         // TODO: 2018/12/5 与commodityController中的查询太像了，想着提取一下
         ModelAndView modelAndView=new ModelAndView();
         PageModel<InventorySpecification> pageModel;
+
         try {
             //处理字符串乱码问题
             whereName= new String(whereName.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
@@ -43,17 +43,17 @@ public class InventoryController {
             whereValue="%";
         }
 
-        InventorySpecificationDAO inventorySpecificationDAO=new InventorySpecificationDaOImpl();
+        PageModelDAO pageModelDAO=new InventorySpecificationDaOImpl();
         CommodityDAO commodityDAO = new CommodityDAOImpl();
 
         int idcommodity = commodityDAO.getId(whereName,whereValue);
        String name = "idcommodity";
 
         try {
-            pageModel= new PageModel<>(1, inventorySpecificationDAO.getTotalRecord(name, idcommodity), 8);
+            pageModel= new PageModel<>(1, pageModelDAO.getTotalRecord(name, idcommodity), 8);
             pageModel.setWhereName(whereName);
             pageModel.setWhereValue(whereValue);
-            pageModel.setList(inventorySpecificationDAO.getPageList(name,idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
+            pageModel.setList(pageModelDAO.getPageList(name,idcommodity,pageModel.getIndex(),pageModel.getPageSize()));
             modelAndView.setViewName("inventory/manage");
             modelAndView.addObject("PageModel",pageModel);
         } catch (Exception e) {
@@ -63,6 +63,32 @@ public class InventoryController {
         }
 
         return modelAndView;
+    }
+
+    // TODO: 2018/12/6 不确定 
+    @RequestMapping("/updateInventoryPageList")
+    public ModelAndView updatePageList(int pageNumber,int totalRecord,int pageSize,String commodityAttribute,String commodityAttributeDetails){
+        PageModelDAO pageModelDAO = new InventorySpecificationDaOImpl();
+        PageModel<InventorySpecification> pageModel;
+        ModelAndView modelAndView=new ModelAndView();
+        if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
+            commodityAttributeDetails="%";
+        }
+        try {
+            pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
+            pageModel.setWhereName(commodityAttribute);
+            pageModel.setWhereValue(commodityAttributeDetails);
+            pageModel.setList(pageModelDAO.getPageList(pageModel.getWhereName(), pageModel.getWhereValue(), pageModel.getIndex(),pageModel.getPageSize()));
+            modelAndView.setViewName("commodity/manage");
+            modelAndView.addObject("PageModel",pageModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errormessage",e.getMessage());
+        }
+
+        return modelAndView;
+
     }
 
 

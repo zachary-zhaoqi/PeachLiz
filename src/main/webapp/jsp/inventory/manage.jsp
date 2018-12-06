@@ -47,7 +47,7 @@
         </thead>
 
         <%
-            PageModel<InventorySpecification> pageModel= (PageModel<InventorySpecification>) request.getAttribute("InventorySpecification");
+            PageModel<InventorySpecification> pageModel= (PageModel<InventorySpecification>) request.getAttribute("PageModel");
             if (pageModel!=null){
                 List<InventorySpecification> inventorySpecificationList= pageModel.getList();
                 if (inventorySpecificationList!=null){

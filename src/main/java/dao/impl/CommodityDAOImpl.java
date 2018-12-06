@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.CommodityDAO;
+import dao.PageModelDAO;
 import jdbc.JdbcOperator;
 import model.Commodity;
 
@@ -11,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class CommodityDAOImpl implements CommodityDAO {
+public class CommodityDAOImpl implements CommodityDAO , PageModelDAO {
 
     private JdbcOperator jdbcOperator;
 
@@ -34,13 +35,13 @@ public class CommodityDAOImpl implements CommodityDAO {
     }
 
     @Override
-    public int getTotalRecord(String whereName, String whereValue) throws SQLException {
+    public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
         String sql="select count(*) from commodity where "+ whereName +" like ?";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 
     @Override
-    public List<Commodity> getPageList(String whereName, String whereValue, int index, int pageSize) throws Exception {
+    public List<Commodity> getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
         String sql="select * from commodity where "+ whereName +" like ? limit ?,? ";
         return jdbcOperator.queryForJavaBeanList(sql,Commodity.class, whereValue,index,pageSize);
     }
@@ -79,21 +80,22 @@ public class CommodityDAOImpl implements CommodityDAO {
                 "container,category,model,picture,color,topfabric,underfabric,Accessoriesfabric,factoryprice,retailprice,remark,status,creterdate)" +
                 "values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
-        jdbcOperator.executeUpdate(sql,
-                turnString(commodity.getContainer()),
-                turnString(commodity.getCategory()),
-                turnString(commodity.getModel()),
-                turnString(commodity.getPicture()),
-                turnString(commodity.getColor()),
 
-                turnString(commodity.getTopfabric()),
-                turnString(commodity.getUnderfabric()),
-                turnString(commodity.getAccessoriesfabric()),
+        jdbcOperator.executeUpdate(sql,
+                commodity.getContainer(),
+                commodity.getCategory(),
+                commodity.getModel(),
+                commodity.getPicture(),
+                commodity.getColor(),
+
+                commodity.getTopfabric(),
+                commodity.getUnderfabric(),
+                commodity.getAccessoriesfabric(),
                 commodity.getFactoryprice(),
                 commodity.getRetailprice(),
 
-                turnString(commodity.getRemark()),
-                turnString(commodity.getStatus()),
+                commodity.getRemark(),
+                commodity.getStatus(),
                 commodity.getCreterdate()
         );
         // TODO: 2018/12/4 产品操作记录表
