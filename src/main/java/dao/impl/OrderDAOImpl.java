@@ -16,24 +16,16 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
 
     @Override
     public int getTotalRecord(String whereName, Object whereValue) throws SQLException {
-        String sql="select count(*) from order where "+ whereName +" like ?";
+        String sql="select count(*) from peachliz.`order` where"+ whereName+ "like ?;";
         return jdbcOperator.queryForIntOnly(sql, whereValue);
     }
 
     @Override
     public List getPageList(String whereName, Object whereValue, int index, int pageSize) throws Exception {
-        String sql="select * from `order` where "+ whereName +" like ? limit ?,? ";
+        String sql="select * from peachliz.`order` where "+ whereName +" like ? limit ?,? ";
         List<Order> orderList = jdbcOperator.queryForJavaBeanList(sql,Order.class, whereValue,index,pageSize);
-        for (Order od:orderList
-             ) {
+        for (Order od:orderList) {
             od.setOrderCommodityGroupList();
-            for (OrderCommodityGroup orderCommodityGroup:od.getOrderCommodityGroupList()) {
-                orderCommodityGroup.setOrderCommodityGroupEntryList();
-                for (OrderCommodityGroupEntry orderCommodityGroupEntry:orderCommodityGroup.getOrderCommodityGroupEntryList()) {
-                    orderCommodityGroupEntry.setInventorySpecification();
-                    orderCommodityGroupEntry.getInventorySpecification().setCommodity();
-                }
-            }
             od.setOrderMoney();
             od.setOrderDate();
             od.setShoppingaddress();
@@ -80,10 +72,10 @@ public class OrderDAOImpl implements OrderDAO, PageModelDAO {
     public Order getOrder(String whereName, String whereValue) throws Exception {
         String sql = "select * from order where "+whereName+" = ?";
         Order order = (Order) jdbcOperator.queryForJavaBean(sql,Order.class,whereValue);
-        order.getShoppingaddress();
-        order.getOrderDate();
-        order.getOrderMoney();
-        order.getOrderCommodityGroupList();
+        order.setShoppingaddress();
+        order.setOrderDate();
+        order.setOrderMoney();
+        order.setOrderCommodityGroupList();
         return order;
 
     }
