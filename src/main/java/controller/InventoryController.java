@@ -152,4 +152,14 @@ public class InventoryController {
 
         return modelAndView;
     }
+
+    /**
+     * @param idinventory 库存id
+     * @param number 新的库存数量
+     *               更新数据库中的库存数量
+     */
+    public ModelAndView updateInventorySpecification(int idinventory,int number){
+        // TODO: 2018/12/6 陈亮  更新完留个todo给我 
+        return null;
+    }
 }

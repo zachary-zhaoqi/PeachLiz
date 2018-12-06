@@ -22,9 +22,10 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/ckform.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/myjs.js"></script>
 </head>
 <body>
-    <form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/queryInventory" method="post" onsubmit="queryCommodityHandle()">
+    <form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/queryInventory" method="post">
         <select name="whereName">
             <option value="model">型号</option>
         </select>
@@ -64,8 +65,8 @@
                                         "        <td>"+commodity.getRemark()+"</td>\n" +
                                         "        <td>"+inventorySpecification.getNumber()+"</td>\n" +
                                         "        <td>\n" +
-                                        "            <input type=\"number\" name=\"newnumber\" id=\"\"/>\n" +
-                                        "            <button onclick=\"updateInventory()\">保存</button>" +
+                                        "            <input type=\"number\" name=\"newnumber\" value=\""+inventorySpecification.getNumber()+"\"/>\n" +
+                                        "            <button onclick=\"updateInventory(this)\">保存</button>" +
                                         "            <span hidden>"+inventorySpecification.getIdinventory()+"</span>\n" +
                                         "        </td>\n" +
                                         "    </tr>"
