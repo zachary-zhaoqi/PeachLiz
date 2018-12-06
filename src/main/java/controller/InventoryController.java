@@ -78,6 +78,11 @@ public class InventoryController {
         if (null==commodityAttributeDetails||"".equals(commodityAttributeDetails)){
             commodityAttributeDetails="%";
         }
+
+        // TODO: 2018/12/6 跟上面一样，先获取idcommodity再查询list
+
+//        getWhereName=model  getWhereValue=值
+
         try {
             pageModel= new PageModel<>(pageNumber, totalRecord, pageSize);
             pageModel.setWhereName(commodityAttribute);

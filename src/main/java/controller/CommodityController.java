@@ -158,7 +158,7 @@ public class CommodityController {
             modelAndView.setViewName("error");
             modelAndView.addObject("errormessage",e.getMessage());
         }
-        return new ModelAndView();
+        return new ModelAndView("commodity/manage");
     }
 
 }

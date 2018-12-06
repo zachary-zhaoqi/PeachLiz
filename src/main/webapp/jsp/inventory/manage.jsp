@@ -84,19 +84,19 @@
             }
             String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord()+"&commodityAttribute="+pageModel.getWhereName()+"&commodityAttributeDetails="+pageModel.getWhereValue();
             out.println(
-                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
-                            "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"
+                    "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
+                            "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"
             );
             for (int i = 0; i < pageModel.getTotalPage(); i++) {
                 if ((i+1)!=pageModel.getPageNumber()){
-                    out.println("<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(i+1)+pageParmeStr+"\">"+Integer.toString(i+1)+"</a>");
+                    out.println("<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+Integer.toString(i+1)+pageParmeStr+"\">"+Integer.toString(i+1)+"</a>");
                 }else {
                     out.println("<span>"+Integer.toString(i+1)+"</span>");
                 }
             }
             out.println(
-                    "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+Integer.toString(pageModel.getPageNumber()+1)+pageParmeStr+"\">下一页</a>" +
-                            "<a href=\""+request.getContextPath()+"/updatePageList?pageNumber="+pageModel.getTotalPage()+pageParmeStr+"\">尾页</a>"
+                    "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+Integer.toString(pageModel.getPageNumber()+1)+pageParmeStr+"\">下一页</a>" +
+                            "<a href=\""+request.getContextPath()+"/updateInventoryPageList?pageNumber="+pageModel.getTotalPage()+pageParmeStr+"\">尾页</a>"
             );
         }
     %>
