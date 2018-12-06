@@ -19,11 +19,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/mycss.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery.sorted.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/ckform.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/common.js"></script>
-
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/myjs.js"></script>
 
 </head>
 <body>
@@ -83,7 +82,7 @@
                             "        <td>"+commodity.getStatus()+"</td>\n" +
                             "        <td>\n" +
                             "            <button type=\"button\" class=\"btn btn-success\" id=\"editCommodity\">编辑</button>\n" +
-                            "            <button type=\"button\" class=\"btn btn-success\" id=\"removeCommodity\">冻结</button>\n" +
+                            "            <button type=\"button\" class=\"btn btn-success\" onclick=\"removeCommodity(this)\">冻结</button>\n" +
                             "            <span hidden>"+commodity.getIdcommodity()+"</span>\n" +
                             "        </td>\n" +
                             "    </tr>"
@@ -95,14 +94,13 @@
     </table>
 
 
-
     <%
         //这块主要做分页的导航，更新页面
         if (pageModel!=null){
             if ("%"==pageModel.getWhereValue()){
                 pageModel.setWhereValue("");
             }
-            String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord()+"&commodityAttribute="+pageModel.getWhereName()+"&commodityAttributeDetails="+pageModel.getWhereValue();
+            String pageParmeStr="&pageSize="+pageModel.getPageSize()+"&totalRecord="+pageModel.getTotalRecord()+"&whereName="+pageModel.getWhereName()+"&whereValue="+pageModel.getWhereValue();
             out.println(
                     "<a href=\""+request.getContextPath()+"/updateCommodityPageList?pageNumber=1"+pageParmeStr+"\">首页</a>" +
                     "<a href=\""+request.getContextPath()+"/updateCommodityPageList?pageNumber="+Integer.toString(pageModel.getPageNumber()-1)+pageParmeStr+"\">上一页</a>"
@@ -128,10 +126,6 @@
             });
             $('#editCommodity').click(function(){
                 window.location.href="${pageContext.request.contextPath}/jsp/commodity/edit.jsp";
-            });
-            $('#removeCommodity').click(function(){
-                var idcommodity=$('#removeCommodity').siblings("span").text();
-                window.location.href="${pageContext.request.contextPath}/removeCommodity?idcommodity="+idcommodity;
             });
         });
 
