@@ -11,13 +11,26 @@
     <title>Title</title>
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/mycss.css" />
+
+    <style>
+        input[type="text"],
+        input[type="number"]{
+            width: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
+<div class="order-create-button" style="float: right">
+    <button>添加商品组</button>
+</div>
+
+
 <div class="order-show">
 
     <form action="" method="post">
         <table  border="1" style="text-align: center;border-collapse: collapse;border-spacing: 0;">
-            <div>
+            <div class="order-date">
                 <tr>
                     <td colspan="100">
                         <table style="width: 100%;text-align: center;font-size: 12px">
@@ -26,31 +39,31 @@
                                     下单时间:
                                 </td>
                                 <td  style="width: 100px;text-align: left">
-                                    2018.12.5 11:45
+                                    <input type="text" name="" />
                                 </td>
                                 <td style="width: 100px;text-align: right">
                                     付定价时间:
                                 </td>
                                 <td style="width: 100px;text-align: left">
-                                    2018.12.5 11:45
+                                    <input type="text" name="" />
                                 </td>
                                 <td style="width: 100px;text-align: right">
                                     付尾款时间:
                                 </td>
                                 <td style="width: 100px;text-align: left">
-                                    2018.12.5 11:45
+                                    <input type="text" name="" />
                                 </td>
                                 <td style="width: 100px;text-align: right">
                                     发货时间:
                                 </td>
                                 <td style="width: 100px;text-align: left">
-                                    2018.12.5 11:45
+                                    <input type="text" name="" />
                                 </td>
                                 <td style="width: 100px;text-align: right">
                                     交易完成时间:
                                 </td>
                                 <td style="width: 100px;text-align: left">
-                                    2018.12.5 11:45
+                                    <input type="text" name="" />
                                 </td>
                             </tr>
                         </table>
@@ -93,7 +106,7 @@
                 </tr>
             </div>
 
-            <div>
+            <div class="order-Shoppingaddress">
                 <tr>
                     <td rowspan="3" colspan="20" style="background-color: #d9d9d9">
                         <table style="width: 100%;text-align: center;">
@@ -109,25 +122,25 @@
                         订货单位:
                     </td>
                     <td colspan="20">
-                        中国人民世界银行
+                        <input type="text" name="" />
                     </td>
                     <td colspan="6">
                         联系人:
                     </td>
                     <td colspan="10">
-                        王大大
+                        <input type="text" name="" />
                     </td>
                     <td colspan="6">
                         联系电话:
                     </td>
                     <td colspan="11">
-                        13612341234
+                        <input type="text" name="" />
                     </td>
                     <td colspan="6">
                         QQ:
                     </td>
                     <td colspan="11">
-                        666999666
+                        <input type="text" name="" />
                     </td>
                 </tr>
                 <tr>
@@ -135,7 +148,7 @@
                         收货地址:
                     </td>
                     <td colspan="50">
-
+                        <input type="text" name="" />
                     </td>
                 </tr>
                 <tr>
@@ -143,377 +156,17 @@
                         项目名称:
                     </td>
                     <td colspan="50">
-
+                        <input type="text" name="" />
                     </td>
                 </tr>
             </div>
 
             <tr><td colspan="100" style="background-color: #1a1a1a;"></td></tr>
 
-            <%--商品组分界线--%>
-            <div class="OrderCommodityGroup-show">
-                <tr>
-                    <td colspan="100" style="background-color: #d9d9d9;color: #9d261d">床品一套·主卧</td>
-                </tr>
-                <tr>
-                    <td colspan="20">
-                        <strong>合照</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>品类</strong>
-                    </td>
-                    <td  colspan="12">
-                        <strong>产品图片</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>产品型号</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>顶部面料型号</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>底部面料型号</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>辅料面料型号</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>工艺细节</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>尺寸(CM)</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>数量</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>单价</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>合计</strong>
-                    </td>
-                    <td  colspan="8">
-                        <strong>备注</strong>
-                    </td>
-                </tr>
-                <div class="OrderCommodityGroupEntry-show">
-                    <tr>
-                        <td rowspan="3" colspan="20">
-                            <strong>合照</strong>
-                        </td>
-                        <td  colspan="6">
-                            靠枕
-                        </td>
-                        <td  colspan="12">
+            <div class="OrderCommodityGroup-div">
 
-                        </td>
-                        <td  colspan="6">
-                            K385
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-                            60*60
-                        </td>
-                        <td  colspan="6">
-                            2
-                        </td>
-                        <td  colspan="6">
-                            250
-                        </td>
-                        <td  colspan="6">
-                            500
-                        </td>
-                        <td  colspan="8">
-                            我是对单条商品的备注我是对单条商品的备注
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td  colspan="6">
-                            靠枕
-                        </td>
-                        <td  colspan="12">
-
-                        </td>
-                        <td  colspan="6">
-                            K385
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-                            60*60
-                        </td>
-                        <td  colspan="6">
-                            2
-                        </td>
-                        <td  colspan="6">
-                            250
-                        </td>
-                        <td  colspan="6">
-                            500
-                        </td>
-                        <td  colspan="8">
-                            我是对单条商品的备注我是对单条商品的备注
-                        </td>
-                    </tr>
-                    <tr>
-                        <td  colspan="6">
-                            靠枕
-                        </td>
-                        <td  colspan="12">
-
-                        </td>
-                        <td  colspan="6">
-                            K385
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-                            60*60
-                        </td>
-                        <td  colspan="6">
-                            2
-                        </td>
-                        <td  colspan="6">
-                            250
-                        </td>
-                        <td  colspan="6">
-                            500
-                        </td>
-                        <td  colspan="8">
-                            我是对单条商品的备注我是对单条商品的备注
-                        </td>
-                    </tr>
-                </div>
-                <tr>
-                    <td colspan="20">
-                        <strong>备注</strong>
-                    </td>
-                    <td colspan="48">
-                        我是对这一套床品整体的备注我是对这一套床品整体的备注我是对这一套床品整体的备注
-                    </td>
-                    <td colspan="12">
-                        <strong>合计</strong>
-                    </td>
-                    <td colspan="20">
-                        ￥254250
-                    </td>
-                </tr>
-                <tr><td colspan="100" style="background-color: #1a1a1a;"></td></tr>
             </div>
-
-            <div class="OrderCommodityGroup-show">
-                <tr>
-                    <td colspan="100" style="background-color: #d9d9d9;color: #9d261d">抱枕</td>
-                </tr>
-                <tr>
-                    <td colspan="20">
-                        <strong>合照</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>品类</strong>
-                    </td>
-                    <td  colspan="12">
-                        <strong>产品图片</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>产品型号</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>顶部面料型号</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>底部面料型号</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>辅料面料型号</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>工艺细节</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>尺寸(CM)</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>数量</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>单价</strong>
-                    </td>
-                    <td  colspan="6">
-                        <strong>合计</strong>
-                    </td>
-                    <td  colspan="8">
-                        <strong>备注</strong>
-                    </td>
-                </tr>
-                <div class="OrderCommodityGroupEntry-show">
-                    <tr>
-                        <td rowspan="3" colspan="20">
-                            <strong>合照</strong>
-                        </td>
-                        <td  colspan="6">
-                            抱枕
-                        </td>
-                        <td  colspan="12">
-
-                        </td>
-                        <td  colspan="6">
-                            BZ154
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-                            60*60
-                        </td>
-                        <td  colspan="6">
-                            2
-                        </td>
-                        <td  colspan="6">
-                            250
-                        </td>
-                        <td  colspan="6">
-                            500
-                        </td>
-                        <td  colspan="8">
-                            我是对单条商品的备注我是对单条商品的备注
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td  colspan="6">
-                            抱枕
-                        </td>
-                        <td  colspan="12">
-
-                        </td>
-                        <td  colspan="6">
-                            BZ154
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-                            60*60
-                        </td>
-                        <td  colspan="6">
-                            2
-                        </td>
-                        <td  colspan="6">
-                            250
-                        </td>
-                        <td  colspan="6">
-                            500
-                        </td>
-                        <td  colspan="8">
-                            我是对单条商品的备注我是对单条商品的备注
-                        </td>
-                    </tr>
-                    <tr>
-                        <td  colspan="6">
-                            抱枕
-                        </td>
-                        <td  colspan="12">
-
-                        </td>
-                        <td  colspan="6">
-                            BZ154
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-
-                        </td>
-                        <td  colspan="6">
-                            60*60
-                        </td>
-                        <td  colspan="6">
-                            2
-                        </td>
-                        <td  colspan="6">
-                            250
-                        </td>
-                        <td  colspan="6">
-                            500
-                        </td>
-                        <td  colspan="8">
-                            我是对单条商品的备注我是对单条商品的备注
-                        </td>
-                    </tr>
-                </div>
-                <tr>
-                    <td colspan="20">
-                        <strong>备注</strong>
-                    </td>
-                    <td colspan="48">
-                        我是对这组抱枕的备注我是对这一套床品整体的备注我是对这一套床品整体的备注
-                    </td>
-                    <td colspan="12">
-                        <strong>合计</strong>
-                    </td>
-                    <td colspan="20">
-                        ￥254250
-                    </td>
-                </tr>
-                <tr><td colspan="100" style="background-color: #1a1a1a;"></td></tr>
-            </div>
+            
 
             <div class="order-money">
                 <tr style="background-color: #8f8f8f">
@@ -639,7 +292,14 @@
     </form>
 </div>
 
+<script>
+    $(function () {
+        function addOrderCommodityGroupone() {
 
+        }
+    });
+
+</script>
 
 </body>
 </html>

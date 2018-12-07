@@ -24,6 +24,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/common.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/myjs.js"></script>
 
+
 </head>
 <body>
     <form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/queryCommodity" method="post">
