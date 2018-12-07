@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<form id="addCommodityForm" action="${pageContext.request.contextPath}/addCommodity" method="post">
+<form id="addCommodityForm" action="${pageContext.request.contextPath}/addCommodity" method="post" enctype="multipart/form-data">
     <table>
         <tr>
             <td>
@@ -103,7 +103,7 @@
         </tr>
         <tr>
             <td>
-                <button onclick="addCommodity()">添加</button>
+                <<input type="submit" value="添加"/>
             </td>
         </tr>
     </table>
