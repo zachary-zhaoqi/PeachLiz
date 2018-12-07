@@ -115,7 +115,7 @@
                                 "            <tr>\n" +
                                 "                <td><button>进入下一状态</button></td>\n" +
                                 "                <td><button>退回上一状态</button></td>\n" +
-                                "                <td><button>查看订单详情</button></td>\n" +
+                                "                <td><button class=\"ordershouwdetailnow\">查看订单详情</button></td>\n" +
                                 "                <td><button>申请退货</button></td>\n" +
                                 "            </tr>\n" +
                                 "        </table>\n" +
@@ -219,6 +219,9 @@
         $(function () {
             $('#newOrder').click(function(){
                 window.location.href="${pageContext.request.contextPath}/jsp/order/add.jsp";
+            });
+            $('.ordershouwdetailnow').click(function(){
+                window.location.href="${pageContext.request.contextPath}/jsp/order/detail.jsp";
             });
         });
     </script>

@@ -23,8 +23,8 @@ public class DataSourceConfig {
     /**
      * 配置文件的路径
      * */
-//    private static final String DATASOURCE_CONFIG_FILE = "C:\\Users\\12102\\Desktop\\新建文件夹 (2)\\PeachLiz\\src\\main\\resources\\dataSource.properties";
-    private static final String DATASOURCE_CONFIG_FILE = "C:\\Users\\starr\\workspace\\PeachLiz\\src\\main\\resources\\dataSource.properties";
+    private static final String DATASOURCE_CONFIG_FILE = "C:\\Users\\12102\\Desktop\\新建文件夹 (2)\\PeachLiz\\src\\main\\resources\\dataSource.properties";
+//    private static final String DATASOURCE_CONFIG_FILE = "C:\\Users\\starr\\workspace\\PeachLiz\\src\\main\\resources\\dataSource.properties";
     /**
      * 数据库帐号
      */

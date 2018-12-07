@@ -37,6 +37,9 @@
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">商品管理</div></li>
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">库存管理</div></li>
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">系统管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order"></div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单管理</div></li>
         </ul>
     </div>
     <ul id="J_NavContent" class="dl-tab-conten">
@@ -57,8 +60,12 @@
                     {
                         text:'商品管理',
                         items: [
+
                             {id:'10',text:'商品管理',href:'${pageContext.request.contextPath}/jsp/commodity/manage.jsp'},
                             {id:'11',text:'折扣管理',href:'#'},
+                            {id:'10',text:'品类管理',href:'${pageContext.request.contextPath}/jsp/commodity/manage.jsp'},
+                            {id:'10',text:'颜色管理',href:'${pageContext.request.contextPath}/jsp/commodity/manage.jsp'},
+                            {id:'10',text:'颜色管理',href:'${pageContext.request.contextPath}/jsp/commodity/manage.jsp'},
                         ]
                     }
                 ]
@@ -82,7 +89,8 @@
                     {
                         text:'订单管理',
                         items: [
-                            {id:'30', text:'订单管理', href:'${pageContext.request.contextPath}/jsp/order/manage.jsp'}
+                            {id:'30', text:'订单管理', href:'${pageContext.request.contextPath}/jsp/order/manage.jsp'},
+                            {id:'31', text:'退货管理', href:'${pageContext.request.contextPath}/jsp/order/manage.jsp'}
                         ]
                     }
                 ]

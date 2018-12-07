@@ -4,7 +4,6 @@ import dao.OperatorDAO;
 import dao.PageModelDAO;
 import jdbc.JdbcOperator;
 import model.Operator;
-import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 
 import java.sql.SQLException;
 import java.util.List;
